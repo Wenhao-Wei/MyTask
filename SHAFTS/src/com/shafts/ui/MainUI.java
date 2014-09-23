@@ -2381,7 +2381,7 @@ public class MainUI extends javax.swing.JFrame {
                         String NewPath = localworkPath + "Job";
                         Smilarity sf = new Smilarity();
                         sf.shaftinit(NewPath, filePath, DatabasePath,
-                                ResultNum, Threshold);
+                                jTextField2.getText(), Threshold);
                         String workid = sf.getworkid();
                         addnode(workid, shaftsModel);
                         File f1 = new File(filePath);
@@ -2421,7 +2421,7 @@ public class MainUI extends javax.swing.JFrame {
                                 break;
                             case 1:
                                 HttpInvokerClient HIC = new HttpInvokerClient();
-                                String ID = HIC.getid(filePath, screenModel, ResultNum,
+                                String ID = HIC.getid(filePath, screenModel, jTextField2.getText(),
                                         programModel, screenDB, Threshold);
                                 addnode(ID, nodePlace);
                                 if (nodePlace == 2) {
