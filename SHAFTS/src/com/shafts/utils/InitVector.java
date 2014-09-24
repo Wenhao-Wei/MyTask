@@ -26,7 +26,7 @@ public class InitVector {
      *
      * @param path
      */
-    public Vector getdata(String path) {
+	public Vector getdata(String path) {
         data = new Vector();
         int i = 1;
         int flag = 0;

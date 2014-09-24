@@ -12,6 +12,7 @@ package com.shafts.application;
  */
 import java.io.File;
 import java.util.Vector;
+
 import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,6 +20,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -86,6 +88,18 @@ public class JobInfor_XML {
     }
     
     /**
+	 * rename the file
+	 *
+	 * @param oldname
+	 * @param newname
+	 * @param Path
+	 *            file path
+	 */
+	public void renameFile(String oldname, File newname, String Path) {
+		File file = new File(Path + oldname);
+		file.renameTo(newname);
+	}
+    /**
      * update node from xml
      * @param updateID
      *         the node to change   
@@ -93,9 +107,11 @@ public class JobInfor_XML {
      *         the new name of the node
      * @param jobModel
      * @param filePath
+     * @param localwprkPath
+     * @param ResultPath
      * @return
      */
-    public boolean updateXML(String updateID, String newID, String jobModel, String filePath){
+    public boolean updateXML(String updateID, String newID, String jobModel, String filePath, String ResultPath){
          //get the object of document
         boolean isUpdate = false;
          Document document = loadInit(filePath);
@@ -105,13 +121,16 @@ public class JobInfor_XML {
             //Traversal leaf node
              for(int i=0; i<nodeList.getLength(); i++){
                  String number = document.getElementsByTagName("ID").item(i).getFirstChild().getNodeValue();
-                 if(!number.equals(updateID) && number.equals(newID)){
-                     JOptionPane.showMessageDialog(null, "Failed! Node name has exists!");
-                 }
-                 //update the node
-                 else if(number.equals(updateID)){
-                     document.getElementsByTagName("ID").item(i).getFirstChild().setNodeValue(newID);
-                     isUpdate = true;
+                 if(number.equals(updateID)){                    
+                     File file = new File(ResultPath + newID);
+                     if(file.exists())						
+						JOptionPane.showMessageDialog(null, "Failed! Node name has exists!");
+                     else{
+                    	 renameFile(updateID, file, ResultPath); // rename
+                    	 document.getElementsByTagName("ID").item(i).getFirstChild().setNodeValue(newID);
+                    	 isUpdate = true;
+                     }
+                     break;
                  }
              }
              saveXML(document, filePath);
