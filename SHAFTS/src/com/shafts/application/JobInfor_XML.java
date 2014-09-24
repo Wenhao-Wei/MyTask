@@ -71,7 +71,7 @@ public class JobInfor_XML {
     public void deleteXML(String deleteID, String jobModel, String filePath){
         Document document = loadInit(filePath);
         try{
-            NodeList nodeList = document.getElementsByTagName(jobModel);
+            NodeList nodeList = document.getElementsByTagName(jobModel.replace(" ", ""));
             for(int i=0; i<nodeList.getLength(); i++){
                 String number_ = document.getElementsByTagName("ID").item(i).getFirstChild().getNodeValue();
                 //delete the node
@@ -117,7 +117,7 @@ public class JobInfor_XML {
          Document document = loadInit(filePath);
          try{
             //get leaf ode
-             NodeList nodeList = document.getElementsByTagName(jobModel);
+             NodeList nodeList = document.getElementsByTagName(jobModel.replace(" ", ""));
             //Traversal leaf node
              for(int i=0; i<nodeList.getLength(); i++){
                  String number = document.getElementsByTagName("ID").item(i).getFirstChild().getNodeValue();
@@ -256,6 +256,17 @@ public class JobInfor_XML {
      */
     public Vector getHit(){
         return HitOB;
+    }
+    
+    
+    public static void main(String args[]){
+    	String path = "D:\\MyOffice\\Github\\MyTask\\SHAFTS\\workspace\\TMP\\jobinfor.xml";
+    	JobInfor_XML job = new JobInfor_XML();
+    	job.initdataXML(path);
+    	Vector v = job.getHit();
+    	if(v != null)
+    		for(int i = 0; i < v.size(); i ++)
+    			System.out.println(v.get(i));
     }
     private Vector LocalOB;
     private Vector TargetOB;
