@@ -1,1 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><TotalJob><Local><ID>job</ID></Local><Local><ID>my</ID></Local><HitExplorer><ID>23374</ID></HitExplorer></TotalJob>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><MyJob>
+<myjob>
+<Model>Local</Model>
+<ID>job</ID>
+</myjob>
+<myjob>
+<Model>Local</Model>
+<ID>my</ID>
+</myjob>
+<myjob>
+<Model>HitExplorer</Model>
+<ID>23374</ID>
+</myjob>
+<myjob><Model/><ID>Job1</ID></myjob><myjob><Model/><ID>Job2</ID></myjob></MyJob>

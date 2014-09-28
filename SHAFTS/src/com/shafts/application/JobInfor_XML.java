@@ -43,7 +43,7 @@ public class JobInfor_XML {
             DocumentBuilder builder = factory.newDocumentBuilder();
             if(!file.exists()){
                 document = builder.newDocument();  
-               Element root = document.createElement("TotalJob");  
+               Element root = document.createElement("MyJob");  
                 document.appendChild(root);
          }
             else{
@@ -71,11 +71,12 @@ public class JobInfor_XML {
     public void deleteXML(String deleteID, String jobModel, String filePath){
         Document document = loadInit(filePath);
         try{
-            NodeList nodeList = document.getElementsByTagName(jobModel.replace(" ", ""));
+            NodeList nodeList = document.getElementsByTagName("myjob");
             for(int i=0; i<nodeList.getLength(); i++){
+            	String jobmodel = document.getElementsByTagName("Model").item(i).getFirstChild().getNodeValue();
                 String number_ = document.getElementsByTagName("ID").item(i).getFirstChild().getNodeValue();
                 //delete the node
-                if(number_.equals(deleteID)){
+                if(jobmodel.equals(jobModel.replace(" ", "")) && number_.equals(deleteID)){
                     Node node = nodeList.item(i);
                     node.getParentNode().removeChild(node);
                     saveXML(document, filePath);
@@ -117,11 +118,12 @@ public class JobInfor_XML {
          Document document = loadInit(filePath);
          try{
             //get leaf ode
-             NodeList nodeList = document.getElementsByTagName(jobModel.replace(" ", ""));
+             NodeList nodeList = document.getElementsByTagName("myjob");//jobModel.replace(" ", "")
             //Traversal leaf node
              for(int i=0; i<nodeList.getLength(); i++){
+            	 String jobmodel = document.getElementsByTagName("Model").item(i).getFirstChild().getNodeValue();
                  String number = document.getElementsByTagName("ID").item(i).getFirstChild().getNodeValue();
-                 if(number.equals(updateID)){                    
+                 if(jobmodel.equals(jobModel.replace(" ", "")) && number.equals(updateID)){                    
                      File file = new File(ResultPath + newID);
                      if(file.exists())						
 						JOptionPane.showMessageDialog(null, "Failed! Node name has exists!");
@@ -151,15 +153,19 @@ public class JobInfor_XML {
             Document document = loadInit(filePath);
             //create leafnode
             String job = jobModel.replace(" ", "");
-            Element jobStyle = document.createElement(job);
+            Element newjob = document.createElement("myjob");
+            Element jobStyle = document.createElement("Model");
             Element eltNumber = document.createElement("ID");//create the first element
+            Text model = document.createTextNode(job);
             Text id = document.createTextNode(addID);//create the text node 
             eltNumber.appendChild(id);
             jobStyle.appendChild(eltNumber);
+            newjob.appendChild(jobStyle);
+            newjob.appendChild(eltNumber);
             //get root node
             Element eltRoot = document.getDocumentElement();
             //add the new node to the root
-            eltRoot.appendChild(jobStyle);
+            eltRoot.appendChild(newjob);
             //save
             saveXML(document, filePath);
         }catch(Exception e){
@@ -194,47 +200,30 @@ public class JobInfor_XML {
      * @return
      */
     public void initdataXML(String filePath){
-         Vector local = new Vector();
-         Vector target = new Vector();
-         Vector hit = new Vector();
+    	LocalOB = new Vector();
+    	TargetOB = new Vector();
+    	HitOB = new Vector();
          try{
              Document document = loadInit(filePath);
              //get leaf node
-             NodeList nodeList = document.getElementsByTagName("Local");
-             NodeList nodeList1 = document.getElementsByTagName("TargetNavigater");
-             NodeList nodeList2 = document.getElementsByTagName("HitExplorer");             
+             NodeList nodeList = document.getElementsByTagName("myjob");
              //traversal local
              for(int i=0; i<nodeList.getLength(); i++){
-                 String jobid = document.getElementsByTagName("ID").item(i).getFirstChild().getNodeValue();
-                 local.add(jobid);
-                 //System.out.println("***********" +jobid + "***********");
+            	 String jobmodel = document.getElementsByTagName("Model").item(i).getFirstChild().getNodeValue();
+            	 String id = document.getElementsByTagName("ID").item(i).getFirstChild().getNodeValue();
+                 switch(jobmodel){
+                 case "Local": LocalOB.add(id);
+                 	break;
+                 case "TargetNavigator": TargetOB.add(id);
+                 break;
+                 case "HitExplorer": HitOB.add(id);
+                 break;
+                 }
              }
-             //traversal target
-             for(int i=0; i<nodeList1.getLength(); i++){
-                 String jobid = document.getElementsByTagName("ID").item(i).getFirstChild().getNodeValue();
-                 target.add(jobid);
-             }
-             //traversal hit
-             for(int i=0; i<nodeList2.getLength(); i++){
-                 String jobid = document.getElementsByTagName("ID").item(i).getFirstChild().getNodeValue();
-                 hit.add(jobid);
-             }
-             setObject(local,target,hit);
          }catch(Exception e){
              e.printStackTrace();
              System.out.println(e.getMessage());
          }
-    }
-    /**
-     * set object
-     * @param LocalOB
-     * @param TargetOB
-     * @param HitOB 
-     */
-    private void setObject(Vector LocalOB, Vector TargetOB, Vector HitOB){
-        this.LocalOB = LocalOB;
-        this.TargetOB = TargetOB;
-        this.HitOB = HitOB;
     }
     /**
      * get localjob

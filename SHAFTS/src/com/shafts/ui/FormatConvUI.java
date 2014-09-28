@@ -6,18 +6,22 @@
 package com.shafts.ui;
 
 import com.shafts.application.FormatConv;
+
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ItemEvent;
+
 import static java.awt.image.ImageObserver.HEIGHT;
 import static java.awt.image.ImageObserver.WIDTH;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -257,14 +261,17 @@ public class FormatConvUI extends javax.swing.JFrame {
                 File file = fc.getSelectedFile();
                 Outpath = file.getAbsolutePath();
                 FormatConv convert = new FormatConv();
-                convert.formatconv(Inpath, Outpath, Outformat);
-                /*if(convFlag)
-                 JOptionPane.showConfirmDialog(null, "Success! Would you wan to show it now?", "Tips", JOptionPane.YES_NO_OPTION);
-                 else
-                 JOptionPane.showMessageDialog( null,"Failed，please retry！");
-                 //System.out.println(Outformat);//输出流
-                 //System.out.println(Outpath);*/
-
+                boolean flag = convert.formatconv(Inpath, Outpath, Outformat);
+                if(flag){
+					int i = JOptionPane.showConfirmDialog(null, "Success! Would you wan to show it now?", "Tips", JOptionPane.YES_NO_OPTION);
+					if(i == JOptionPane.OK_OPTION)
+						try {
+							Runtime.getRuntime().exec("explorer.exe /select," + Outpath);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			   	}
             }
         }
     }//GEN-LAST:event_okActionPerformed

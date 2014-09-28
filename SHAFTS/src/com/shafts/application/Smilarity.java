@@ -38,8 +38,32 @@ public class Smilarity {
 	 *            molecule threshold
 	 */
 	public void shaftinit(String NewPath, String inFilePath, String DataBase, String outputNum, String threshold) {
-
-		String cmd = "Cynthia.exe -q " + inFilePath + " -t " + DataBase + " -n " + outputNum + " -sCutoff " + threshold;
+		String FilePath = inFilePath;
+		int i = 1;
+		String j = i + "";
+		workPath = NewPath + j;
+		File F1 = new File(workPath);
+		while (F1.exists()) {
+			i++;
+			j = i + "";
+			workPath = NewPath + j;
+			F1 = new File(workPath);
+		}
+		F1.mkdir();
+		
+		boolean movefile = false;
+		if((inFilePath.substring(inFilePath.lastIndexOf(".") + 1)).equals("mol")){
+			movefile = true;
+			FilePath = format_To_Mol2(inFilePath);
+		}
+		if(!movefile){
+			File f1 = new File(inFilePath);
+			String newpath = workPath + "\\Input.mol2"; 			
+			File f2 = new File(newpath);
+			f1.renameTo(f2);
+		}
+		if(!FilePath.equals("stop")){
+		String cmd = "Cynthia.exe -q " + FilePath + " -t " + DataBase + " -n " + outputNum + " -sCutoff " + threshold;
 		InputStream ins = null;
 		try {
 			Process process = Runtime.getRuntime().exec(cmd);
@@ -56,19 +80,9 @@ public class Smilarity {
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
 		}
-		int i = 1;
-		String j = i + "";
-		workPath = NewPath + j;
-		File F1 = new File(workPath);
-		while (F1.exists()) {
-			i++;
-			j = i + "";
-			workPath = NewPath + j;
-			F1 = new File(workPath);
-		}
-		F1.mkdir();
-		movefiles();
+		movefiles();					
 		LocalworkID = "Job" + j;
+		}
 	}
 
 	/**
@@ -115,6 +129,16 @@ public class Smilarity {
 		}
 	}
 
+	private String format_To_Mol2(String infilepath){
+		FormatConv fc = new FormatConv();
+		String outformat = "mol2";
+		String path = workPath + "//input.mol2";
+		boolean flag = fc.formatconv(infilepath, path, outformat);
+		if(flag)
+			return path;
+		else
+			return "stop";
+	}
 	/**
 	 * @return
 	 */

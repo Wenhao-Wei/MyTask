@@ -26,11 +26,10 @@ import org.openbabel.OBMol;
  * @author Wenhao Wei
  * 2014-07-06
  */
-public class FormatConv extends JDialog{
+public class FormatConv{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	private boolean convFlag = false;
 	private File inMol;
 	private String inMolName;
@@ -46,7 +45,7 @@ public class FormatConv extends JDialog{
 	 * @return
 	 * 		  	return the flag if the conversion has succeeded
 	 */
-	public void formatconv(final String inFilePath,final String outFilePath,final String outFormat){
+	public boolean formatconv(final String inFilePath,final String outFilePath,final String outFormat){
 			convFlag = false;
 			inMol = new File(inFilePath);
 			inMolName = inMol.getName();
@@ -64,7 +63,7 @@ public class FormatConv extends JDialog{
 				 //JOptionPane.showMessageDialog( null,"Convert Success��");
 				 }catch(Exception e){
 				   	e.printStackTrace();
-				   	int i = JOptionPane.showConfirmDialog( null,"Please install the Openbabel first��\n Install now?","Tips",JOptionPane.YES_NO_OPTION);
+				   	int i = JOptionPane.showConfirmDialog( null,"Please install the Openbabel first!\n Install now?","Tips",JOptionPane.YES_NO_OPTION);
 				   	if(i == JOptionPane.OK_OPTION){
 				   		Desktop desktop = Desktop.getDesktop();  
 				        try {
@@ -76,22 +75,8 @@ public class FormatConv extends JDialog{
 									} 
 				   			}				   				
 				   		}	       	       
-			        // conv.WriteString(mol);
-					
-				   	if(convFlag){
-    					int i = JOptionPane.showConfirmDialog(null, "Success! Would you wan to show it now?", "Tips", JOptionPane.YES_NO_OPTION);
-    					if(i == JOptionPane.OK_OPTION)
-							try {
-								Runtime.getRuntime().exec("explorer.exe /select," + outFilePath);
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-				   	}
-    				else{
-    					JOptionPane.showMessageDialog( null,"Failed��please retry��");
-    					
-    				}
+			        // conv.WriteString(mol);									   	
+				   	return convFlag;
 			}
 	public static void main(String args[]){
 		

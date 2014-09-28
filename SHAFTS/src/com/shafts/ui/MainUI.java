@@ -93,12 +93,13 @@ public class MainUI extends javax.swing.JFrame {
 		if (!file1.exists()) {
 			file1.mkdir();
 		}
-		targetworkPath = networkPath + "\\Target Navigator\\";
+		targetworkPath = networkPath + "Target Navigator\\";
 		File file2 = new File(targetworkPath);
 		if (!file2.exists()) {
 			file2.mkdir();
 		}
-		hitworkPath = networkPath + "\\Hit Explorer\\";
+		hitworkPath = networkPath + "Hit Explorer\\";
+		System.out.println("*****" + hitworkPath);
 		File file3 = new File(hitworkPath);
 		if (!file3.exists()) {
 			file3.mkdir();
@@ -289,6 +290,7 @@ public class MainUI extends javax.swing.JFrame {
 				int rowLocation = jTree.getRowForLocation(e.getX(), e.getY());
 				TreePath treepath = jTree.getPathForRow(rowLocation);
 				if (treepath == null) {
+					F = false;
 					if (IsRename == 1) {//do rename operation
 						jTree.stopEditing();
 						String newName = ((DefaultMutableTreeNode) jTree1.getLastSelectedPathComponent()).toString();
@@ -305,7 +307,6 @@ public class MainUI extends javax.swing.JFrame {
 
 						}
 					} else {
-						System.out.println("**********Quit rename**********");
 						jTree1.cancelEditing();
 						jTree1.clearSelection();
 					}
@@ -451,7 +452,6 @@ public class MainUI extends javax.swing.JFrame {
 						}
 						try {
 							String filepath = ResultPath + nodeName;
-							// System.out.println(filePath);
 							Runtime.getRuntime().exec("explorer.exe /select," + filepath);
 						} catch (IOException e1) {
 						}
@@ -2534,11 +2534,7 @@ public class MainUI extends javax.swing.JFrame {
 					sf.shaftinit(NewPath, filePath, DatabasePath, jTextField2.getText(), Threshold);
 					String workid = sf.getworkid();
 					addnode(workid, shaftsModel);
-					File f1 = new File(filePath);
-					String newpath = localworkPath + workid + "\\Input.mol2";
 					showMolPath = localworkPath + workid + "\\";
-					File f2 = new File(newpath);
-					f1.renameTo(f2);
 					jobInfor.addXML(workid, "Local", tmpPath);
 					data = sf.getdata();
 					Vector columnNames = IV.getcolumn();
