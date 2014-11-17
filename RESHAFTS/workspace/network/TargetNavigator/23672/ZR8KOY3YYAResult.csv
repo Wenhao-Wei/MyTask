@@ -1,0 +1,112 @@
+rank,name,uniprot,species,score
+1,Prostaglandin G/H synthase 2,P35354,Homo sapiens,1.0
+2,Aralkylamine dehydrogenase light chain,P84887,Alcaligenes faecalis,0.851
+3,Aromatic-amino-acid aminotransferase,P95468,Paracoccus denitrificans,0.477
+4,cAMP-dependent protein kinase catalytic subunit alpha,P17612,Homo sapiens,0.456
+5,"Nitric oxide synthase, inducible",P35228,Homo sapiens,0.442
+6,Prothrombin,P00734,Homo sapiens,0.436
+7,Tryptophanyl-tRNA synthetase,P00953,Geobacillus stearothermophilus,0.399
+8,Aspartate aminotransferase,P00509,Escherichia coli,0.356
+9,Trypsin-1,P07477,Homo sapiens,0.284
+10,Kynurenine--oxoglutarate transaminase 1,Q16773,Homo sapiens,0.244
+11,3-oxoacyl-[acyl-carrier-protein] synthase 1,P0A953,Escherichia coli,0.239
+12,5-hydroxytryptamine 1D receptor,P28221,Homo sapiens,0.236
+13,"Gamma-aminobutyric acid type B receptor, subunit 1",Q9UBS5,Homo sapiens,0.235
+14,Ferredoxin component of carbazole,Q8GI16,Pseudomonas resinovorans,0.235
+15,Methionine aminopeptidase,P0AE18,Escherichia coli,0.234
+16,Lysozyme,P00720,Enterobacteria phage T4,0.233
+17,Acetylcholinesterase,P22303,Homo sapiens,0.21
+18,Toll-like receptor 7,Q9NYK1,Homo sapiens,0.208
+19,DNA polymerase kappa,Q9UBT6,Homo sapiens,0.207
+20,Membrane copper amine oxidase,Q16853,Homo sapiens,0.202
+21,Sodium-dependent noradrenaline transporter,P23975,Homo sapiens,0.195
+22,"Tryptophanyl-tRNA synthetase, mitochondrial",Q9UGM6,Homo sapiens,0.189
+23,Prostaglandin G/H synthase 1,P23219,Homo sapiens,0.183
+24,Alpha-1A adrenergic receptor,P35348,Homo sapiens,0.181
+25,Alpha-2A adrenergic receptor,P08913,Homo sapiens,0.161
+26,5-hydroxytryptamine 2A receptor,P28223,Homo sapiens,0.148
+27,Macrophage migration inhibitory factor,P14174,Homo sapiens,0.131
+28,Group IIE secretory phospholipase A2,Q9NZK7,Homo sapiens,0.107
+29,S-phase kinase-associated protein 1,P63208,Homo sapiens,0.107
+30,5-hydroxytryptamine 1B receptor,P28222,Homo sapiens,0.107
+31,5-hydroxytryptamine 1F receptor,P30939,Homo sapiens,0.107
+32,Parathyroid hormone,P01270,Homo sapiens,0.105
+33,"2-hydroxy-6-oxo-7-methylocta-2,4-dienoate hydrolase",P96965,Pseudomonas fluorescens,0.105
+34,Hydroxyacid oxidase 1,Q9UJM8,Homo sapiens,0.105
+35,Hepatocyte nuclear factor 1-alpha,P20823,Homo sapiens,0.105
+36,Gag-Pol polyprotein,P03369,ARV2/SF2),0.103
+37,Gag-Pol polyprotein,P04585,,0.103
+38,Beta-2-microglobulin,P61769,Homo sapiens,0.101
+39,T-cell receptor alpha chain C region,P01848,Homo sapiens,0.101
+40,T-cell receptor beta chain C region,P01850,Homo sapiens,0.101
+41,"cAMP-specific 3',5'-cyclic phosphodiesterase 4B",Q07343,Homo sapiens,0.096
+42,"cGMP-inhibited 3',5'-cyclic phosphodiesterase A",Q14432,Homo sapiens,0.096
+43,L-phenylalanine dehydrogenase,Q59771,Rhodococcus sp,0.08
+44,Estrogen receptor,P03372,Homo sapiens,0.077
+45,D(1A) dopamine receptor,P21728,Homo sapiens,0.075
+46,5-hydroxytryptamine 3 receptor,P46098,Homo sapiens,0.064
+47,Kappa-type opioid receptor,P41145,Homo sapiens,0.064
+48,5-hydroxytryptamine 2C receptor,P28335,Homo sapiens,0.064
+49,5-hydroxytryptamine 6 receptor,P50406,Homo sapiens,0.062
+50,Carboxypeptidase A1,P15085,Homo sapiens,0.059
+51,Carbonic anhydrase 2,P00918,Homo sapiens,0.044
+52,Indole-3-pyruvate decarboxylase,P51852,Azospirillum brasilense,0.039
+53,Putative uncharacterized protein,Q7NSZ5,Chromobacterium violaceum,0.039
+54,Bacilysin biosynthesis protein bacB,P39639,Bacillus subtilis,0.039
+55,Calmodulin,P62158,Homo sapiens,0.028
+56,Ribosyldihydronicotinamide dehydrogenase [quinone],P16083,Homo sapiens,0.028
+57,Nuclear receptor ROR-beta,Q92753,Homo sapiens,0.028
+58,Myeloperoxidase,P05164,Homo sapiens,0.028
+59,Eosinophil peroxidase,P11678,Homo sapiens,0.028
+60,Calreticulin,P27797,Homo sapiens,0.028
+61,Melatonin receptor type 1B,P49286,Homo sapiens,0.028
+62,Melatonin receptor type 1A,P48039,Homo sapiens,0.028
+63,Tyrosine aminotransferase,P17735,Homo sapiens,0.023
+64,Large neutral amino acids transporter small subunit 2,Q9UHI5,Homo sapiens,0.023
+65,Phenylalanyl-tRNA synthetase alpha chain,Q9Y285,Homo sapiens,0.023
+66,"Phenylalanyl-tRNA synthetase, mitochondrial",O95363,Homo sapiens,0.023
+67,Phenylalanyl-tRNA synthetase beta chain,Q9NSD9,Homo sapiens,0.023
+68,Phenylalanine-4-hydroxylase,P00439,Homo sapiens,0.023
+69,Carbonic anhydrase 4,P22748,Homo sapiens,0.022
+70,Carbonic anhydrase 1,P00915,Homo sapiens,0.022
+71,60S ribosomal protein L3,P39023,Homo sapiens,0.019
+72,60S ribosomal protein L37,P61927,Homo sapiens,0.019
+73,60S ribosomal protein L8,P62917,Homo sapiens,0.019
+74,60S ribosomal protein L11,P62913,Homo sapiens,0.019
+75,NHP2-like protein 1,P55769,Homo sapiens,0.019
+76,60S ribosomal protein L26-like 1,Q9UNX3,Homo sapiens,0.019
+77,Pepsin A,P00790,Homo sapiens,0.019
+78,60S ribosomal protein L10-like,Q96L21,Homo sapiens,0.019
+79,60S ribosomal protein L13a,P40429,Homo sapiens,0.019
+80,60S ribosomal protein L23,P62829,Homo sapiens,0.019
+81,60S ribosomal protein L15,P61313,Homo sapiens,0.019
+82,60S ribosomal protein L19,P84098,Homo sapiens,0.019
+83,60S ribosomal protein L23a,P62750,Homo sapiens,0.019
+84,Thermolysin,P00800,Bacillus thermoproteolyticus,0.019
+85,Sodium channel protein type 5 subunit alpha,Q14524,Homo sapiens,0.0
+86,Sodium channel subunit beta-1,Q07699,Homo sapiens,0.0
+87,Sodium channel protein type 11 subunit alpha,Q9UI33,Homo sapiens,0.0
+88,Sodium channel subunit beta-3,Q9NY72,Homo sapiens,0.0
+89,Voltage-dependent T-type calcium channel subunit alpha-1G,O43497,Homo sapiens,0.0
+90,Sodium channel subunit beta-4,Q8IWT1,Homo sapiens,0.0
+91,Sodium channel protein type 9 subunit alpha,Q15858,Homo sapiens,0.0
+92,Voltage-dependent T-type calcium channel subunit alpha-1H,O95180,Homo sapiens,0.0
+93,Sodium channel protein type 4 subunit alpha,P35499,Homo sapiens,0.0
+94,Carbonic anhydrase-related protein,P35219,Homo sapiens,0.0
+95,Sodium channel protein type 1 subunit alpha,P35498,Homo sapiens,0.0
+96,Sodium channel protein type 2 subunit alpha,Q99250,Homo sapiens,0.0
+97,Sodium channel protein type 3 subunit alpha,Q9NY46,Homo sapiens,0.0
+98,Carbonic anhydrase-related protein 10,Q9NS85,Homo sapiens,0.0
+99,Carbonic anhydrase-related protein 11,O75493,Homo sapiens,0.0
+100,Carbonic anhydrase 14,Q9ULX7,Homo sapiens,0.0
+101,"Carbonic anhydrase 5A, mitochondrial",P35218,Homo sapiens,0.0
+102,Carbonic anhydrase 7,P43166,Homo sapiens,0.0
+103,"Carbonic anhydrase 5B, mitochondrial",Q9Y2D0,Homo sapiens,0.0
+104,Carbonic anhydrase 3,P07451,Homo sapiens,0.0
+105,Voltage-dependent T-type calcium channel subunit alpha-1I,Q9P0X4,Homo sapiens,0.0
+106,Carbonic anhydrase 9,Q16790,Homo sapiens,0.0
+107,Carbonic anhydrase 13,Q8N1Q1,Homo sapiens,0.0
+108,Carbonic anhydrase 12,O43570,Homo sapiens,0.0
+109,Amine oxidase [flavin-containing] A,P21397,Homo sapiens,0.0
+110,Amine oxidase [flavin-containing] B,P27338,Homo sapiens,0.0
+111,Carbonic anhydrase 6,P23280,Homo sapiens,0.0

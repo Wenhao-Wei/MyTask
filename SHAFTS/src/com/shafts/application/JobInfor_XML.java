@@ -71,7 +71,7 @@ public class JobInfor_XML {
     public void deleteXML(String deleteID, String jobModel, String filePath){
         Document document = loadInit(filePath);
         try{
-            NodeList nodeList = document.getElementsByTagName("myjob");
+            NodeList nodeList = document.getElementsByTagName("job");
             for(int i=0; i<nodeList.getLength(); i++){
             	String jobmodel = document.getElementsByTagName("Model").item(i).getFirstChild().getNodeValue();
                 String number_ = document.getElementsByTagName("ID").item(i).getFirstChild().getNodeValue();
@@ -118,7 +118,7 @@ public class JobInfor_XML {
          Document document = loadInit(filePath);
          try{
             //get leaf ode
-             NodeList nodeList = document.getElementsByTagName("myjob");//jobModel.replace(" ", "")
+             NodeList nodeList = document.getElementsByTagName("job");//jobModel.replace(" ", "")
             //Traversal leaf node
              for(int i=0; i<nodeList.getLength(); i++){
             	 String jobmodel = document.getElementsByTagName("Model").item(i).getFirstChild().getNodeValue();
@@ -153,7 +153,7 @@ public class JobInfor_XML {
             Document document = loadInit(filePath);
             //create leafnode
             String job = jobModel.replace(" ", "");
-            Element newjob = document.createElement("myjob");
+            Element newjob = document.createElement("job");
             Element jobStyle = document.createElement("Model");
             Element eltNumber = document.createElement("ID");//create the first element
             Text model = document.createTextNode(job);
@@ -206,7 +206,7 @@ public class JobInfor_XML {
          try{
              Document document = loadInit(filePath);
              //get leaf node
-             NodeList nodeList = document.getElementsByTagName("myjob");
+             NodeList nodeList = document.getElementsByTagName("job");
              //traversal local
              for(int i=0; i<nodeList.getLength(); i++){
             	 String jobmodel = document.getElementsByTagName("Model").item(i).getFirstChild().getNodeValue();
@@ -221,8 +221,7 @@ public class JobInfor_XML {
                  }
              }
          }catch(Exception e){
-             e.printStackTrace();
-             System.out.println(e.getMessage());
+             e.printStackTrace();           
          }
     }
     /**
@@ -251,11 +250,8 @@ public class JobInfor_XML {
     public static void main(String args[]){
     	String path = "D:\\MyOffice\\Github\\MyTask\\SHAFTS\\workspace\\TMP\\jobinfor.xml";
     	JobInfor_XML job = new JobInfor_XML();
-    	job.initdataXML(path);
-    	Vector v = job.getHit();
-    	if(v != null)
-    		for(int i = 0; i < v.size(); i ++)
-    			System.out.println(v.get(i));
+    	job.deleteXML("delete", "Local", path);
+         System.out.println("OK");
     }
     private Vector LocalOB;
     private Vector TargetOB;

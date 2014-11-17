@@ -6,6 +6,7 @@ import com.server.utils.CheckHeaderCellRenderer;
 import com.server.utils.CheckTableModle;
 import com.server.utils.MyCellRenderer;
 import com.server.utils.SendMail;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
@@ -412,6 +413,7 @@ public class MyServer extends javax.swing.JFrame {
             data = UI.getdata(username);
             jTable1 = new JTable();
              jTable1.setBackground(new java.awt.Color(0, 204, 51));
+             jTable1.setForeground(new Color(0, 255, 255));
             jTable1.setDefaultRenderer(Object.class,
                     new MyCellRenderer());
             jLabel7.setText(username);

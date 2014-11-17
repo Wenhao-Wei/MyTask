@@ -37,7 +37,7 @@ public class CheckUserStatus {
                 socket.close();
             }
             isconnect = false;
-            JOptionPane.showMessageDialog(null, "Connection exception!", "Tips", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cannot connect to the server! Two reason existed:\n 1. Network problem\n 2. The server have closed", "Tips", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

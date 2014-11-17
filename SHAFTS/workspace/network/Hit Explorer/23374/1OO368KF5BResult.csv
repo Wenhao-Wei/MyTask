@@ -1,0 +1,201 @@
+rank,name,score,source,SMILES
+1,AH-487/40652398,2.017,Specs,"c1ccc(cc1)c1cc(c2c(c3ccc(cc3)C(C)(C)C)nn(c3ccccc3)c2n1)C(F)(F)F	AH-487/40652398
+"
+2,AO-081/40738502,1.838,Specs,"c1ccc(cc1)n1c2c(c(cc(C)n2)C(F)(F)F)c(c2ccc(cc2)C(C)(C)C)n1	AO-081/40738502
+"
+3,AO-081/15246973,1.771,Specs,"c1ccc(cc1)n1c2c(c(cc(C)n2)C)c(c2ccc(cc2)C)n1	AO-081/15246973
+"
+4,AG-205/14141010,1.746,Specs,"c1ccc(cc1)c1cc(c2c(c3ccc(cc3)Cl)nn(c2n1)Cc1ccccc1)C(F)(F)F	AG-205/14141010
+"
+5,AS-980/15246972,1.711,Specs,"c1ccc(cc1)c1c2c(cc(C)nc2n(c2ccccc2)n1)C	AS-980/15246972
+"
+6,AH-487/40652383,1.704,Specs,"c1ccc(cc1)n1c2c(c(cc(C)n2)C(F)(F)F)c(c2cccc(c2)Br)n1	AH-487/40652383
+"
+7,AK-249/12180005,1.643,Specs,"c1ccc(cc1)c1c2c3cc(c(cc3c(c3ccc(cc3)Br)nc2n(c2ccccc2)n1)OC)OC	AK-249/12180005
+"
+8,AK-249/12180004,1.634,Specs,"c1ccc(cc1)c1c2c3cc(c(cc3c(c3cccc(c3)OC)nc2n(c2ccccc2)n1)OC)OC	AK-249/12180004
+"
+9,AG-690/12893094,1.629,Specs,"c1ccc(cc1)c1c2c3cc(c(cc3c(c3ccccc3C)nc2n(c2ccccc2)n1)OC)OC	AG-690/12893094
+"
+10,AG-205/33680034,1.592,Specs,"c1ccc(cc1)n1c(cc(c2ccc(cc2)Br)n1)N=Cc1cc(ccc1O)[N](=O)O	AG-205/33680034
+"
+11,AG-690/13775008,1.589,Specs,"c1ccc(cc1)c1c2c3cc(c(cc3c(c3ccc(cc3)[N](=O)O)nc2n(c2ccccc2)n1)OC)OC	AG-690/13775008
+"
+12,AG-205/08567054,1.579,Specs,"c1ccc(cc1)n1c(cc(c2ccc(cc2)Br)n1)N=Cc1cc(cc(c1O)Cl)Cl	AG-205/08567054
+"
+13,AG-219/34261001,1.56,Specs,"c1ccc(cc1)c1cc(nc(c2ccc(cc2)Br)n1)Nc1ccccc1	AG-219/34261001
+"
+14,AI-031/11219358,1.554,Specs,"c1ccc(cc1)c1ccnc2c1c(C)nn2c1ccccc1	AI-031/11219358
+"
+15,AG-690/11481224,1.546,Specs,"C(#N)c1c(cc(c2ccccc2)nc1OCCC)c1ccc(cc1)Br	AG-690/11481224
+"
+16,AG-670/34584025,1.546,Specs,"c1ccc(cc1)c1c(c2ccccc2)nn(c2ccccc2)c1N=Cc1ccccc1Cl	AG-670/34584025
+"
+17,AO-435/41051597,1.537,Specs,"c1ccc(cc1)c1c2ccccc2c(c2ccccc2)s1	AO-435/41051597
+"
+18,AO-476/42008145,1.535,Specs,"C(#N)c1c(c2ccc(cc2)Cl)c2c(c3ccccc3CC2)nc1OCc1ccccc1	AO-476/42008145
+"
+19,AO-476/40672202,1.534,Specs,"C(#N)c1c(c2c(C)nn(c3ccccc3)c2nc1OCC(=O)C)c1ccc(cc1)OC	AO-476/40672202
+"
+20,AG-219/34246010,1.533,Specs,"c1ccc(cc1)c1cc(nc(c2ccc(cc2)Br)n1)Nc1cccc(c1)F	AG-219/34246010
+"
+21,AF-886/30571011,1.531,Specs,"c1ccc(cc1)n1c(c(c(c2ccc(cc2)Cl)n1)N=Nc1ccccc1C)N	AF-886/30571011
+"
+22,AG-219/34246005,1.526,Specs,"c1ccc(cc1)c1cc(nc(c2ccc(cc2)Br)n1)Nc1ccc(cc1)OC	AG-219/34246005
+"
+23,ZINC00453870,1.526,Specs,"c1ccc(cc1)n1c2c(c(cc(C)n2)C(F)(F)F)c(C)n1	ZINC00453870
+"
+24,AJ-077/33272019,1.523,Specs,"c1ccc(cc1)n1c2c(c(C)n1)c(c1ccc(cc1)[N](=O)O)cc(=O)o2	AJ-077/33272019
+"
+25,AO-081/13877153,1.522,Specs,"c1ccc(cc1)n1c(cc(c2ccc(cc2)Br)n1)N=Cc1ccc(c(c1)Oc1ccccc1)F	AO-081/13877153
+"
+26,AO-081/13877152,1.517,Specs,"c1ccc(cc1)n1c(cc(c2ccc(cc2)Cl)n1)N=Cc1ccc(c(c1)Oc1ccccc1)F	AO-081/13877152
+"
+27,AO-638/40907341,1.517,Specs,"c1ccc(cc1)c1c2cc3c(c(c(c(c3F)F)F)F)nc2n(c2ccccc2)n1	AO-638/40907341
+"
+28,AE-842/31985041,1.516,Specs,"c1ccc(cc1)C1=NN(c2ccccc2)[C@H]2[C@H]1[C@@H]1CC[C@H]2C1	AE-842/31985041
+"
+29,AG-205/33125019,1.512,Specs,"C(#N)c1c(cc(c2ccccc2)nc1SCC=C)c1ccc(cc1)Br	AG-205/33125019
+"
+30,AG-664/14116010,1.509,Specs,"C(#N)c1c(cc(c2ccccc2)nc1Nc1ccc(cc1)C)c1ccccc1	AG-664/14116010
+"
+31,AG-219/34246017,1.507,Specs,"c1ccc(cc1)c1cc(nc(c2ccc(cc2)Br)n1)Oc1ccccc1	AG-219/34246017
+"
+32,AG-690/11481222,1.505,Specs,"C(#N)c1c(cc(c2ccccc2)nc1OCC)c1ccc(cc1)Br	AG-690/11481222
+"
+33,AO-476/15509074,1.504,Specs,"C(#N)c1c(c2c(C)nn(c3ccccc3)c2nc1OCC#N)c1ccc(cc1)[N](=O)O	AO-476/15509074
+"
+34,AG-690/40749446,1.503,Specs,"C(#N)c1c(cc(c2ccccc2)nc1SC(C)C)c1ccc(cc1)Cl	AG-690/40749446
+"
+35,AO-476/43421045,1.502,Specs,"c1ccc(cc1)n1c(c2c(c(nnc2C)N2CC[C@@H](CC2)C)n1)C	AO-476/43421045
+"
+36,AG-205/37022139,1.5,Specs,"C#CCSc1c(C#N)c(cc(c2cccs2)n1)c1ccc(cc1)Cl	AG-205/37022139
+"
+37,AG-690/40082566,1.498,Specs,"c1ccc(cc1)c1c(cn(c2ccccc2)n1)C=Nc1ccc(cc1)C	AG-690/40082566
+"
+38,AG-690/40749963,1.497,Specs,"C(#N)c1c(cc(c2ccc(cc2)C)nc1SCC(C)C)c1ccc(cc1)Cl	AG-690/40749963
+"
+39,AK-968/11986551,1.496,Specs,"c1ccc(c(c1)C=C1C(=O)N(c2ccc(cc2)CC)C(=Nc2ccc(cc2)CC)S1)F	AK-968/11986551
+"
+40,AO-476/43421055,1.495,Specs,"c1cc(ccc1C)n1c(c2c(c(nnc2C)N2CCCC2)n1)C	AO-476/43421055
+"
+41,AG-690/13705949,1.495,Specs,"c1ccc(cc1)n1c2c(c3cc(c(cc3c(c3ccc(cc3)N(C)C)n2)OC)OC)c(CC)n1	AG-690/13705949
+"
+42,AO-476/43250043,1.494,Specs,"c1cc(ccc1n1c(c2c(c(nnc2C)N2CCCC2)n1)C)Cl	AO-476/43250043
+"
+43,AK-968/11841141,1.493,Specs,"c1cc(ccc1C=C1C(=O)N(c2ccc(cc2)CC)C(=Nc2ccc(cc2)CC)S1)N(C)C	AK-968/11841141
+"
+44,AO-729/15184001,1.493,Specs,"c1ccc(cc1)c1c2cc(c(cc2c2cnn(c3ccccc3)c2n1)OC)OC	AO-729/15184001
+"
+45,AH-487/40652387,1.49,Specs,"c1ccc(cc1)c1c2c(cc(C)nc2n(Cc2ccccc2)n1)C(F)(F)F	AH-487/40652387
+"
+46,AG-690/40749469,1.487,Specs,"C(#N)c1c(cc(c2ccc(cc2)OC)nc1SCC(C)C)c1ccc(cc1)Cl	AG-690/40749469
+"
+47,AE-848/09038034,1.485,Specs,"c1cc(ccc1c1c2c(CCCC2)nc(c2ccc(cc2)C)n1)C	AE-848/09038034
+"
+48,AG-205/33681014,1.485,Specs,"c1ccc(cc1)n1c(cc(c2ccc(cc2)Br)n1)N=Cc1c2ccccc2cc2ccccc12	AG-205/33681014
+"
+49,AO-476/41610195,1.482,Specs,"C(#N)c1c(c2ccc(cc2)F)c2c(c3ccccc3CC2)nc1OCc1ccc(cc1)F	AO-476/41610195
+"
+50,AO-476/43421038,1.482,Specs,"c1ccc(c(c1)n1c(c2c(c(nnc2C)N2CCCC2)n1)C)Cl	AO-476/43421038
+"
+51,AE-842/31985041,1.478,Specs,"c1ccc(cc1)C1=NN(c2ccccc2)[C@H]2[C@H]1[C@@H]1CC[C@H]2C1	AE-842/31985041
+"
+52,AO-476/43380568,1.476,Specs,"C(#N)c1c(c2c(C)nn(c3ccccc3)c2nc1O)c1cccs1	AO-476/43380568
+"
+53,AG-219/34246016,1.475,Specs,"c1ccc(cc1)c1cc(nc(c2ccc(cc2)Br)n1)OCCC	AG-219/34246016
+"
+54,AO-476/40672205,1.474,Specs,"C(#N)c1c(c2c(C)nn(c3ccccc3)c2nc1OCC=C)c1ccc(cc1)Cl	AO-476/40672205
+"
+55,AG-690/40749964,1.474,Specs,"C(#N)c1c(cc(c2ccc(cc2)C)nc1SC(C)C)c1ccc(cc1)Cl	AG-690/40749964
+"
+56,AO-476/43380569,1.474,Specs,"C(#N)c1c(c2c(C)nn(c3ccccc3)c2nc1O)c1cccnc1	AO-476/43380569
+"
+57,AG-205/36286009,1.473,Specs,"c1ccc(cc1)n1c(cc(c2ccc(cc2)C)n1)NC=C(C(=O)C)C(=O)C	AG-205/36286009
+"
+58,AO-476/43201381,1.472,Specs,"c1ccc(cc1)n1c(c2c(c(nnc2C)N2CCOCC2)n1)C	AO-476/43201381
+"
+59,AM-807/13104264,1.471,Specs,"C(#N)c1c(cc(c2cccs2)nc1SCCC#N)c1ccc(cc1)Cl	AM-807/13104264
+"
+60,AK-249/12180001,1.469,Specs,"c1ccc(cc1)n1c2c(c3cc(c(cc3c(c3ccccc3OC)n2)OC)OC)c(C)n1	AK-249/12180001
+"
+61,AG-690/40749470,1.468,Specs,"C(#N)c1c(cc(c2ccc(cc2)OC)nc1SC(C)C)c1ccc(cc1)Cl	AG-690/40749470
+"
+62,AK-968/11841125,1.467,Specs,"c1cc(ccc1C=C1C(=O)N(c2ccc(cc2)CC)C(=Nc2ccc(cc2)CC)S1)OC	AK-968/11841125
+"
+63,AF-399/15128496,1.466,Specs,"c1ccc2c(c1)c(c1ccc(cc1)F)nnc2Oc1ccc(cc1OC)C=O	AF-399/15128496
+"
+64,AH-034/32857054,1.465,Specs,"c1ccc(cc1)c1cc(c2ccc(cc2)Br)nc(c2ccccc2)n1	AH-034/32857054
+"
+65,AH-262/14317002,1.464,Specs,"c1ccc(cc1)c1c2c(c(cc3c(c(C)oc23)C(=O)C)O)n(c2ccccc2)n1	AH-262/14317002
+"
+66,AK-249/37190001,1.461,Specs,"c1ccc(cc1)n1c2c(c3cc(c(cc3c(c3ccccc3Cl)n2)OC)OC)c(C)n1	AK-249/37190001
+"
+67,AO-476/43421106,1.461,Specs,"c1ccc(cc1)n1c(c2c(c(nnc2C)OCC)n1)C	AO-476/43421106
+"
+68,AK-087/42718235,1.46,Specs,"C(#N)Cc1cc(c2ccc(cc2)Cl)nn1c1ccccc1	AK-087/42718235
+"
+69,AE-842/32998057,1.459,Specs,"c1ccc(cc1)C1=NN(c2ccc(cc2)Cl)[C@@H]2CCCC[C@H]12	AE-842/32998057
+"
+70,AG-205/37386021,1.458,Specs,"c1ccc(cc1)n1c2c(c(c(c(C)n2)C)C)c(C)n1	AG-205/37386021
+"
+71,AO-476/43250047,1.455,Specs,"c1cc(ccc1n1c(c2c(c(nnc2C)N2CCCCC2)n1)C)OCC	AO-476/43250047
+"
+72,AE-848/32730016,1.453,Specs,"c1ccc2c(c1)c(cn2C)c1cc(c2ccc(cc2)Br)nc(c1)c1ccc(cc1)Br	AE-848/32730016
+"
+73,AK-968/11840335,1.453,Specs,"c1cc(ccc1C=C1C(=O)N(c2ccc(cc2)CC)C(=Nc2ccc(cc2)CC)S1)O	AK-968/11840335
+"
+74,AE-842/32998057,1.451,Specs,"c1ccc(cc1)C1=NN(c2ccc(cc2)Cl)[C@@H]2CCCC[C@H]12	AE-842/32998057
+"
+75,AK-968/12097159,1.451,Specs,"c1cc(ccc1C=C1C(=O)N(c2ccc(cc2)CC)C(=Nc2ccc(cc2)CC)S1)C(C)C	AK-968/12097159
+"
+76,AG-205/36408043,1.451,Specs,"c1ccc(cc1)C1=Cc2c(c(C)nn2c2ccccc2)[C@@H](c2ccccc2)C1	AG-205/36408043
+"
+77,AK-968/11986610,1.451,Specs,"c1cc2c(cc1C=C1C(=O)N(c3ccc(cc3)CC)C(=Nc3ccc(cc3)CC)S1)OCO2	AK-968/11986610
+"
+78,AK-087/11538930,1.45,Specs,"C(#N)Cc1cc(c2ccc(cc2)C)nn1c1ccccc1	AK-087/11538930
+"
+79,AA-516/30011054,1.45,Specs,"c1ccc(cc1)c1nc(c2c(n1)[nH]nc2N)C	AA-516/30011054
+"
+80,AF-399/15539335,1.448,Specs,"C(#N)C1=C(N=CN(C)C)Oc2c(c(c3ccccc3)nn2c2ccccc2)[C@H]1c1ccc(cc1)F	AF-399/15539335
+"
+81,AG-690/40146962,1.448,Specs,"c1ccc(cc1)c1nc2ccccc2c(c2ccc(cc2)[N](=O)O)n1	AG-690/40146962
+"
+82,AO-476/43421024,1.448,Specs,"c1ccc(cc1)n1c(c2c(c(nnc2C)N(CC)CC)n1)C	AO-476/43421024
+"
+83,AO-476/42008142,1.447,Specs,"C(#N)c1c(c2ccc(cc2)OC)c2c(c3ccccc3CC2)nc1OCc1ccc(cc1)Cl	AO-476/42008142
+"
+84,AK-968/37129435,1.446,Specs,"c1cc(ccc1CC)N=C1N(c2ccc(cc2)CC)C(=O)C(=Cc2cc(c(o2)Br)Br)S1	AK-968/37129435
+"
+85,AO-476/43421047,1.445,Specs,"c1cc(ccc1C)n1c(c2c(c(nnc2C)N(C)CC)n1)C	AO-476/43421047
+"
+86,AE-842/32998057,1.445,Specs,"c1ccc(cc1)C1=NN(c2ccc(cc2)Cl)[C@@H]2CCCC[C@H]12	AE-842/32998057
+"
+87,AG-690/11481219,1.445,Specs,"C(#N)c1c(cc(c2ccccc2)nc1Br)c1ccc(cc1)Br	AG-690/11481219
+"
+88,AE-842/32998057,1.444,Specs,"c1ccc(cc1)C1=NN(c2ccc(cc2)Cl)[C@@H]2CCCC[C@H]12	AE-842/32998057
+"
+89,AF-399/15539335,1.443,Specs,"C(#N)C1=C(N=CN(C)C)Oc2c(c(c3ccccc3)nn2c2ccccc2)[C@H]1c1ccc(cc1)F	AF-399/15539335
+"
+90,AG-205/37081173,1.443,Specs,"c1ccc(cc1)c1cc(c2ccccc2)nc2cc(c3ccc(cc3)C(C)(C)C)nn12	AG-205/37081173
+"
+91,AH-487/41078165,1.443,Specs,"c1ccc(cc1)C=C1C(=C(C)N(c2ccc(cc2)Cl)C1=O)C(=O)OCC	AH-487/41078165
+"
+92,AO-476/43421054,1.442,Specs,"c1cc(ccc1C)n1c(c2c(c(nnc2C)N2CCOCC2)n1)C	AO-476/43421054
+"
+93,AE-848/34408042,1.441,Specs,"C(#N)c1c(cc(c2ccccc2)nc1SCC=C)c1ccc(cc1)OC	AE-848/34408042
+"
+94,AK-968/12096338,1.441,Specs,"c1cc(cc(c1)OC)C=C1C(=O)N(c2ccc(cc2)CC)C(=Nc2ccc(cc2)CC)S1	AK-968/12096338
+"
+95,AB-131/40897260,1.441,Specs,"c1ccc(cc1)c1c(c2ccccc2)c(c2ccccc2)oc1c1ccccc1	AB-131/40897260
+"
+96,AN-329/14226019,1.44,Specs,"C(#N)c1c(cc(c2ccccc2)nc1SCC(=C)C)c1ccccc1	AN-329/14226019
+"
+97,AG-690/11191338,1.44,Specs,"c1ccc(cc1)C1=NN(c2ccccc2)C(=O)C1=NNc1ccc(cc1)C	AG-690/11191338
+"
+98,AG-690/33056021,1.44,Specs,"c1ccc(cc1)N=C1N(c2ccccc2)C(=O)C(=Cc2ccc(cc2)F)S1	AG-690/33056021
+"
+99,AG-690/11191348,1.439,Specs,"c1ccc(cc1)C1=NN(c2ccccc2)C(=O)C1=NNc1ccccc1Cl	AG-690/11191348
+"
+100,AG-690/11191350,1.439,Specs,"c1ccc(cc1)C1=NN(c2ccccc2)C(=O)C1=NNc1ccc(cc1)Cl	AG-690/11191350
+"

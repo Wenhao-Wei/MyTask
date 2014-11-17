@@ -1,0 +1,2 @@
+<?xml version="1.0" ?><targets><program pid="2">FeatureAlign</program><query>O[C@@H]1N[C@@H]2CC[C@H]3NCS[C@H]3[C@@H]2[C@@H]1CN[C@H]1CC[C@@H](CC1)S(O)(O)N[C@@H]1NCCCC1	http://www.rcsb.org/pdb/files/1fvv.pdb.gz
+</query><species-list><species name="homo sapiens" value="0"/><species name="other species" value="0"/></species-list><fun-list/><proc-list/></targets>
