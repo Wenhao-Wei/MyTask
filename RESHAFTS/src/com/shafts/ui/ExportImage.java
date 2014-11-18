@@ -186,7 +186,7 @@ public class ExportImage extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int result = 0;
         JFileChooser fileChooser = new JFileChooser();
-        FileSystemView fsv = FileSystemView.getFileSystemView();  //注意了，这里重要的一句
+        FileSystemView fsv = FileSystemView.getFileSystemView();  
         //System.out.println(fsv.getHomeDirectory());                //得到桌面路径
         fileChooser.setCurrentDirectory(fsv.getHomeDirectory());
         fileChooser.setDialogTitle("Choose the path you want to save");
@@ -194,7 +194,7 @@ public class ExportImage extends javax.swing.JDialog {
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         result = fileChooser.showSaveDialog(fileChooser);
         if (JFileChooser.APPROVE_OPTION == result) {
-            SavePath = fileChooser.getSelectedFile().getPath() + "." + (String)jComboBox1.getSelectedItem();
+            SavePath = fileChooser.getSelectedFile().getPath() + "." + (String)jComboBox1.getSelectedItem();           
             jTextField1.setText(SavePath);
             jTextField1.setToolTipText(SavePath);
         }
@@ -212,9 +212,13 @@ public class ExportImage extends javax.swing.JDialog {
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        dispose();
+    	ifSave = "yes";
+    	dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public String getCommand(){
+    	return ifSave;
+    }
     public String getPath(){
         return SavePath;
     }
@@ -262,6 +266,7 @@ public class ExportImage extends javax.swing.JDialog {
 
     private String SavePath;
     private String ImageFormat;
+    private String ifSave = "no";
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

@@ -95,7 +95,7 @@ public final class GetpieAction extends GetPie {
                         usertel = jTextField2.getText();
                         useremail = jTextField1.getText();
                         kitkat.purchase(chooseday, cost, username, usertel, useremail, checkflag);
-                        dispose();
+                        //dispose();
                         break;
                 }
             }

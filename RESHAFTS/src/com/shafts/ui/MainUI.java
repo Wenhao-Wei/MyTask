@@ -1517,16 +1517,22 @@ public class MainUI extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // export molecule picture
-        if (jTextField1.getText() == null) {
-            JOptionPane.showMessageDialog(null, "No file to export!!");
+    	int atomCount = jmolPanel.viewer.getAtomCount();
+    	TipsRender tr = new TipsRender();
+        if (atomCount == 0) {
+        	tr.render(TipLable, "No file to export!!", "Error");
+           // JOptionPane.showMessageDialog(null, "No file to export!!");
         } else {
             ExportImage ei= new ExportImage();
                     ei.setVisible(true);
+                    String ifSave = ei.getCommand();
+                    if(ifSave.equals("yes")){
            String path = ei.getPath();
            String command = "write gif " + path;
            String result = (String) jmolPanel.viewer.scriptWaitStatus(command, suffixJmol);
-           TipsRender tr = new TipsRender();
+           
            tr.render(TipLable, result, "Tip");
+                    }
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
