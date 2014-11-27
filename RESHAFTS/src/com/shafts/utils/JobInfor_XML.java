@@ -191,16 +191,19 @@ public class JobInfor_XML {
             Element newjob = document.createElement("job");
             Element jobStyle = document.createElement("Model");//create the first element
             Element eltNumber = document.createElement("ID");//create the second element
-            Element eltNumber1 = document.createElement("Status");//create the third element
+            
             Text model = document.createTextNode(job);
             Text id = document.createTextNode(addID);//create the text node 
-            Text status = document.createTextNode("NO");
+            
             eltNumber.appendChild(id);
-            eltNumber1.appendChild(status);
+            
             jobStyle.appendChild(model);
             newjob.appendChild(jobStyle);
             newjob.appendChild(eltNumber);
             if (jobModel.equals("Local")) {
+                Element eltNumber1 = document.createElement("Status");//create the third element
+                Text status = document.createTextNode("NO");
+                eltNumber1.appendChild(status);
                 newjob.appendChild(eltNumber1);
             }
 
