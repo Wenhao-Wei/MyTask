@@ -9,6 +9,8 @@ package com.shafts.action;
 import com.shafts.ui.MainUI;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,12 +45,16 @@ public class LaunchAction {
             @Override
             public void run() {
                 final MainAction f = new MainAction();
+                
                 f.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
                         String content = "Are you sure to close the application?";
-                        if(f.getThreadCount() > 0)
-                            content = "There are " + f.getThreadCount() + " jobs are running, exit system will shut\n down this tasks and may take some errors. Are you\n sure to close the application?";
+                        int status = 0; // no job running
+                        if(f.getThreadCount() > 0){
+                            content = "There are " + f.getThreadCount() + " jobs are running! Do you want keep it running in the background even \n close the SHAFTS?";
+                            status = 1;
+                        }
                         int result = JOptionPane.showConfirmDialog(f, content , "Tips",
                                 JOptionPane.OK_CANCEL_OPTION);
                         if (result == JOptionPane.OK_OPTION) {
@@ -62,7 +68,31 @@ public class LaunchAction {
                            // }
                             // }
                             // }.start();
-                            System.exit(0);
+                            //System.exit(0);
+                            if(status == 1){
+                            new Thread(){
+                                @Override
+                                public void run(){
+                                    while(true){
+                                        if(f.getThreadCount() == 0)
+                                            break;
+                                        try {
+                                            Thread.sleep(60000);
+                                        } catch (InterruptedException ex) {
+                                            Logger.getLogger(LaunchAction.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                    }
+                                    System.exit(0);
+                                }
+                            }.start();
+                            f.dispose();
+                            }
+                            else 
+                                System.exit(0);
+                        }
+                        else{
+                            if(status == 1)
+                                System.exit(0);
                         }
 
                     }
