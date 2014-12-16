@@ -22,8 +22,8 @@ public class HeaderCellRenderForTarget implements TableCellRenderer {
     public HeaderCellRenderForTarget(JTable table) {
         this.tableModel = (CheckTableModelForTarget)table.getModel();
         this.tableHeader = table.getTableHeader();
-        tableHeader.setBackground(new Color(0,51,51));
-        tableHeader.setForeground(new Color(0,255,255));
+        tableHeader.setBackground(new Color(51,51,51));
+        tableHeader.setForeground(new Color(255,255,255));
         //TableColumn column = table.getColumnModel().getColumn(0);
        // column.setPreferredWidth(100);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);

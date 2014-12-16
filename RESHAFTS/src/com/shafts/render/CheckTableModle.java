@@ -14,13 +14,17 @@ public class CheckTableModle extends DefaultTableModel {
     }
 
     public boolean isCellEditable(int row, int column) {
-        if (column == 5) {
-            return true;
-        } else {
+        //if (column == 5) {
+           // return true;
+        //} else {
             return false;
-        }
+        //}
     }
 
+    public boolean isCellSelected(int row, int colmn){
+        return true;
+    }
+    
     public Class getColumnClass(int c) {
         return getValueAt(0, c).getClass();
     }

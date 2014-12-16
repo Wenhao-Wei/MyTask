@@ -87,7 +87,7 @@ public class GetPie extends javax.swing.JDialog {
         buttonGroup1.add(jRadioButton1);
         buttonGroup1.add(jRadioButton2);
 
-        centerChild1.setBackground(new java.awt.Color(0, 102, 102));
+        centerChild1.setBackground(new java.awt.Color(51, 51, 51));
 
         jLabel2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,26 +101,26 @@ public class GetPie extends javax.swing.JDialog {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("E-mail:");
 
-        jTextField1.setBackground(new java.awt.Color(0, 102, 102));
+        jTextField1.setBackground(new java.awt.Color(51, 51, 51));
         jTextField1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jTextField1.setCaretColor(new java.awt.Color(255, 255, 255));
 
-        jTextField2.setBackground(new java.awt.Color(0, 102, 102));
+        jTextField2.setBackground(new java.awt.Color(51, 51, 51));
         jTextField2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         jTextField2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jTextField2.setCaretColor(new java.awt.Color(255, 255, 255));
 
-        jTextField3.setBackground(new java.awt.Color(0, 102, 102));
+        jTextField3.setBackground(new java.awt.Color(51, 51, 51));
         jTextField3.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(255, 255, 255));
         jTextField3.setToolTipText("only alphanumeric characters and underscores permitted");
         jTextField3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jTextField3.setCaretColor(new java.awt.Color(255, 255, 255));
 
-        jButton4.setBackground(new java.awt.Color(0, 102, 102));
+        jButton4.setBackground(new java.awt.Color(51, 51, 51));
         jButton4.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 102, 102));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/chekRe.png"))); // NOI18N
@@ -135,8 +135,8 @@ public class GetPie extends javax.swing.JDialog {
             }
         });
 
-        jSeparator1.setBackground(new java.awt.Color(0, 51, 51));
-        jSeparator1.setForeground(new java.awt.Color(0, 204, 204));
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(51, 51, 51));
         jSeparator1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel5.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
@@ -149,15 +149,15 @@ public class GetPie extends javax.swing.JDialog {
         jLabel6.setText("Cost:");
 
         jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(0, 102, 102));
+        jTextField4.setBackground(new java.awt.Color(51, 51, 51));
         jTextField4.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(255, 255, 255));
         jTextField4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jTextField4.setDisabledTextColor(new java.awt.Color(255, 255, 255));
 
-        jComboBox1.setBackground(new java.awt.Color(0, 102, 102));
+        jComboBox1.setBackground(new java.awt.Color(51, 51, 51));
         jComboBox1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 204, 255));
+        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose...","90", "180", "270", "360","450","540","630","720" }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -240,7 +240,7 @@ public class GetPie extends javax.swing.JDialog {
                 .addGap(17, 17, 17))
         );
 
-        centerChild2.setBackground(new java.awt.Color(0, 102, 102));
+        centerChild2.setBackground(new java.awt.Color(51, 51, 51));
 
         jLabel9.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -250,8 +250,8 @@ public class GetPie extends javax.swing.JDialog {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("You can extends your enjoy days by this operation.");
 
-        jSeparator2.setBackground(new java.awt.Color(0, 51, 51));
-        jSeparator2.setForeground(new java.awt.Color(0, 102, 102));
+        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setForeground(new java.awt.Color(51, 51, 51));
         jSeparator2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel11.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
@@ -262,9 +262,9 @@ public class GetPie extends javax.swing.JDialog {
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Cost:");
 
-        jComboBox2.setBackground(new java.awt.Color(0, 102, 102));
+        jComboBox2.setBackground(new java.awt.Color(51, 51, 51));
         jComboBox2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(0, 255, 255));
+        jComboBox2.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose...","90", "180", "270", "360","450","540","630","720" }));
         jComboBox2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -273,7 +273,7 @@ public class GetPie extends javax.swing.JDialog {
         });
 
         jTextField5.setEditable(false);
-        jTextField5.setBackground(new java.awt.Color(0, 102, 102));
+        jTextField5.setBackground(new java.awt.Color(51, 51, 51));
         jTextField5.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField5.setForeground(new java.awt.Color(255, 255, 255));
         jTextField5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -337,7 +337,7 @@ public class GetPie extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        contentPane.setBackground(new java.awt.Color(0, 51, 51));
+        contentPane.setBackground(new java.awt.Color(51, 51, 51));
         contentPane.setPreferredSize(new java.awt.Dimension(520, 300));
 
         jLabel1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
@@ -351,7 +351,6 @@ public class GetPie extends javax.swing.JDialog {
         jScrollPane1.getViewport().setBackground(new java.awt.Color(0, 51, 51));
 
         jEditorPane1.setEditable(false);
-        jEditorPane1.setBackground(new java.awt.Color(0, 102, 102));
         jEditorPane1.setContentType("text/html;charset=utf-8"); // NOI18N
         try{
             jEditorPane1.setPage("file:///" + ProtocolPath);
@@ -360,32 +359,32 @@ public class GetPie extends javax.swing.JDialog {
         }
         catch(IOException ioe){}
         jEditorPane1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        jEditorPane1.setForeground(new java.awt.Color(0, 102, 102));
+        jEditorPane1.setForeground(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(jEditorPane1);
 
         centerPanel.add(jScrollPane1);
 
-        jRadioButton1.setBackground(new java.awt.Color(0, 51, 51));
+        jRadioButton1.setBackground(new java.awt.Color(51, 51, 51));
         jRadioButton1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setText("Renew");
 
-        jRadioButton2.setBackground(new java.awt.Color(0, 51, 51));
+        jRadioButton2.setBackground(new java.awt.Color(51, 51, 51));
         jRadioButton2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setText("Purchase");
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 51));
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cancel");
 
-        jButton2.setBackground(new java.awt.Color(0, 51, 51));
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
         jButton2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Next");
 
-        jButton3.setBackground(new java.awt.Color(0, 51, 51));
+        jButton3.setBackground(new java.awt.Color(51, 51, 51));
         jButton3.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Pre");

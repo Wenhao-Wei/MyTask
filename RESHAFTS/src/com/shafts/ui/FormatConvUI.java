@@ -82,14 +82,14 @@ public class FormatConvUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
         jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(0, 102, 102));
+        jTextField1.setBackground(new java.awt.Color(51, 51, 51));
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        browse.setBackground(new java.awt.Color(0, 102, 102));
+        browse.setBackground(new java.awt.Color(51, 51, 51));
         browse.setForeground(new java.awt.Color(255, 255, 255));
         browse.setText("Open");
         browse.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +101,7 @@ public class FormatConvUI extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Choose the output formation:");
 
-        jComboBox1.setBackground(new java.awt.Color(0, 102, 102));
+        jComboBox1.setBackground(new java.awt.Color(51, 51, 51));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose...","mol2", "pdb", "cdk", "cml"  }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -114,7 +114,7 @@ public class FormatConvUI extends javax.swing.JFrame {
             }
         });
 
-        help.setBackground(new java.awt.Color(0, 102, 102));
+        help.setBackground(new java.awt.Color(51, 51, 51));
         help.setForeground(new java.awt.Color(255, 255, 255));
         help.setText("Help?");
         help.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +123,7 @@ public class FormatConvUI extends javax.swing.JFrame {
             }
         });
 
-        concel.setBackground(new java.awt.Color(0, 102, 102));
+        concel.setBackground(new java.awt.Color(51, 51, 51));
         concel.setForeground(new java.awt.Color(255, 255, 255));
         concel.setText("Cancel");
         concel.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +132,7 @@ public class FormatConvUI extends javax.swing.JFrame {
             }
         });
 
-        ok.setBackground(new java.awt.Color(0, 102, 102));
+        ok.setBackground(new java.awt.Color(51, 51, 51));
         ok.setForeground(new java.awt.Color(255, 255, 255));
         ok.setText("Convert");
         ok.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +147,7 @@ public class FormatConvUI extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
-        jSeparator1.setBackground(new java.awt.Color(0, 102, 102));
+        jSeparator1.setBackground(new java.awt.Color(51, 51, 51));
         jSeparator1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jSeparator1.setMinimumSize(new java.awt.Dimension(50, 2));
         jSeparator1.setPreferredSize(new java.awt.Dimension(50, 2));

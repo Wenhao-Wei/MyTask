@@ -47,7 +47,7 @@ public class InitVector {
                 try {
                     Vector rowVector1 = new Vector();
                     rowVector1.add("1");
-                    rowVector1.add("InputFile");
+                    rowVector1.add("Input");
                     rowVector1.add("Full");
                     rowVector1.add("Full");
                     rowVector1.add("Full");

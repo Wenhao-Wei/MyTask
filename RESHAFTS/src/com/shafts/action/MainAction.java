@@ -104,7 +104,7 @@ public class MainAction extends MainUI {
         }.start();
         cus = new CheckUserStatus();
         lg.showProgress("Init the progress...");
-        Color color = new Color(0, 51, 51);
+        Color color = new Color(204, 204, 204);
         getContentPane().setBackground(color);
         lg.showProgress("Check config file...");
         PropertyConfig pc = new PropertyConfig();
@@ -236,6 +236,7 @@ public class MainAction extends MainUI {
                 jmolPanel.setpath(filePath);
                 initButton();
                 southPanel.removeAll();
+                southPanel.add(jPanel8);
                 southPanel.updateUI();
                 jEditorPane1.setText("<html><body><br><br><center><strong> No Target Infor to Show</strong></center></body></html>");
                 jTextField1.setText(filename);
@@ -498,6 +499,7 @@ public class MainAction extends MainUI {
                 }.start();
             }
         });
+        
         /**
          * save ligand file to local and open it in jmol
          */
@@ -514,13 +516,45 @@ public class MainAction extends MainUI {
                 initButton();
             }
         });
+        
+        /**
+         * collapse or expand the tree
+         */
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+
+            int treeFlag = 0; //callopse the tree
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(treeFlag == 0){
+                     jobtree.expandAll(jTree1, new TreePath(treeRoot), false);
+                     treeFlag = 1;
+                }
+                else{
+                     jobtree.expandAll(jTree1, new TreePath(treeRoot), true);
+                     treeFlag = 0;
+                }
+                jTree1.updateUI();
+            }
+        });
+        
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jmolPanel.viewer.evalString("zap all");
+                southPanel.removeAll();
+                southPanel.add(jPanel8);
+                southPanel.updateUI();
+                jEditorPane1.setText("<html><body><br><br><center><strong> No Target Infor to Show</strong></center></body></html>");
+            }
+        });
     }
 
     class startRun extends Thread {
 
         @Override
         public void run() {
-            rg.setvisible(true);
+            //rg.setvisible(true);
             String NewPath = localworkPath + "Job";
             if (jCheckBox1.isSelected()) {
                 localModel = "conformer";
@@ -538,7 +572,7 @@ public class MainAction extends MainUI {
             ThreadCount--;
             String str1 = workid + " running complete! You can check it now. ";
             tiprender.render(TipLable, str1, "Tip");
-            rg.close();
+            //rg.close();
             /* jmolPanel.viewer.evalString("zap all");
              jTextField1.removeAll();
              String workid = sf.getworkid();
@@ -636,7 +670,7 @@ public class MainAction extends MainUI {
                     showNo++;
                     hasShow.put("Input", showNo);
                     String InputFilepath = showMolPath + "Input.mol2";
-                    String controller1 = "load " + "\"" + InputFilepath + "\"" + " ;frame*" + " ;hide Hydrogens" + ";select 1.1; color [0,51,51]";
+                    String controller1 = "load APPEND " + "\"" + InputFilepath + "\"" + " ;frame*" + " ;hide Hydrogens" + ";select 1.1; color [0,51,51]";
                     jmolPanel.viewer.evalString(controller1);
                 }
 
@@ -692,9 +726,10 @@ public class MainAction extends MainUI {
                 if (!mol2file.exists()) {
                     show3Dname = stringName[0];
                 }
-                boolean bl = (boolean) jTable.getModel().getValueAt(jTable.getSelectedRow(), 5);
+                boolean bl = !(boolean) jTable.getModel().getValueAt(jTable.getSelectedRow(), 5);
+                jTable.getModel().setValueAt(bl, jTable.getSelectedRow(), 5);
                 String path2 = showMolPath + show3Dname + ".mol2";
-                if (jTable.getSelectedColumn() == 5) {
+               // if (jTable.getSelectedColumn() == 5) {
                     if (bl) {
                         Iterator iter = hasShow.entrySet().iterator();
                         while (iter.hasNext()) {
@@ -744,7 +779,7 @@ public class MainAction extends MainUI {
                             jmolPanel.viewer.evalString("zap all");
                         }
                     }
-                }
+                //}
             }
         }
     }

@@ -44,8 +44,8 @@ public class TestTargetTable {
         targetlength = itj.gettargetlength();
         //JFrame frame = new JFrame();
         table = new TargetTable(new TestTargetTableModel());
-         table.setBackground(new Color(0, 51, 51));
-         table.setForeground(new Color(0, 255, 255));
+         table.setBackground(new Color(51, 51, 51));
+         table.setForeground(new Color(255, 255, 255));
          TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
            table.setRowSorter(sorter);
            sorter.setSortable(0, false);
@@ -54,8 +54,8 @@ public class TestTargetTable {
                     sorter.setSortable(5, false);
                     //sorter.setSortable(2, false);
                     JTableHeader tableHeader = table.getTableHeader();
-         tableHeader.setBackground(new Color(0,51,51));
-        tableHeader.setForeground(new Color(0,255,255));
+         tableHeader.setBackground(new Color(51,51,51));
+        tableHeader.setForeground(new Color(255,255,255));
         //TableColumn column = table.getColumnModel().getColumn(0);
        // column.setPreferredWidth(100);
          table.setDefaultRenderer(String.class, new MyCellRenderer());
@@ -269,9 +269,10 @@ public class TestTargetTable {
                 if (!mol2file.exists()) {
                     show3Dname = stringName[1];
                 }
-                boolean bl = (boolean) targetTable.getModel().getValueAt(targetTable.getSelectedRow(), 6);
+                boolean bl = !(boolean) targetTable.getModel().getValueAt(targetTable.getSelectedRow(), 5);
+               targetTable.getModel().setValueAt(bl, targetTable.getSelectedRow(), 5);
                 String path2 = showMolPath + show3Dname + ".mol2";
-                if (targetTable.getSelectedColumn() == 6) {                    
+               // if (targetTable.getSelectedColumn() == 6) {                    
                     if (bl) {
                         Iterator iter = hasShow.entrySet().iterator();
                         while (iter.hasNext()) {
@@ -299,7 +300,7 @@ public class TestTargetTable {
                             hasShow.remove(show3Dname);
                     }
                 }
-            }
+            //}
         }
     }
     public static void main(String[] args) {

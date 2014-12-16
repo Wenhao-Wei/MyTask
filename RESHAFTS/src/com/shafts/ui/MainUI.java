@@ -79,9 +79,6 @@ public class MainUI extends javax.swing.JFrame {
         treeRoot = new DefaultMutableTreeNode("My Work");
         jTree1 = new javax.swing.JTree(treeRoot);
         centerPanel = new javax.swing.JPanel();
-        centerPanelChild1 = new javax.swing.JPanel();
-        TipLable = new javax.swing.JLabel();
-        centerPanelChild2 = new javax.swing.JPanel();
         eastPanel = new javax.swing.JPanel();
         jSplitPane2 = new javax.swing.JSplitPane();
         eastTopPanel = new javax.swing.JPanel();
@@ -116,6 +113,11 @@ public class MainUI extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
+        centerPanelChild1 = new javax.swing.JPanel();
+        TipLable = new javax.swing.JLabel();
+        jButton16 = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jButton15 = new javax.swing.JButton();
         BottomPanel = new javax.swing.JPanel();
         southPanel = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -178,14 +180,14 @@ public class MainUI extends javax.swing.JFrame {
         buttonGroup2.add(jRadioButton3);
         buttonGroup2.add(jRadioButton4);
 
-        jPanel4.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setPreferredSize(new java.awt.Dimension(290, 125));
 
         jLabel4.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Similarity Method:");
 
-        jComboBox2.setBackground(new java.awt.Color(0, 102, 102));
+        jComboBox2.setBackground(new java.awt.Color(51, 51, 51));
         jComboBox2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jComboBox2.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SHAFTS...", "USR..." }));
@@ -195,7 +197,7 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton3.setBackground(new java.awt.Color(0, 102, 102));
+        jRadioButton3.setBackground(new java.awt.Color(51, 51, 51));
         jRadioButton3.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton3.setText("Bioactivity Database:");
@@ -205,7 +207,7 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton4.setBackground(new java.awt.Color(0, 102, 102));
+        jRadioButton4.setBackground(new java.awt.Color(51, 51, 51));
         jRadioButton4.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton4.setText("Compound Database:");
@@ -215,7 +217,7 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        jComboBox3.setBackground(new java.awt.Color(0, 102, 102));
+        jComboBox3.setBackground(new java.awt.Color(51, 51, 51));
         jComboBox3.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jComboBox3.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose...", "DrugBank", "ChEMBL", "BindingDB", "KEGG", "PDB" }));
@@ -226,7 +228,7 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        jComboBox4.setBackground(new java.awt.Color(0, 102, 102));
+        jComboBox4.setBackground(new java.awt.Color(51, 51, 51));
         jComboBox4.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jComboBox4.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose...", "MayBridge", "Specs", "ZINC", "NCI" }));
@@ -282,16 +284,18 @@ public class MainUI extends javax.swing.JFrame {
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(0, 102, 102));
 
-        jToolBar1.setBackground(new java.awt.Color(0, 51, 51));
+        jToolBar1.setBackground(new java.awt.Color(204, 204, 204));
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
+        jToolBar1.setMaximumSize(new java.awt.Dimension(330, 35));
+        jToolBar1.setMinimumSize(new java.awt.Dimension(330, 35));
+        jToolBar1.setPreferredSize(new java.awt.Dimension(330, 35));
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 51));
-        jButton1.setForeground(new java.awt.Color(0, 153, 153));
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/openf.png"))); // NOI18N
         jButton1.setToolTipText("Open File");
         jButton1.setAlignmentX(5.0F);
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jButton1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
         jButton1.setContentAreaFilled(false);
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -310,12 +314,11 @@ public class MainUI extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton1);
 
-        jButton2.setBackground(new java.awt.Color(0, 51, 51));
-        jButton2.setForeground(new java.awt.Color(0, 153, 153));
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/format.png"))); // NOI18N
         jButton2.setToolTipText("Format Conversion");
         jButton2.setAlignmentX(5.0F);
-        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jButton2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
         jButton2.setContentAreaFilled(false);
         jButton2.setEnabled(false);
         jButton2.setFocusable(false);
@@ -330,12 +333,11 @@ public class MainUI extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton2);
 
-        jButton3.setBackground(new java.awt.Color(0, 51, 51));
-        jButton3.setForeground(new java.awt.Color(0, 153, 153));
+        jButton3.setBackground(new java.awt.Color(204, 204, 204));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/noH.png"))); // NOI18N
         jButton3.setToolTipText("Show/Hide H");
         jButton3.setAlignmentX(5.0F);
-        jButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jButton3.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
         jButton3.setContentAreaFilled(false);
         jButton3.setEnabled(false);
         jButton3.setFocusable(false);
@@ -355,12 +357,11 @@ public class MainUI extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton3);
 
-        jButton4.setBackground(new java.awt.Color(0, 51, 51));
-        jButton4.setForeground(new java.awt.Color(0, 153, 153));
+        jButton4.setBackground(new java.awt.Color(204, 204, 204));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/doSpin.png"))); // NOI18N
         jButton4.setToolTipText("Spin on/off");
         jButton4.setAlignmentX(5.0F);
-        jButton4.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jButton4.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
         jButton4.setContentAreaFilled(false);
         jButton4.setEnabled(false);
         jButton4.setFocusable(false);
@@ -380,12 +381,11 @@ public class MainUI extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton4);
 
-        jButton5.setBackground(new java.awt.Color(0, 51, 51));
-        jButton5.setForeground(new java.awt.Color(0, 153, 153));
+        jButton5.setBackground(new java.awt.Color(204, 204, 204));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/Reset.png"))); // NOI18N
         jButton5.setToolTipText("Reset the molecule");
         jButton5.setAlignmentX(5.0F);
-        jButton5.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jButton5.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
         jButton5.setContentAreaFilled(false);
         jButton5.setEnabled(false);
         jButton5.setFocusable(false);
@@ -405,12 +405,11 @@ public class MainUI extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton5);
 
-        jButton6.setBackground(new java.awt.Color(0, 51, 51));
-        jButton6.setForeground(new java.awt.Color(0, 153, 153));
+        jButton6.setBackground(new java.awt.Color(204, 204, 204));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/Ball.png"))); // NOI18N
         jButton6.setToolTipText("Molecule Model");
         jButton6.setAlignmentX(5.0F);
-        jButton6.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jButton6.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
         jButton6.setContentAreaFilled(false);
         jButton6.setEnabled(false);
         jButton6.setFocusable(false);
@@ -430,12 +429,11 @@ public class MainUI extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton6);
 
-        jButton7.setBackground(new java.awt.Color(0, 51, 51));
-        jButton7.setForeground(new java.awt.Color(0, 153, 153));
+        jButton7.setBackground(new java.awt.Color(204, 204, 204));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/Optimize.png"))); // NOI18N
         jButton7.setToolTipText("Optimize");
         jButton7.setAlignmentX(5.0F);
-        jButton7.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jButton7.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
         jButton7.setContentAreaFilled(false);
         jButton7.setEnabled(false);
         jButton7.setFocusable(false);
@@ -455,12 +453,11 @@ public class MainUI extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton7);
 
-        jButton8.setBackground(new java.awt.Color(0, 51, 51));
-        jButton8.setForeground(new java.awt.Color(0, 153, 153));
+        jButton8.setBackground(new java.awt.Color(204, 204, 204));
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/modelKit.png"))); // NOI18N
         jButton8.setToolTipText("Model Toolkit");
         jButton8.setAlignmentX(5.0F);
-        jButton8.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jButton8.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
         jButton8.setContentAreaFilled(false);
         jButton8.setEnabled(false);
         jButton8.setFocusable(false);
@@ -480,13 +477,13 @@ public class MainUI extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton8);
 
-        jToolBar2.setBackground(new java.awt.Color(0, 51, 51));
+        jToolBar2.setBackground(new java.awt.Color(204, 204, 204));
         jToolBar2.setFloatable(false);
         jToolBar2.setRollover(true);
 
-        jButton9.setBackground(new java.awt.Color(0, 102, 102));
+        jButton9.setBackground(new java.awt.Color(204, 204, 204));
         jButton9.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(0, 204, 204));
+        jButton9.setForeground(new java.awt.Color(51, 51, 51));
         jButton9.setContentAreaFilled(false);
         jButton9.setFocusable(false);
         jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -505,15 +502,12 @@ public class MainUI extends javax.swing.JFrame {
         jSplitPane1.setDividerSize(2);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        TopPanel.setBackground(new java.awt.Color(0, 51, 51));
-
-        westPanel.setBackground(new java.awt.Color(0, 51, 51));
-        westPanel.setForeground(new java.awt.Color(0, 204, 153));
+        westPanel.setBackground(new java.awt.Color(51, 51, 51));
 
         jScrollPane1.setBorder(null);
         jScrollPane1.setForeground(new java.awt.Color(0, 204, 153));
 
-        jTree1.setBackground(new java.awt.Color(0, 51, 51));
+        jTree1.setBackground(new java.awt.Color(51, 51, 51));
         jTree1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         localworkNode = new DefaultMutableTreeNode("Local");
         networkNode = new DefaultMutableTreeNode("Network");
@@ -535,74 +529,36 @@ public class MainUI extends javax.swing.JFrame {
             westPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 200, Short.MAX_VALUE)
             .addGroup(westPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(westPanelLayout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         westPanelLayout.setVerticalGroup(
             westPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 499, Short.MAX_VALUE)
+            .addGap(0, 478, Short.MAX_VALUE)
             .addGroup(westPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE))
-        );
-
-        centerPanel.setBackground(new java.awt.Color(0, 0, 0));
-        centerPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.MatteBorder(null), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED)));
-
-        centerPanelChild1.setBackground(new java.awt.Color(0, 0, 0));
-
-        TipLable.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        TipLable.setForeground(new java.awt.Color(255, 0, 0));
-
-        javax.swing.GroupLayout centerPanelChild1Layout = new javax.swing.GroupLayout(centerPanelChild1);
-        centerPanelChild1.setLayout(centerPanelChild1Layout);
-        centerPanelChild1Layout.setHorizontalGroup(
-            centerPanelChild1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(centerPanelChild1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(TipLable)
-                .addContainerGap(674, Short.MAX_VALUE))
-        );
-        centerPanelChild1Layout.setVerticalGroup(
-            centerPanelChild1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(centerPanelChild1Layout.createSequentialGroup()
-                .addComponent(TipLable, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE))
         );
 
         jmolPanel = new JmolPanel();
-        centerPanelChild2.setBackground(new java.awt.Color(0, 0, 0));
-        centerPanelChild2.setLayout(new java.awt.GridLayout(1, 0));
+        centerPanel.setBackground(new java.awt.Color(0, 0, 0));
+        centerPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.MatteBorder(null), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED)));
+        centerPanel.setLayout(new java.awt.GridLayout(1, 0));
+        centerPanel.add(jmolPanel);
 
-        centerPanelChild2.add(jmolPanel);
-
-        javax.swing.GroupLayout centerPanelLayout = new javax.swing.GroupLayout(centerPanel);
-        centerPanel.setLayout(centerPanelLayout);
-        centerPanelLayout.setHorizontalGroup(
-            centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(centerPanelChild1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(centerPanelChild2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        centerPanelLayout.setVerticalGroup(
-            centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(centerPanelLayout.createSequentialGroup()
-                .addComponent(centerPanelChild1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(centerPanelChild2, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
-        );
-
-        eastPanel.setBackground(new java.awt.Color(0, 102, 102));
         eastPanel.setPreferredSize(new java.awt.Dimension(333, 453));
 
-        jSplitPane2.setDividerLocation(380);
+        jSplitPane2.setDividerLocation(360);
         jSplitPane2.setDividerSize(2);
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        eastTopPanel.setBackground(new java.awt.Color(0, 102, 102));
+        eastTopPanel.setBackground(new java.awt.Color(51, 51, 51));
 
-        jTabbedPane1.setBackground(new java.awt.Color(0, 102, 102));
+        jTabbedPane1.setBackground(new java.awt.Color(51, 51, 51));
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setPreferredSize(new java.awt.Dimension(292, 306));
 
         jLabel1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
@@ -610,7 +566,7 @@ public class MainUI extends javax.swing.JFrame {
         jLabel1.setText("Current Molecule:");
 
         jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(0, 102, 102));
+        jTextField1.setBackground(new java.awt.Color(51, 51, 51));
         jTextField1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setToolTipText(jTextField1.getText());
@@ -621,7 +577,7 @@ public class MainUI extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Threshold:");
 
-        jComboBox1.setBackground(new java.awt.Color(0, 102, 102));
+        jComboBox1.setBackground(new java.awt.Color(102, 102, 102));
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0.8", "1.0", "1.2", "1.5" , "1.8"}));
         jComboBox1.setSelectedItem("1.2");
@@ -635,14 +591,14 @@ public class MainUI extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Max Hits:");
 
-        jTextField2.setBackground(new java.awt.Color(0, 102, 102));
+        jTextField2.setBackground(new java.awt.Color(51, 51, 51));
         jTextField2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         jTextField2.setText("1000");
         jTextField2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jTextField2.setCaretColor(new java.awt.Color(255, 255, 255));
 
-        jRadioButton1.setBackground(new java.awt.Color(0, 102, 102));
+        jRadioButton1.setBackground(new java.awt.Color(51, 51, 51));
         jRadioButton1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setSelected(true);
@@ -653,7 +609,7 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton2.setBackground(new java.awt.Color(0, 102, 102));
+        jRadioButton2.setBackground(new java.awt.Color(51, 51, 51));
         jRadioButton2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setText("Network Model");
@@ -666,22 +622,23 @@ public class MainUI extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(0, 102, 102));
         jPanel6.setPreferredSize(new java.awt.Dimension(290, 125));
 
-        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setPreferredSize(new java.awt.Dimension(290, 125));
 
         jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(0, 102, 102));
+        jTextField3.setBackground(new java.awt.Color(51, 51, 51));
         jTextField3.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(255, 255, 255));
         jTextField3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jTextField3.setCaretColor(new java.awt.Color(255, 255, 255));
 
-        jCheckBox1.setBackground(new java.awt.Color(0, 102, 102));
+        jCheckBox1.setBackground(new java.awt.Color(51, 51, 51));
         jCheckBox1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setText("Generate Conformers");
+        jCheckBox1.setToolTipText("Need more time...");
 
-        jButton10.setBackground(new java.awt.Color(0, 102, 102));
+        jButton10.setBackground(new java.awt.Color(153, 153, 153));
         jButton10.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
         jButton10.setText("Browse");
@@ -728,12 +685,12 @@ public class MainUI extends javax.swing.JFrame {
                     .addGap(0, 0, 0)))
         );
 
-        jButton11.setBackground(new java.awt.Color(0, 102, 102));
+        jButton11.setBackground(new java.awt.Color(51, 51, 51));
         jButton11.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
         jButton11.setText("Export");
 
-        jButton12.setBackground(new java.awt.Color(0, 102, 102));
+        jButton12.setBackground(new java.awt.Color(51, 51, 51));
         jButton12.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
         jButton12.setText(" Start  ");
@@ -757,8 +714,8 @@ public class MainUI extends javax.swing.JFrame {
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton2))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jRadioButton2))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton11)
@@ -796,13 +753,13 @@ public class MainUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Chem", jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
         jLabel5.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("PDB 4-letter code:");
 
-        jTextField4.setBackground(new java.awt.Color(0, 102, 102));
+        jTextField4.setBackground(new java.awt.Color(51, 51, 51));
         jTextField4.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(255, 255, 255));
         jTextField4.setToolTipText("Must contain both the letters and numbers");
@@ -863,22 +820,22 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        jButton13.setBackground(new java.awt.Color(0, 102, 102));
+        jButton13.setBackground(new java.awt.Color(51, 51, 51));
         jButton13.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton13.setForeground(new java.awt.Color(255, 255, 255));
         jButton13.setText("Download");
         jButton13.setToolTipText("Save to local");
         jButton13.setEnabled(false);
 
-        jSeparator1.setBackground(new java.awt.Color(0, 153, 153));
-        jSeparator1.setForeground(new java.awt.Color(0, 102, 102));
+        jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel6.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Select the chian:");
 
-        jComboBox5.setBackground(new java.awt.Color(0, 102, 102));
+        jComboBox5.setBackground(new java.awt.Color(51, 51, 51));
         jComboBox5.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jComboBox5.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select chain..." }));
@@ -894,7 +851,7 @@ public class MainUI extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Seclect the ligand:");
 
-        jComboBox6.setBackground(new java.awt.Color(0, 102, 102));
+        jComboBox6.setBackground(new java.awt.Color(51, 51, 51));
         jComboBox6.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jComboBox6.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select ligand..." }));
@@ -905,7 +862,7 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        jButton14.setBackground(new java.awt.Color(0, 102, 102));
+        jButton14.setBackground(new java.awt.Color(51, 51, 51));
         jButton14.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton14.setForeground(new java.awt.Color(255, 255, 255));
         jButton14.setText("As Input");
@@ -958,7 +915,7 @@ public class MainUI extends javax.swing.JFrame {
                     .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton14)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("PDB", jPanel2);
@@ -972,14 +929,14 @@ public class MainUI extends javax.swing.JFrame {
         eastTopPanelLayout.setVerticalGroup(
             eastTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(eastTopPanelLayout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
                 .addGap(1, 1, 1))
         );
 
         jSplitPane2.setLeftComponent(eastTopPanel);
 
         eastBottomPanel.setBackground(new java.awt.Color(0, 102, 102));
-        eastBottomPanel.setLayout(new java.awt.GridLayout());
+        eastBottomPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel5.setBackground(new java.awt.Color(0, 51, 51));
         jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -1002,7 +959,7 @@ public class MainUI extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
         );
 
         eastBottomPanel.add(jPanel5);
@@ -1019,7 +976,76 @@ public class MainUI extends javax.swing.JFrame {
         );
         eastPanelLayout.setVerticalGroup(
             eastPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2)
+            .addGroup(eastPanelLayout.createSequentialGroup()
+                .addComponent(jSplitPane2)
+                .addGap(0, 0, 0))
+        );
+
+        centerPanelChild1.setBackground(new java.awt.Color(51, 51, 51));
+
+        TipLable.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
+        TipLable.setForeground(new java.awt.Color(255, 0, 0));
+
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/clean.png"))); // NOI18N
+        jButton16.setToolTipText("Clean Current Job");
+        jButton16.setBorder(null);
+        jButton16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton16MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton16MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout centerPanelChild1Layout = new javax.swing.GroupLayout(centerPanelChild1);
+        centerPanelChild1.setLayout(centerPanelChild1Layout);
+        centerPanelChild1Layout.setHorizontalGroup(
+            centerPanelChild1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(centerPanelChild1Layout.createSequentialGroup()
+                .addComponent(TipLable, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        centerPanelChild1Layout.setVerticalGroup(
+            centerPanelChild1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(centerPanelChild1Layout.createSequentialGroup()
+                .addGroup(centerPanelChild1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TipLable, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel7.setBackground(new java.awt.Color(51, 51, 51));
+
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/collapse.png"))); // NOI18N
+        jButton15.setToolTipText("Collapse/Expand all nodes");
+        jButton15.setBorder(null);
+        jButton15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton15MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton15MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout TopPanelLayout = new javax.swing.GroupLayout(TopPanel);
@@ -1027,8 +1053,12 @@ public class MainUI extends javax.swing.JFrame {
         TopPanelLayout.setHorizontalGroup(
             TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TopPanelLayout.createSequentialGroup()
-                .addComponent(westPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1000, Short.MAX_VALUE))
+                .addGroup(TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(westPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(1, 1, 1)
+                .addComponent(centerPanelChild1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(310, 310, 310))
             .addGroup(TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(TopPanelLayout.createSequentialGroup()
                     .addGap(201, 201, 201)
@@ -1036,32 +1066,42 @@ public class MainUI extends javax.swing.JFrame {
                     .addGap(309, 309, 309)))
             .addGroup(TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TopPanelLayout.createSequentialGroup()
-                    .addGap(0, 890, Short.MAX_VALUE)
+                    .addGap(0, 912, Short.MAX_VALUE)
                     .addComponent(eastPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         TopPanelLayout.setVerticalGroup(
             TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(westPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TopPanelLayout.createSequentialGroup()
+                .addGroup(TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(centerPanelChild1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addComponent(westPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
             .addGroup(TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(centerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TopPanelLayout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addComponent(centerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)))
             .addGroup(TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(eastPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(TopPanel);
 
-        BottomPanel.setLayout(new java.awt.GridLayout());
+        BottomPanel.setBackground(new java.awt.Color(0, 0, 0));
+        BottomPanel.setLayout(new java.awt.GridLayout(1, 0));
 
-        southPanel.setBackground(new java.awt.Color(0, 51, 51));
+        southPanel.setBackground(new java.awt.Color(51, 51, 51));
         southPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         southPanel.setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel8.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel8.setBackground(new java.awt.Color(51, 51, 51));
         jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel8.setLayout(new java.awt.BorderLayout());
 
+        jLabel8.setBackground(new java.awt.Color(51, 51, 51));
         jLabel8.setFont(new java.awt.Font("微软雅黑", 2, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("No Result to Show!");
         jPanel8.add(jLabel8, java.awt.BorderLayout.CENTER);
@@ -1374,7 +1414,7 @@ public class MainUI extends javax.swing.JFrame {
                     .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(1, 1, 1)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE))
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE))
         );
 
         pack();
@@ -1407,91 +1447,75 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 102, 102)));
-        jButton1.setBackground(new java.awt.Color(0, 255, 255));
+        jButton1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1),  javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51))));
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        jButton1.setBackground(new java.awt.Color(0, 51, 51));
+        jButton1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
-        jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 102, 102)));
-        jButton2.setBackground(new java.awt.Color(0, 255, 255));
+        jButton2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1),  javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51))));
     }//GEN-LAST:event_jButton2MouseEntered
 
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        jButton2.setBackground(new java.awt.Color(0, 51, 51));
+        jButton2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
     }//GEN-LAST:event_jButton2MouseExited
 
     private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-        jButton3.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 102, 102)));
-        jButton3.setBackground(new java.awt.Color(0, 255, 255));
+        jButton3.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1),  javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51))));
     }//GEN-LAST:event_jButton3MouseEntered
 
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
-        jButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        jButton3.setBackground(new java.awt.Color(0, 51, 51));
+        jButton3.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
     }//GEN-LAST:event_jButton3MouseExited
 
     private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseEntered
-        jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 102, 102)));
-        jButton4.setBackground(new java.awt.Color(0, 255, 255));
+        jButton4.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1),  javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51))));
     }//GEN-LAST:event_jButton4MouseEntered
 
     private void jButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseExited
-        jButton4.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        jButton4.setBackground(new java.awt.Color(0, 51, 51));
+        jButton4.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1),  javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
     }//GEN-LAST:event_jButton4MouseExited
 
     private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
-        jButton5.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 102, 102)));
-        jButton5.setBackground(new java.awt.Color(0, 255, 255));
+        jButton5.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1),  javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51))));
     }//GEN-LAST:event_jButton5MouseEntered
 
     private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
-        jButton5.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        jButton5.setBackground(new java.awt.Color(0, 51, 51));
+        jButton5.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1),  javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
     }//GEN-LAST:event_jButton5MouseExited
 
     private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
-        jButton6.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 102, 102)));
-        jButton6.setBackground(new java.awt.Color(0, 255, 255));
+        jButton6.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1),  javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51))));
     }//GEN-LAST:event_jButton6MouseEntered
 
     private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
-        jButton6.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        jButton6.setBackground(new java.awt.Color(0, 51, 51));
+        jButton6.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1),  javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
     }//GEN-LAST:event_jButton6MouseExited
 
     private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
-        jButton7.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 102, 102)));
-        jButton7.setBackground(new java.awt.Color(0, 255, 255));
+        jButton7.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1),  javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51))));
     }//GEN-LAST:event_jButton7MouseEntered
 
     private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
-        jButton7.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        jButton7.setBackground(new java.awt.Color(0, 51, 51));
+        jButton7.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1),  javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
     }//GEN-LAST:event_jButton7MouseExited
 
     private void jButton8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseEntered
-        jButton8.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 102, 102)));
-        jButton8.setBackground(new java.awt.Color(0, 255, 255));
+        jButton8.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1),  javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51))));
     }//GEN-LAST:event_jButton8MouseEntered
 
     private void jButton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseExited
-        jButton8.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        jButton8.setBackground(new java.awt.Color(0, 51, 51));
+       jButton8.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1),  javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204))));
     }//GEN-LAST:event_jButton8MouseExited
 
     private void jButton9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseEntered
-        jButton9.setForeground(new java.awt.Color(0, 255, 255));
+        jButton9.setForeground(new java.awt.Color(0, 0, 0));
     }//GEN-LAST:event_jButton9MouseEntered
 
     private void jButton9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseExited
-        jButton9.setForeground(new java.awt.Color(0, 204, 204));
+        jButton9.setForeground(new java.awt.Color(51, 51, 51));
     }//GEN-LAST:event_jButton9MouseExited
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -2031,6 +2055,22 @@ public class MainUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBox6ItemStateChanged
 
+    private void jButton15MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseEntered
+        jButton15.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.black, null, null));
+    }//GEN-LAST:event_jButton15MouseEntered
+
+    private void jButton15MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseExited
+       jButton15.setBorder(null);
+    }//GEN-LAST:event_jButton15MouseExited
+
+    private void jButton16MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseEntered
+        jButton16.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.darkGray, null, null));
+    }//GEN-LAST:event_jButton16MouseEntered
+
+    private void jButton16MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseExited
+        jButton16.setBorder(null);
+    }//GEN-LAST:event_jButton16MouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -2097,7 +2137,6 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JPanel centerPanel;
     private javax.swing.JPanel centerPanelChild1;
-    private javax.swing.JPanel centerPanelChild2;
     private javax.swing.JPanel eastBottomPanel;
     private javax.swing.JPanel eastPanel;
     private javax.swing.JPanel eastTopPanel;
@@ -2107,6 +2146,8 @@ public class MainUI extends javax.swing.JFrame {
     public javax.swing.JButton jButton12;
     public javax.swing.JButton jButton13;
     public javax.swing.JButton jButton14;
+    public javax.swing.JButton jButton15;
+    public javax.swing.JButton jButton16;
     public javax.swing.JButton jButton2;
     public javax.swing.JButton jButton3;
     public javax.swing.JButton jButton4;
@@ -2167,6 +2208,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     public javax.swing.JPanel jPanel8;
     private javax.swing.JRadioButton jRadioButton1;
     public javax.swing.JRadioButton jRadioButton2;

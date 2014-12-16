@@ -88,18 +88,20 @@ public class ExportXlsUI extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         TipLabel = new javax.swing.JLabel();
+        jRadioButton3 = new javax.swing.JRadioButton();
 
         buttonGroup1.add(jRadioButton1);
         buttonGroup1.add(jRadioButton2);
+        buttonGroup1.add(jRadioButton3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setPreferredSize(new java.awt.Dimension(350, 210));
 
-        jRadioButton1.setBackground(new java.awt.Color(0, 102, 102));
+        jRadioButton1.setBackground(new java.awt.Color(51, 51, 51));
         jRadioButton1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setText("Completely Export");
@@ -109,10 +111,10 @@ public class ExportXlsUI extends javax.swing.JDialog {
             }
         });
 
-        jRadioButton2.setBackground(new java.awt.Color(0, 102, 102));
+        jRadioButton2.setBackground(new java.awt.Color(51, 51, 51));
         jRadioButton2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Custom Exprot (Based on the rank)");
+        jRadioButton2.setText("Custom Exprot 2 (Based on the range of row)");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
@@ -125,7 +127,7 @@ public class ExportXlsUI extends javax.swing.JDialog {
         jLabel1.setEnabled(false);
 
         jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(0, 102, 102));
+        jTextField1.setBackground(new java.awt.Color(51, 51, 51));
         jTextField1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setText("0");
@@ -154,7 +156,7 @@ public class ExportXlsUI extends javax.swing.JDialog {
         jLabel3.setEnabled(false);
 
         jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(0, 102, 102));
+        jTextField2.setBackground(new java.awt.Color(51, 51, 51));
         jTextField2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         jTextField2.setText("0");
@@ -176,14 +178,14 @@ public class ExportXlsUI extends javax.swing.JDialog {
         jLabel4.setText("(Point Here!)");
         jLabel4.setToolTipText("The number should be greater than the starting point!");
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
-        jSeparator1.setBackground(new java.awt.Color(0, 102, 102));
+        jSeparator1.setBackground(new java.awt.Color(51, 51, 51));
         jSeparator1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.add(jSeparator1);
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cancel");
@@ -193,7 +195,7 @@ public class ExportXlsUI extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 102));
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
         jButton2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("OK");
@@ -206,6 +208,16 @@ public class ExportXlsUI extends javax.swing.JDialog {
         TipLabel.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         TipLabel.setForeground(new java.awt.Color(0, 255, 255));
 
+        jRadioButton3.setBackground(new java.awt.Color(51, 51, 51));
+        jRadioButton3.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
+        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton3.setText("Custom Exprot 1 (Based on selected item)");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -215,69 +227,72 @@ public class ExportXlsUI extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(28, 28, 28))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2)
-                            .addComponent(TipLabel))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(50, 50, 50)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jRadioButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TipLabel, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(0, 17, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(TipLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(TipLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addComponent(jRadioButton1)
-                .addGap(6, 6, 6)
-                .addComponent(jRadioButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton2)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(31, 31, 31))
+                    .addComponent(jButton2)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
         );
 
         pack();
@@ -306,23 +321,35 @@ public class ExportXlsUI extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         if (jRadioButton1.isSelected()) {
-            exportResult(table, 1, 1000);           
+            exportResult(table, 0, 1000,false);           
         } else if (jRadioButton2.isSelected()) {
             int i = Integer.parseInt(jTextField1.getText());
             int j = Integer.parseInt(jTextField2.getText());
-            if (i == 0 || i > j) {
-                if (i == 0) 
-                    tip.render(TipLabel, "The start number can't be 0!", "Error");
+            if (i < 0 || i > j) {
+                if (i < 0) 
+                    tip.render(TipLabel, "The start number can't smaller than 0!", "Error");
 else 
                     tip.render(TipLabel, "Parameter selection error!", "Error");
             } else {
-                exportResult(table, i, j);
+                exportResult(table, i, j, false);
             }
-        } else 
+        }
+        else if(jRadioButton3.isSelected()){
+            exportResult(table, 0, 1000,true);
+        }
+        else 
             tip.render(TipLabel, "Choose the export model!", "Error");
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    protected void exportResult(JTable table, int i, int j) {
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+       jLabel1.setEnabled(false);
+        jLabel3.setEnabled(false);
+        jTextField1.setEditable(false);
+        jTextField2.setEditable(false);
+        jPanel1.updateUI();
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    protected void exportResult(JTable table, int i, int j, boolean exportflag) {
         String outFilePath;
         int RowCount = table.getRowCount();
             if (j >= RowCount) {
@@ -332,9 +359,19 @@ else
         if (table.getRowCount() == 1 || !table.isValid()) //temp.equals("")
              tip.render(TipLabel, "No any data could export!", "Error");
         else {
+            boolean selectFlag = false;
+            for(int num = 0; num < j; num ++){
+                selectFlag = (boolean)table.getValueAt(num, 5);
+                if(selectFlag)
+                    break;
+            }
+            if(exportflag && !selectFlag)
+                tip.render(TipLabel, "No any data selected!", "Error");
+            else{
             JFileChooser fc = new JFileChooser(
                     System.getProperty("user.dir"));
             fc.setMultiSelectionEnabled(false);
+            fc.setName("Choose directory...");
             fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             int result = fc.showSaveDialog(null);
             if (result == JFileChooser.APPROVE_OPTION) {
@@ -344,11 +381,13 @@ else
                 jPanel2.add(panel);
                 jPanel2.updateUI();
                 File file = fc.getSelectedFile();
-                outFilePath = file.getAbsolutePath() + "//"+ (int)(89999999*Math.random()+10000000) + "" + "//";
-                File file1 = new File(outFilePath);
-                file1.mkdir();
-                exportXls(table, outFilePath, i, j);
-                exportFile(table, outFilePath, i, j);
+                if(!file.exists())
+                    file.mkdir();
+                outFilePath = file.getAbsolutePath() + "//"; // + "//"+ (int)(89999999*Math.random()+10000000) + "" + "//";
+                //File file1 = new File(outFilePath);
+                //file1.mkdir();
+                exportXls(table, outFilePath, i, j, exportflag);
+                exportFile(table, outFilePath, i, j, exportflag);
                 new Thread(){
                     public void run(){
                         int k = 5;
@@ -367,17 +406,21 @@ else
                         }
 
         }
+        }
     }
 
-    protected void exportFile(JTable table, String outFilePath, int i, int j){
+    protected void exportFile(JTable table, String outFilePath, int i, int j, boolean flag){
         while(i < j){
-            if(i != 0){
+           // if(i != 0){
+                boolean selected = (boolean)table.getValueAt(i, 5);
+                if((flag && selected) || !flag){
                 String MolName = table.getModel().getValueAt(i, 1).toString();
                 File mol = new File(filepath + MolName + ".mol2");
                 if(!mol.exists())
                     MolName = table.getModel().getValueAt(i, 0).toString();
                 String newPath = filepath + MolName + ".mol2";
                 copyfile(newPath, outFilePath + MolName + ".mol2");
+           // }
             }
             i ++;
         }
@@ -413,7 +456,7 @@ else
      * @param i Start position
      * @param j End position
      */
-    protected boolean exportXls(JTable table, String outFilePath, int i, int j) {
+    protected boolean exportXls(JTable table, String outFilePath, int i, int j, boolean exportModel) {
 
         boolean ExportFlag = false;
         String excelFileName = null;
@@ -450,7 +493,8 @@ else
               //  j = RowCount;
            // }
             int k; // k为列
-            while (i <= j) { // i为表的行数 第一行为表头
+            while (i < j) { // i为表的行数 第一行为表头
+                if(exportModel && (boolean)table.getValueAt(i, 5)){
                 row = sheet.createRow(Row);
                 for (k = 0; k < 5; k++) {
                     HSSFCell cell = row.createCell(k);
@@ -461,6 +505,19 @@ else
                     cell.setCellValue(s);
                 }
                 Row++;
+                }
+                else if(!exportModel){
+                    row = sheet.createRow(Row);
+                for (k = 0; k < 5; k++) {
+                    HSSFCell cell = row.createCell(k);
+                    String s = (String) table.getValueAt(i, k);
+                    // 设置单元格格式
+                    cell.setCellStyle(cellStyle);
+                    cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+                    cell.setCellValue(s);
+                }
+                Row++;
+                }
                 i++;
             }
             // 建立一个文件输出流
@@ -541,6 +598,7 @@ else
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;

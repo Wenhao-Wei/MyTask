@@ -32,10 +32,13 @@ public class TreeRender extends DefaultTreeCellRenderer {
           // setBackground(new Color(0,51,51));
             //setForeground(new Color(0,51,51));
    //setTextSelectionColor(new Color(0,204,204));
-   setTextNonSelectionColor(new Color(0,255,255));
+   //setTextNonSelectionColor(new Color(0,255,255));
+   /*change by crazybaby 20141215*/
+   setTextNonSelectionColor(new Color(255,255,255));
     setBackgroundSelectionColor(null);
     // setForegroundSelectionColor(new Color(0,102,102));
-    setBackgroundNonSelectionColor(new Color(0,51,51));
+    //setBackgroundNonSelectionColor(new Color(0,51,51));
+    setBackgroundNonSelectionColor(new Color(51,51,51));
        // } else {
          //   c.setBackground(new Color(0, 102, 102));
        // }

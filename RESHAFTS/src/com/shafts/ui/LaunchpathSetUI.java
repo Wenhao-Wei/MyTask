@@ -67,11 +67,11 @@ public class LaunchpathSetUI extends javax.swing.JDialog {
         setModal(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(0, 102, 102));
+        jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("微软雅黑", 0, 13)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
@@ -81,14 +81,14 @@ public class LaunchpathSetUI extends javax.swing.JDialog {
         jTextArea1.setCaretColor(new java.awt.Color(255, 255, 255));
         jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jPanel2.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Workspace:");
 
-        jTextField1.setBackground(new java.awt.Color(0, 51, 51));
+        jTextField1.setBackground(new java.awt.Color(51, 51, 51));
         jTextField1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -104,7 +104,7 @@ public class LaunchpathSetUI extends javax.swing.JDialog {
             jTextField1.setText(defaultpath);
         }
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 51));
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Browse");
@@ -114,12 +114,12 @@ public class LaunchpathSetUI extends javax.swing.JDialog {
             }
         });
 
-        jRadioButton1.setBackground(new java.awt.Color(0, 51, 51));
+        jRadioButton1.setBackground(new java.awt.Color(51, 51, 51));
         jRadioButton1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setText("Use this as the default and don't ask again.");
 
-        jButton2.setBackground(new java.awt.Color(0, 51, 51));
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
         jButton2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("OK");
@@ -129,7 +129,7 @@ public class LaunchpathSetUI extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 51, 51));
+        jButton3.setBackground(new java.awt.Color(51, 51, 51));
         jButton3.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Cancel");

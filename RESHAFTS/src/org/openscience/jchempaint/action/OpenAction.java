@@ -50,124 +50,125 @@ import org.openscience.jchempaint.renderer.selection.LogicalSelection;
 
 /**
  * Shows the open dialog
- * 
+ *
  */
 public class OpenAction extends JCPAction {
 
-	private static final long serialVersionUID = 1030940425527065876L;
+    private static final long serialVersionUID = 1030940425527065876L;
 
-	/**
-	 * Opens an empty JChemPaint frame.
-	 * 
-	 * @param e
-	 *            Description of the Parameter
-	 */
-	public void actionPerformed(ActionEvent e) {
+    /**
+     * Opens an empty JChemPaint frame.
+     *
+     * @param e Description of the Parameter
+     */
+    public void actionPerformed(ActionEvent e) {
 
-		JFileChooser chooser = new JFileChooser();
-		chooser.setCurrentDirectory(jcpPanel.getCurrentWorkDirectory());
-		chooser.setAcceptAllFileFilterUsed(false);
-		chooser.addChoosableFileFilter(new ChemicalFilesFilter());
-		chooser.setAcceptAllFileFilterUsed(true);
-		JCPFileFilter.addChoosableFileFilters(chooser);
-		if (jcpPanel.getCurrentOpenFileFilter() != null) {
-			for (int i = 0; i < chooser.getChoosableFileFilters().length; i++) {
-				if (chooser.getChoosableFileFilters()[i].getDescription()
-						.equals(jcpPanel.getCurrentOpenFileFilter()
-								.getDescription()))
-					chooser.setFileFilter(chooser.getChoosableFileFilters()[i]);
-			}
-		}
-		if (jcpPanel.getLastOpenedFile() != null) {
-			chooser.setSelectedFile(jcpPanel.getLastOpenedFile());
-		}
-		chooser.setFileView(new JCPFileView());
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(jcpPanel.getCurrentWorkDirectory());
+        chooser.setAcceptAllFileFilterUsed(false);
+        chooser.addChoosableFileFilter(new ChemicalFilesFilter());
+        chooser.setAcceptAllFileFilterUsed(true);
+        JCPFileFilter.addChoosableFileFilters(chooser);
+        if (jcpPanel.getCurrentOpenFileFilter() != null) {
+            for (int i = 0; i < chooser.getChoosableFileFilters().length; i++) {
+                if (chooser.getChoosableFileFilters()[i].getDescription()
+                        .equals(jcpPanel.getCurrentOpenFileFilter()
+                                .getDescription())) {
+                    chooser.setFileFilter(chooser.getChoosableFileFilters()[i]);
+                }
+            }
+        }
+        if (jcpPanel.getLastOpenedFile() != null) {
+            chooser.setSelectedFile(jcpPanel.getLastOpenedFile());
+        }
+        chooser.setFileView(new JCPFileView());
 
-		int returnVal = chooser.showOpenDialog(jcpPanel);
+        int returnVal = chooser.showOpenDialog(jcpPanel);
 
-		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			jcpPanel.setCurrentWorkDirectory(chooser.getCurrentDirectory());
-			jcpPanel.setCurrentOpenFileFilter(chooser.getFileFilter());
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            jcpPanel.setCurrentWorkDirectory(chooser.getCurrentDirectory());
+            jcpPanel.setCurrentOpenFileFilter(chooser.getFileFilter());
 
-			javax.swing.filechooser.FileFilter ff = chooser.getFileFilter();
-			if (ff instanceof JCPFileFilter) {
-				type = ((JCPFileFilter) ff).getType();
+            javax.swing.filechooser.FileFilter ff = chooser.getFileFilter();
+            if (ff instanceof JCPFileFilter) {
+                type = ((JCPFileFilter) ff).getType();
 
-			}
+            }
 
-			int clear = jcpPanel.showWarning();
-			if (clear == JOptionPane.YES_OPTION) {
-				try {
-					IChemModel chemModel = null;
-					jcpPanel.get2DHub().unsetRGroupHandler();
-					chemModel = JChemPaint.readFromFileReader(chooser
-							.getSelectedFile().toURI().toURL(), chooser
-							.getSelectedFile().toURI().toString(), type,
-							jcpPanel);
-					if (jcpPanel.get2DHub().getUndoRedoFactory() != null
-							&& jcpPanel.get2DHub().getUndoRedoHandler() != null) {
-						IUndoRedoable undoredo = jcpPanel
-								.get2DHub()
-								.getUndoRedoFactory()
-								.getLoadNewModelEdit(
-										jcpPanel.getChemModel(),
-										null,
-										jcpPanel.getChemModel()
-												.getMoleculeSet(),
-										jcpPanel.getChemModel()
-												.getReactionSet(),
-										chemModel.getMoleculeSet(),
-										chemModel.getReactionSet(),
-										"Load "
-												+ chooser.getSelectedFile()
-														.getName());
-						jcpPanel.get2DHub().getUndoRedoHandler()
-								.postEdit(undoredo);
-					}
-					jcpPanel.getChemModel().setMoleculeSet(
-							chemModel.getMoleculeSet());
-					jcpPanel.getChemModel().setReactionSet(
-							chemModel.getReactionSet());
-					jcpPanel.getRenderPanel()
-							.getRenderer()
-							.getRenderer2DModel()
-							.setSelection(
-									new LogicalSelection(
-											LogicalSelection.Type.NONE));
+            int clear = jcpPanel.showWarning();
+            if (clear == JOptionPane.YES_OPTION) {
+                try {
+                    IChemModel chemModel = null;
+                    jcpPanel.get2DHub().unsetRGroupHandler();
+                    chemModel = JChemPaint.readFromFileReader(chooser
+                            .getSelectedFile().toURI().toURL(), chooser
+                            .getSelectedFile().toURI().toString(), type,
+                            jcpPanel);
+                    if (jcpPanel.get2DHub().getUndoRedoFactory() != null
+                            && jcpPanel.get2DHub().getUndoRedoHandler() != null) {
+                        IUndoRedoable undoredo = jcpPanel
+                                .get2DHub()
+                                .getUndoRedoFactory()
+                                .getLoadNewModelEdit(
+                                        jcpPanel.getChemModel(),
+                                        null,
+                                        jcpPanel.getChemModel()
+                                        .getMoleculeSet(),
+                                        jcpPanel.getChemModel()
+                                        .getReactionSet(),
+                                        chemModel.getMoleculeSet(),
+                                        chemModel.getReactionSet(),
+                                        "Load "
+                                        + chooser.getSelectedFile()
+                                        .getName());
+                        jcpPanel.get2DHub().getUndoRedoHandler()
+                                .postEdit(undoredo);
+                    }
+                    jcpPanel.getChemModel().setMoleculeSet(
+                            chemModel.getMoleculeSet());
+                    jcpPanel.getChemModel().setReactionSet(
+                            chemModel.getReactionSet());
+                    jcpPanel.getRenderPanel()
+                            .getRenderer()
+                            .getRenderer2DModel()
+                            .setSelection(
+                                    new LogicalSelection(
+                                            LogicalSelection.Type.NONE));
 
-					// the newly opened file should nicely fit the screen
-					jcpPanel.getRenderPanel().setFitToScreen(true);
+                    // the newly opened file should nicely fit the screen
+                    jcpPanel.getRenderPanel().setFitToScreen(true);
 
-					jcpPanel.getRenderPanel().update(
-							jcpPanel.getRenderPanel().getGraphics());
+                    jcpPanel.getRenderPanel().update(
+                            jcpPanel.getRenderPanel().getGraphics());
 
-					// enable zooming by removing constraint
-					jcpPanel.getRenderPanel().setFitToScreen(false);
+                    // enable zooming by removing constraint
+                    jcpPanel.getRenderPanel().setFitToScreen(false);
 
-					jcpPanel.setIsAlreadyAFile(chooser.getSelectedFile());
-					RendererModel renderModel = jcpPanel.get2DHub()
-							.getRenderer().getRenderer2DModel();
-					renderModel.setRecalculationRequiredForSSSR(true);
+                    jcpPanel.setIsAlreadyAFile(chooser.getSelectedFile());
+                    RendererModel renderModel = jcpPanel.get2DHub()
+                            .getRenderer().getRenderer2DModel();
+                    renderModel.setRecalculationRequiredForSSSR(true);
 
 					// in case this is an application, we set the file name as
-					// title
-					if (jcpPanel.getGuistring().equals(
-							JChemPaint.GUI_APPLICATION))
-						((JChemPaintPanel) jcpPanel).setTitle(chooser
-								.getSelectedFile().getName());
+                    // title
+                    if (jcpPanel.getGuistring().equals(
+                            JChemPaint.GUI_APPLICATION)) {
+                        ((JChemPaintPanel) jcpPanel).setTitle(chooser
+                                .getSelectedFile().getName());
+                    }
 
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					jcpPanel.announceError(e1);
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                    jcpPanel.announceError(e1);
 
-				}
-			}
-		}
+                }
+            }
+        }
 
-		saveToRenderFile();
+        saveToRenderFile();
 
-	}
+    }
 
 }
 

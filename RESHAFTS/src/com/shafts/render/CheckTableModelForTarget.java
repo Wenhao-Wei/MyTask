@@ -15,13 +15,17 @@ public class CheckTableModelForTarget extends DefaultTableModel {
 
     @Override
     public boolean isCellEditable(int row, int column) {
-        if (column == 6) {
-            return true;
-        } else {
+        //if (column == 6) {
+            //return true;
+        //} else {
             return false;
-        }
+        //}
     }
 
+    public boolean isCellSelected(int row, int colmn){
+        return true;
+    }
+    
     @Override
     public Class getColumnClass(int c) {
         return getValueAt(0, c).getClass();
