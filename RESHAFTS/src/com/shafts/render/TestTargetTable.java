@@ -46,6 +46,7 @@ public class TestTargetTable {
         table = new TargetTable(new TestTargetTableModel());
          table.setBackground(new Color(51, 51, 51));
          table.setForeground(new Color(255, 255, 255));
+         table.setDefaultRenderer(String.class, new MyCellRenderer());
          TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
            table.setRowSorter(sorter);
            sorter.setSortable(0, false);
@@ -53,6 +54,8 @@ public class TestTargetTable {
                     sorter.setSortable(2, false);
                     sorter.setSortable(5, false);
                     //sorter.setSortable(2, false);
+                    
+                    //table.setDefaultRenderer(, new MyCellRenderer());
         table.getTableHeader().setDefaultRenderer(new FathertableHeadrenderForTarget(table));
         
         table.addMouseListener(new fatherTableLink());
