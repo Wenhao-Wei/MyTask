@@ -53,35 +53,8 @@ public class TestTargetTable {
                     sorter.setSortable(2, false);
                     sorter.setSortable(5, false);
                     //sorter.setSortable(2, false);
-                    JTableHeader tableHeader = table.getTableHeader();
-         tableHeader.setBackground(new Color(51,51,51));
-        tableHeader.setForeground(new Color(255,255,255));
-        //TableColumn column = table.getColumnModel().getColumn(0);
-       // column.setPreferredWidth(100);
-         table.setDefaultRenderer(String.class, new MyCellRenderer());
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
-        table.getColumnModel().getColumn(0).setPreferredWidth(250);
-        table.getColumnModel().getColumn(1).setPreferredWidth(200);
-        table.getColumnModel().getColumn(2).setPreferredWidth(250);
-        table.getColumnModel().getColumn(3).setPreferredWidth(100);
-        table.getColumnModel().getColumn(4).setPreferredWidth(100);
-       table.getColumnModel().getColumn(5).setMaxWidth(50);           
-        //悬浮提示单元格的值 
-        table.setRowHeight(25);
-        table.addMouseMotionListener(new MouseAdapter() {
-            public void mouseMoved(MouseEvent e) {
-                int row = table.rowAtPoint(e.getPoint());
-                int col = table.columnAtPoint(e.getPoint());
-                if (row > -1 && col > -1) {
-                    Object value = table.getValueAt(row, col);
-                    if (null != value && !"".equals(value)) {
-                        table.setToolTipText(value.toString());//悬浮显示单元格内容
-                    } else {
-                        table.setToolTipText(null);//关闭提示
-                    }
-                }
-            }
-        });
+        table.getTableHeader().setDefaultRenderer(new FathertableHeadrenderForTarget(table));
+        
         table.addMouseListener(new fatherTableLink());
         //frame.getContentPane().add(new JScrollPane(table), "Center");
        // frame.setSize(800, 600);
@@ -202,8 +175,8 @@ public class TestTargetTable {
             keyID = (String) table.getValueAt(rowIndex, 0);
             data = itj.getTargetdata(path, keyID);
             headerName = iv.getTargetHeader();
-            targetTable.setBackground(new Color(0, 51, 51));
-            targetTable.setForeground(new Color(0, 255, 255));
+            targetTable.setBackground(new Color(51, 51, 51));
+            targetTable.setForeground(new Color(255, 255, 255));
             targetTable.setRowHeight(20);
             targetTable.setDefaultRenderer(String.class, new MyCellRenderer());
             CheckTableModelForTarget tableModel = new CheckTableModelForTarget(data, headerName);
