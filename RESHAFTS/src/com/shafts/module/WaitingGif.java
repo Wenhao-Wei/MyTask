@@ -8,6 +8,8 @@ package com.shafts.module;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -21,7 +23,7 @@ public class WaitingGif extends javax.swing.JDialog {
      * Creates new form WaitingGif
      */
     public WaitingGif() {
-        // super(parent, modal);
+         //super(parent, modal);
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screensize = kit.getScreenSize();
         int width = screensize.width;
@@ -38,10 +40,23 @@ public class WaitingGif extends javax.swing.JDialog {
             new Thread(){
             @Override
             public void run(){
+                selfClose();
                 setVisible(true);
             }
             }.start();
         }
+    }
+    public void selfClose(){
+        new Thread(){
+            public void run(){
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(WaitingGif.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                close();
+            }
+        }.start();
     }
 
     /**
@@ -162,7 +177,7 @@ public class WaitingGif extends javax.swing.JDialog {
                         System.exit(0);
                     }
                 });
-                dialog.setVisible(true);
+                dialog.setvisible(true);
             }
         });
     }

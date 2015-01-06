@@ -31,8 +31,8 @@ public class InitTable {
         };
          jTable = new JTable();
          jTable.setCellSelectionEnabled(true);
-                    jTable.setBackground(new Color(51, 51, 51));
-                    jTable.setForeground(new Color(255, 255, 255));
+                    jTable.setBackground(new Color(254, 254, 254));
+                    jTable.setForeground(new Color(0, 0, 0));
                     jTable.setDefaultRenderer(String.class, new MyCellRenderer());
                     CheckTableModle tableModel = new CheckTableModle(data, columnNames);
                     TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);

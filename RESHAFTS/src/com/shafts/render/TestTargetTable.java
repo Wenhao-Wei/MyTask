@@ -44,8 +44,8 @@ public class TestTargetTable {
         targetlength = itj.gettargetlength();
         //JFrame frame = new JFrame();
         table = new TargetTable(new TestTargetTableModel());
-         table.setBackground(new Color(51, 51, 51));
-         table.setForeground(new Color(255, 255, 255));
+         table.setBackground(new Color(254, 254, 254));
+         table.setForeground(new Color(0, 0, 0));
          table.setDefaultRenderer(String.class, new MyCellRenderer());
          TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
            table.setRowSorter(sorter);
@@ -178,8 +178,8 @@ public class TestTargetTable {
             keyID = (String) table.getValueAt(rowIndex, 0);
             data = itj.getTargetdata(path, keyID);
             headerName = iv.getTargetHeader();
-            targetTable.setBackground(new Color(51, 51, 51));
-            targetTable.setForeground(new Color(255, 255, 255));
+            targetTable.setBackground(new Color(254, 254, 254));
+            targetTable.setForeground(new Color(0, 0, 0));
             targetTable.setRowHeight(20);
             targetTable.setDefaultRenderer(String.class, new MyCellRenderer());
             CheckTableModelForTarget tableModel = new CheckTableModelForTarget(data, headerName);
@@ -245,8 +245,8 @@ public class TestTargetTable {
                 if (!mol2file.exists()) {
                     show3Dname = stringName[1];
                 }
-                boolean bl = !(boolean) targetTable.getModel().getValueAt(targetTable.getSelectedRow(), 5);
-               targetTable.getModel().setValueAt(bl, targetTable.getSelectedRow(), 5);
+                boolean bl = !(boolean) targetTable.getModel().getValueAt(targetTable.getSelectedRow(), 6);
+               targetTable.getModel().setValueAt(bl, targetTable.getSelectedRow(), 6);
                 String path2 = showMolPath + show3Dname + ".mol2";
                // if (targetTable.getSelectedColumn() == 6) {                    
                     if (bl) {
@@ -264,7 +264,7 @@ public class TestTargetTable {
                         
                             showNo++;
                             hasShow.put(show3Dname, showNo);
-                            String controller1 = "load APPEND " + "\"" + path2 + "\"" + " ;frame*" + " ;hide Hydrogens";
+                            String controller1 = "load append " + "\"" + path2 + "\"" + " ;frame*" + " ;hide Hydrogens";
                             // String controller2 = "";
                             jmolPanel.viewer.evalString(controller1);
                             // jmolPanel2.viewer.evalString(controller2);

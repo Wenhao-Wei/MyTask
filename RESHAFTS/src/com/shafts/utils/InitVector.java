@@ -30,7 +30,7 @@ public class InitVector {
     public Vector getdata(String path) {
         data = new Vector();
         int i = 1;
-        int flag = 0;
+        int flag = 1;
         int line = 50;
         if (path == null) {// initial the table
             JOptionPane.showMessageDialog(null,

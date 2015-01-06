@@ -25,7 +25,7 @@ public class TipsRender {
                 label.setForeground(new java.awt.Color(255, 0, 0));
                 break;
             case "Tip":
-                label.setForeground(new java.awt.Color(0, 255, 255));
+                label.setForeground(new java.awt.Color(0, 51, 204));
                 break;
         }
         label.setText(str);

@@ -37,7 +37,9 @@ import com.shafts.utils.PropertyConfig;
 import com.shafts.utils.ThreadCount;
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Font;
 import java.awt.HeadlessException;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -53,6 +55,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -61,6 +64,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.script.ScriptException;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -68,12 +72,25 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTree;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.border.Border;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
+import javax.swing.plaf.BorderUIResource;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.FrameBorderStyle;
+import org.jb2011.lnf.beautyeye.ch3_button.BEButtonUI;
+import org.jvnet.substance.SubstanceLookAndFeel;
+import org.jvnet.substance.painter.StandardGradientPainter;
+import org.jvnet.substance.skin.BusinessBlackSteelSkin;
+import org.jvnet.substance.skin.ChallengerDeepSkin;
+import org.jvnet.substance.skin.SubstanceRavenGraphiteGlassLookAndFeel;
 
 /**
  *
@@ -104,7 +121,7 @@ public class MainAction extends MainUI {
         }.start();
         cus = new CheckUserStatus();
         lg.showProgress("Init the progress...");
-        Color color = new Color(204, 204, 204);
+        Color color = new Color(204,204,204);
         getContentPane().setBackground(color);
         lg.showProgress("Check config file...");
         PropertyConfig pc = new PropertyConfig();
@@ -371,7 +388,7 @@ public class MainAction extends MainUI {
          * job tree
          */
         jTree1.addMouseListener(new TreeHandle());
-        jTree1.setCellRenderer(new TreeRender());
+       // jTree1.setCellRenderer(new TreeRender());
         /**
          * eastpanel
          */
@@ -646,7 +663,7 @@ public class MainAction extends MainUI {
                     jTable = new JTable();
                     southPanel.removeAll();
                     jScrollPane4 = new JScrollPane();
-                    jScrollPane4.getViewport().setBackground(new java.awt.Color(0,51,51));
+                    //jScrollPane4.getViewport().setBackground(new java.awt.Color(0,51,51));
                     jScrollPane4.setBorder(null);
                     if (treeNode.getParent().toString().equals("Target Navigator")) {
                         XMLpath = showMolPath + new ListFinder().getXML(showMolPath);
@@ -999,14 +1016,51 @@ public class MainAction extends MainUI {
     public int getThreadCount() {
         return ThreadCount;
     }
+    
+    //设置全局字体
+public static void initGlobalFontSetting(Font fnt){
+    FontUIResource fontRes = new FontUIResource(fnt);
+    for(Enumeration keys = UIManager.getDefaults().keys(); keys.hasMoreElements();){
+        Object key = keys.nextElement();
+        Object value = UIManager.get(key);
+        if(value instanceof FontUIResource)
+            UIManager.put(key, fontRes);
+    }
+}
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        /*   try {
+         */       
+        try {
+             //String lookAndFeel = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
+            //UIManager.setLookAndFeel(lookAndFeel);
+            
+            //BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.translucencyAppleLike;
+            BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.translucencySmallShadow;
+            //BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.generalNoTranslucencyShadow;
+            org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+            Border bd = new org.jb2011.lnf.beautyeye.ch8_toolbar.BEToolBarUI.ToolBarBorder(UIManager.getColor(Color.GRAY)//Floatable 时触点的颜色 
+                                   ,UIManager.getColor(Color.BLUE)//Floatable 时触点的阴影颜色 
+                    ,new Insets(2, 2, 2, 2)); //border 的默认insets
+            UIManager.put("ToolBar.border",new BorderUIResource(bd)); 
+
+            BeautyEyeLNFHelper.translucencyAtFrameInactive = false;
+           //UIManager.put("ToolBar.isPaintPlainBackground",Boolean.TRUE);
+            UIManager.put("RootPane.setupButtonVisible", false);
+            UIManager.put("TabbedPane.tabAreaInsets",new javax.swing.plaf.InsetsUIResource(2, 5, 2, 5));
+            //new BEButtonUI().setNormalColor(BEButtonUI.NormalColor.blue);
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName
+            //UIManager.setLookAndFeel(new SubstanceRavenGraphiteGlassLookAndFeel());
+            //SubstanceLookAndFeel.setCurrentGradientPainter(new StandardGradientPainter());
+           // SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
+        } catch (Exception ex) {
+            Logger.getLogger(MainAction.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           /*try {
          for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
          if ("Nimbus".equals(info.getName())) {
          javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -1028,6 +1082,8 @@ public class MainAction extends MainUI {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 final MainAction f = new MainAction();
+                Font font = new Font("微软雅黑",Font.BOLD,12);
+               // initGlobalFontSetting(font);
                 f.setVisible(true);
                 f.addWindowListener(new WindowAdapter() {
                     @Override
