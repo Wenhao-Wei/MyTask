@@ -79,18 +79,15 @@ public class FormatConvUI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-
         jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(51, 51, 51));
+        jTextField1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        browse.setBackground(new java.awt.Color(51, 51, 51));
-        browse.setForeground(new java.awt.Color(255, 255, 255));
+        browse.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         browse.setText("Open");
         browse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,10 +95,10 @@ public class FormatConvUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jLabel1.setText("Choose the output formation:");
 
-        jComboBox1.setBackground(new java.awt.Color(51, 51, 51));
+        jComboBox1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Choose...","mol2", "pdb", "cdk", "cml"  }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -114,8 +111,7 @@ public class FormatConvUI extends javax.swing.JFrame {
             }
         });
 
-        help.setBackground(new java.awt.Color(51, 51, 51));
-        help.setForeground(new java.awt.Color(255, 255, 255));
+        help.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         help.setText("Help?");
         help.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,8 +119,7 @@ public class FormatConvUI extends javax.swing.JFrame {
             }
         });
 
-        concel.setBackground(new java.awt.Color(51, 51, 51));
-        concel.setForeground(new java.awt.Color(255, 255, 255));
+        concel.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         concel.setText("Cancel");
         concel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,8 +127,7 @@ public class FormatConvUI extends javax.swing.JFrame {
             }
         });
 
-        ok.setBackground(new java.awt.Color(51, 51, 51));
-        ok.setForeground(new java.awt.Color(255, 255, 255));
+        ok.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         ok.setText("Convert");
         ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,13 +135,13 @@ public class FormatConvUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jLabel2.setText("Choose the file:");
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 204));
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
-        jSeparator1.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 204));
         jSeparator1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jSeparator1.setMinimumSize(new java.awt.Dimension(50, 2));
         jSeparator1.setPreferredSize(new java.awt.Dimension(50, 2));
@@ -168,10 +162,10 @@ public class FormatConvUI extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(help, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                            .addComponent(browse, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)))
+                            .addComponent(browse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(concel)
@@ -195,7 +189,7 @@ public class FormatConvUI extends javax.swing.JFrame {
                     .addComponent(help))
                 .addGap(20, 20, 20)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(concel)
                     .addComponent(ok))
@@ -218,13 +212,18 @@ public class FormatConvUI extends javax.swing.JFrame {
 
     private void browseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseActionPerformed
         // open file
-        JFileChooser file = new JFileChooser("..");
-        file.showOpenDialog(null);
-        file.setDialogTitle("Please choose the input file...");
-        InformatName = file.getSelectedFile().getName();
-	        	   // Informat = text4.getText();
-
-        Inpath = file.getSelectedFile().getAbsolutePath();
+        JFileChooser fc = new JFileChooser("..");
+        //file.showOpenDialog(null);
+        //file.setDialogTitle("Please choose the input file...");
+        int result = fc.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            InformatName = fc.getSelectedFile().getName();
+            // Informat = text4.getText();
+            Inpath = fc.getSelectedFile().getAbsolutePath();
+        }
+        else{
+            
+        }
         jTextField1.setText(InformatName);
     }//GEN-LAST:event_browseActionPerformed
 
@@ -258,16 +257,17 @@ public class FormatConvUI extends javax.swing.JFrame {
                 Outpath = file.getAbsolutePath();
                 FormatConv convert = new FormatConv();
                 boolean flag = convert.formatconv(Inpath, Outpath, Outformat);
-                if(flag){
-					int i = JOptionPane.showConfirmDialog(null, "Success! Would you wan to show it now?", "Tips", JOptionPane.YES_NO_OPTION);
-					if(i == JOptionPane.OK_OPTION)
-						try {
-							Runtime.getRuntime().exec("explorer.exe /select," + Outpath);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-			   	}
+                if (flag) {
+                    int i = JOptionPane.showConfirmDialog(null, "Success! Would you wan to show it now?", "Tips", JOptionPane.YES_NO_OPTION);
+                    if (i == JOptionPane.OK_OPTION) {
+                        try {
+                            Runtime.getRuntime().exec("explorer.exe /select," + Outpath);
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+                }
             }
         }
     }//GEN-LAST:event_okActionPerformed

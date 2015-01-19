@@ -687,7 +687,7 @@ public class MainAction extends MainUI {
                     showNo++;
                     hasShow.put("Input", showNo);
                     String InputFilepath = showMolPath + "Input.mol2";
-                    String controller1 = "load APPEND " + "\"" + InputFilepath + "\"" + " ;frame*" + " ;hide Hydrogens" + ";select 1.1; color [0,51,51]";
+                    String controller1 = "load APPEND " + "\"" + InputFilepath + "\"" + " ;frame*" + " ;hide Hydrogens" + ";select 1.1;";// color [0,51,51]";
                     jmolPanel.viewer.evalString(controller1);
                 }
 
@@ -763,7 +763,7 @@ public class MainAction extends MainUI {
                             showNo++;
                             hasShow.put("Input", showNo);
                             queryfilePath = showMolPath + "Input.mol2";
-                            String controller1 = "load APPEND " + "\"" + queryfilePath + "\"" + " ;frame*" + " ;hide Hydrogens" + ";select " + showNo + ".1; color [0,51,51]"; // first row is the query mol                                   
+                            String controller1 = "load APPEND " + "\"" + queryfilePath + "\"" + " ;frame*" + " ;hide Hydrogens" + ";select " + showNo + ".1;";// color [0,51,51]"; // first row is the query mol                                   
                             jmolPanel.viewer.evalString(controller1);
 
                         } else {
