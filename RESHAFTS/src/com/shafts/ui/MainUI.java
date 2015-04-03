@@ -1297,8 +1297,8 @@ public class MainUI extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // optimize molecule structure
-        //String command = "minimize";
-        //jmolPanel.viewer.evalString(command);       
+        String command = "minimize";
+        jmolPanel.viewer.evalString(command);       
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseEntered

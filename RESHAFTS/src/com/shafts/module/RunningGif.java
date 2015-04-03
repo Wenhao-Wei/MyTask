@@ -59,7 +59,7 @@ public class RunningGif extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(0, 51, 51));
         jLabel1.setText("Running!");
 
-        jPanel2.setLayout(new java.awt.GridLayout());
+        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
         JPanel panel = new ImagePanel();
         jPanel2.add(panel);
 
@@ -74,9 +74,7 @@ public class RunningGif extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("微软雅黑", 1, 12)); // NOI18N
         jLabel4.setText("Note:");
 
-        jButton1.setBackground(new java.awt.Color(0, 255, 255));
         jButton1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 51, 51));
         jButton1.setText("Run in Background>>");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

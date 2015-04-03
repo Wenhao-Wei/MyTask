@@ -30,7 +30,6 @@ import org.w3c.dom.Text;
 public class JobInfor_XML {
     //param of delete node
     //  private static String deleteID;
-
     //param of update node 
     // private static String updateNumber;
     //读取传入的路径，返回一个document对象
@@ -44,7 +43,7 @@ public class JobInfor_XML {
                 document = builder.newDocument();
                 Element root = document.createElement("MyJob");
                 document.appendChild(root);
-            } else {
+            } else{
                 document = builder.parse(new File(filePath));
                 document.normalize();
             }
@@ -105,10 +104,9 @@ public class JobInfor_XML {
             NodeList nodeList = document.getElementsByTagName("job");
             for (int i = 0; i < nodeList.getLength(); i++) {
                 String jobmodel = document.getElementsByTagName("Model").item(i).getFirstChild().getNodeValue();
-                String number_ = document.getElementsByTagName("ID").item(i).getFirstChild().getNodeValue();
-                 String status_ = document.getElementsByTagName("Status").item(i).getFirstChild().getNodeValue();
-                //delete the node
+                String number_ = document.getElementsByTagName("ID").item(i).getFirstChild().getNodeValue();                  
                 if (jobmodel.equals(jobModel.replace(" ", "")) && number_.equals(jobID)) {
+                    String status_ = document.getElementsByTagName("job").item(i).getChildNodes().item(2).getTextContent();
                     status = status_;
                     break;
                 }
@@ -130,13 +128,14 @@ public class JobInfor_XML {
             for (int i = 0; i < nodeList.getLength(); i++) {
                 String jobmodel = document.getElementsByTagName("Model").item(i).getFirstChild().getNodeValue();
                 String number = document.getElementsByTagName("ID").item(i).getFirstChild().getNodeValue();
-                String status = document.getElementsByTagName("Status").item(i).getFirstChild().getNodeValue();
                 if (jobmodel.equals(jobModel.replace(" ", "")) && number.equals(jobID)) {
-                        document.getElementsByTagName("Status").item(i).getFirstChild().setNodeValue("YES");
-                    }
-                    break;
+                        Node n = document.getElementsByTagName("job").item(i).getChildNodes().item(2);
+                        n.setTextContent("YES");
+                        saveXML(document, filePath);
+                   break;
+                    }             
                 }
-            saveXML(document, filePath);
+            
     }
     /**
      * update node from xml
@@ -165,7 +164,7 @@ public class JobInfor_XML {
                         JOptionPane.showMessageDialog(null, "Failed! Node name has exists!");
                     } else {
                         renameFile(updateID, file, ResultPath); // rename
-                        document.getElementsByTagName("ID").item(i).getFirstChild().setNodeValue(newID);
+                        document.getElementsByTagName("ID").item(i).getFirstChild().setTextContent(newID);
                         isUpdate = true;
                     }
                     break;
@@ -190,23 +189,20 @@ public class JobInfor_XML {
             String job = jobModel.replace(" ", "");
             Element newjob = document.createElement("job");
             Element jobStyle = document.createElement("Model");//create the first element
-            Element eltNumber = document.createElement("ID");//create the second element
-            
+            Element eltNumber = document.createElement("ID");//create the second element            
             Text model = document.createTextNode(job);
-            Text id = document.createTextNode(addID);//create the text node 
-            
-            eltNumber.appendChild(id);
-            
+            Text id = document.createTextNode(addID);//create the text node             
+            eltNumber.appendChild(id);          
             jobStyle.appendChild(model);
             newjob.appendChild(jobStyle);
             newjob.appendChild(eltNumber);
             if (jobModel.equals("Local")) {
                 Element eltNumber1 = document.createElement("Status");//create the third element
                 Text status = document.createTextNode("NO");
-                eltNumber1.appendChild(status);
+               eltNumber1.appendChild(status);
+                //eltNumber1.setNodeValue("NO");
                 newjob.appendChild(eltNumber1);
             }
-
             //get root node
             Element eltRoot = document.getDocumentElement();
             //add the new node to the root
@@ -228,7 +224,6 @@ public class JobInfor_XML {
         try {
             TransformerFactory tFactory = TransformerFactory.newInstance();
             Transformer transformer = tFactory.newTransformer();
-
             DOMSource source = new DOMSource(document);
             StreamResult result = new StreamResult(new File(filePath));
             transformer.transform(source, result);
@@ -293,7 +288,6 @@ public class JobInfor_XML {
 
     /**
      * get hit job
-     *
      * @return
      */
     public Vector getHit() {
@@ -301,14 +295,19 @@ public class JobInfor_XML {
     }
 
     public static void main(String args[]) {
-        String path = "E:\\Master\\MyOffice\\NetBeansWorkspace\\RESHAFTS\\workspace\\TMP\\jobinfor.xml";
+        //String path = "E:\\Master\\Test\\jobinfor.xml";
+        String path = "D:\\MyOffice\\Github\\MyTask\\RESHAFTS\\workspace\\TMP\\jobinfor.xml";
         JobInfor_XML job = new JobInfor_XML();
-        job.initdataXML(path);
-        Vector local = job.getLocal();
-        Vector target = job.getTarget();
-        Vector hit = job.getHit();
+        job.addXML("25769", "Target Navigator", path);
+        //job.setJobStatus("Job20", "Local", path);
+        //String s = job.getJobStatus("Job22", "Local", path);
+        //job.initdataXML(path);
+        //Vector local = job.getLocal();
+        //Vector target = job.getTarget();
+        //Vector hit = job.getHit();
        // job.deleteXML("delete", "Local", path);
         System.out.println("OK");
+       // System.out.println(s);
     }
     private Vector LocalOB;
     private Vector TargetOB;

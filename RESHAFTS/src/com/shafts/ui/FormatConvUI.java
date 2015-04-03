@@ -138,10 +138,8 @@ public class FormatConvUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jLabel2.setText("Choose the file:");
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 204));
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
-        jSeparator1.setBackground(new java.awt.Color(0, 0, 204));
         jSeparator1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jSeparator1.setMinimumSize(new java.awt.Dimension(50, 2));
         jSeparator1.setPreferredSize(new java.awt.Dimension(50, 2));
@@ -177,7 +175,7 @@ public class FormatConvUI extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(browse)
@@ -189,7 +187,7 @@ public class FormatConvUI extends javax.swing.JFrame {
                     .addComponent(help))
                 .addGap(20, 20, 20)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(concel)
                     .addComponent(ok))

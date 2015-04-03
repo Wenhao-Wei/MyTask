@@ -307,7 +307,7 @@ public class MainAction extends MainUI {
         /**
          * optimize
          */
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+      /*  jButton7.addActionListener(new java.awt.event.ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -328,7 +328,7 @@ public class MainAction extends MainUI {
                     }
                 }.start();
             }
-        });
+        });*/
         String name;
         if (!cnw.netstatus()) {
             name = "Off Line";
@@ -440,6 +440,7 @@ public class MainAction extends MainUI {
                                 ThreadCount++;
                                 startRun run = new startRun();
                                 run.start();
+                                rg.setvisible(true);
                             }
                             break;
                         case 2: //network model
@@ -462,8 +463,10 @@ public class MainAction extends MainUI {
                                                 Threshold);
                                         addnode(ID, nodePlace);
                                         if (nodePlace == 2) {
+                                            jobInfor = new JobInfor_XML();
                                             jobInfor.addXML(ID, "TargetNavigator", workPath);
                                         } else if (nodePlace == 3) {
+                                            jobInfor = new JobInfor_XML();
                                             jobInfor.addXML(ID, "HitExplorer", tmpPath);
                                         }
                                         break;
@@ -504,13 +507,16 @@ public class MainAction extends MainUI {
                     public void run() {
                         wg.setvisible(true);
                         String pdbpath = pdbfilePath + text + ".pdb.gz";
+                        if(!((new File(pdbpath)).exists())){
                         String command = "select all;write pdb " + pdbpath + ";load " + pdbpath + ";select not protein and not solvent;spacefill off;select not selected;cpk off";
-                        jmolPanel.viewer.evalString(command);
+                        jmolPanel.viewer.evalString(command);}
+                        String loadpdb = "load \"=" + pdbpath +"\";select not protein and not solvent;spacefill off;select not selected;cpk off";
+                        jmolPanel.viewer.scriptWait(loadpdb);
 
                         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(jmolPanel.getchains()));
                         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Select ligand..."}));
                         wg.close();
-                        tiprender.render(TipLable, "Success! " + text + "has saved in the: " + pdbpath, localModel);
+                        tiprender.render(TipLable, "Success! " + text + "has saved in the: " + pdbpath, "Tip");
                         // }
                     }
                 }.start();
@@ -589,7 +595,7 @@ public class MainAction extends MainUI {
             ThreadCount--;
             String str1 = workid + " running complete! You can check it now. ";
             tiprender.render(TipLable, str1, "Tip");
-            //rg.close();
+            rg.close();
             /* jmolPanel.viewer.evalString("zap all");
              jTextField1.removeAll();
              String workid = sf.getworkid();
