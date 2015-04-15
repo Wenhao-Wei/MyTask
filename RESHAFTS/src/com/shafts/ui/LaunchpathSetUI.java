@@ -5,7 +5,6 @@
  */
 package com.shafts.ui;
 
-import com.shafts.bridge.CheckUserStatus;
 import com.shafts.utils.PropertyConfig;
 import java.awt.Dimension;
 import java.awt.Toolkit;

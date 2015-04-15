@@ -26,13 +26,13 @@ public class ClientInfo {
         dst = sb.toString();
     }
 
-    public String getdst() {
+    public String getDst() {
         generate();
         return dst;
     }
 
     public static void main(String args[]) {
-        String a = new ClientInfo().getdst();
+        String a = new ClientInfo().getDst();
         System.out.println(a);
     }
 }

@@ -5,15 +5,11 @@
  */
 package com.shafts.ui;
 
-import com.shafts.bridge.CheckUserStatus;
-import com.shafts.render.TreeRender;
 import com.shafts.module.JmolPanel;
 import com.shafts.render.TipsRender;
 import java.awt.Desktop;
-import java.awt.Toolkit;
 import java.awt.event.ItemEvent;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -1378,13 +1374,7 @@ public class MainUI extends javax.swing.JFrame {
         // exit the system
         int result = JOptionPane.showConfirmDialog(null, "Are you sure to close the application?", "Tips",
                 JOptionPane.OK_CANCEL_OPTION);
-        if (result == JOptionPane.OK_OPTION) {
-            CheckUserStatus CUS = new CheckUserStatus();
-            try {
-                CUS.offline();
-            } catch (IOException ex) {
-                Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (result == JOptionPane.OK_OPTION) {           
             System.exit(0);
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -1991,7 +1981,7 @@ public class MainUI extends javax.swing.JFrame {
     public javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     public javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    public javax.swing.JMenuItem jMenuItem3;
     public javax.swing.JMenuItem jMenuItem4;
     public javax.swing.JMenuItem jMenuItem5;
     public javax.swing.JMenuItem jMenuItem7;

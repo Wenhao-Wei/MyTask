@@ -6,35 +6,34 @@
 package com.shafts.action;
 
 import com.shafts.bridge.CheckNetWork;
-import com.shafts.bridge.CheckUserStatus;
+import com.shafts.bridge.DecName;
 import com.shafts.bridge.HttpInvokerClient;
 import com.shafts.bridge.LoadPDB;
 import com.shafts.bridge.SFTPConnection;
+import com.shafts.bridge.ServerGate;
 import com.shafts.module.InitTable;
 import com.shafts.module.JobTree;
 import com.shafts.module.LaunchGif;
 import com.shafts.module.RunningGif;
 import com.shafts.module.Similarity;
 import com.shafts.module.WaitingGif;
-import com.shafts.render.CheckHeaderCellRenderer;
-import com.shafts.render.CheckTableModle;
-import com.shafts.render.MyCellRenderer;
 import com.shafts.render.TestTargetTable;
 import com.shafts.render.TipsRender;
-import com.shafts.render.TreeRender;
+import com.shafts.ui.EnterKeyUI;
 import com.shafts.ui.ExportXlsUI;
 import com.shafts.ui.JcpUI;
 import com.shafts.ui.LaunchpathSetUI;
+import com.shafts.ui.LoginUI;
 import com.shafts.ui.MainUI;
+import com.shafts.ui.StatusUI;
 import com.shafts.utils.CreateMolecule;
 import com.shafts.utils.FormatConv;
-import com.shafts.utils.GetButtonName;
 import com.shafts.utils.InitTargetJob;
 import com.shafts.utils.InitVector;
 import com.shafts.utils.JobInfor_XML;
 import com.shafts.utils.ListFinder;
 import com.shafts.utils.PropertyConfig;
-import com.shafts.utils.ThreadCount;
+import com.shafts.utils.StatusBean;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Font;
@@ -42,29 +41,22 @@ import java.awt.HeadlessException;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.script.ScriptException;
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -73,7 +65,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.Border;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
@@ -84,13 +75,6 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
-import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.FrameBorderStyle;
-import org.jb2011.lnf.beautyeye.ch3_button.BEButtonUI;
-import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.painter.StandardGradientPainter;
-import org.jvnet.substance.skin.BusinessBlackSteelSkin;
-import org.jvnet.substance.skin.ChallengerDeepSkin;
-import org.jvnet.substance.skin.SubstanceRavenGraphiteGlassLookAndFeel;
 
 /**
  *
@@ -119,9 +103,12 @@ public class MainAction extends MainUI {
                 lg.setVisible(true);
             }
         }.start();
-        cus = new CheckUserStatus();
+
+        //cus = new CheckUserStatus();
+        serGate = new ServerGate();
+        login = new LoginUI();
         lg.showProgress("Init the progress...");
-        Color color = new Color(204,204,204);
+        Color color = new Color(204, 204, 204);
         getContentPane().setBackground(color);
         lg.showProgress("Check config file...");
         PropertyConfig pc = new PropertyConfig();
@@ -188,19 +175,42 @@ public class MainAction extends MainUI {
             file9.mkdir();
         }
         lg.showProgress("Check encrypt file...");
-        String keypath = defaultPath + "\\configuration\\shafts.pem";
-        File file5 = new File(keypath);
-        if (!file5.exists()) {
+        String namePath = defaultPath + "\\configuration\\.namespace.5";
+        File file10 = new File(namePath);
+        String keyPath = defaultPath + "\\configuration\\shafts.pem";
+        File file5 = new File(keyPath);
+        if (!file10.exists()) {
             iscan = false;
             new Thread() {
+                @Override
                 public void run() {
-                    new GetpieAction().setVisible(true);
+                    jButton9.setText("Login");
+
+                    login.setButton(jButton9);
+                    login.setVisible(true);
+                    //boolean isLogin = login.getIsLogin();
+                    // if(isLogin){
+                    //    jButton9.setText(login.getAccountName());
+                    //  }                  
+                }
+            }.start();
+        } else if (!file5.exists()) {
+            iscan = false;
+            license = "unistalled";
+            new Thread() {
+                @Override
+                public void run() {
+                    //no key file
+                    new EnterKeyUI(true, jButton9.getText()).setVisible(true);
                 }
             }.start();
         } else {
             try {
+                userName = new DecName().getAccount();
+                license = "installed";
+                jButton9.setText(userName);
                 lg.showProgress("Verify user..");
-                iscan = cus.verify();
+                iscan = serGate.verify();
             } catch (Exception ex) {
                 Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, ex);
                 iscan = false;
@@ -227,7 +237,6 @@ public class MainAction extends MainUI {
         jTable = new JTable();
         childTable = new JTable();
         IV = new InitVector();
-        gbn = new GetButtonName();
         hasShow = new Hashtable<>();
         wg = new WaitingGif();
         rg = new RunningGif();
@@ -259,6 +268,49 @@ public class MainAction extends MainUI {
                 jTextField1.setText(filename);
                 jTextField1.setToolTipText(filePath);
                 jmolPanel.createstart();
+            }
+        });
+
+        //exit system
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // exit the system
+                String content = "Are you sure to close the application?";
+                int status = 0; // no job running
+                if (getThreadCount() > 0) {
+                    content = "There are " + getThreadCount() + " jobs are running! Do you want keep it running in the \n background even close the SHAFTS?";
+                    status = 1;
+                }
+                int result = JOptionPane.showConfirmDialog(null, content, "Tips",
+                        JOptionPane.OK_CANCEL_OPTION);
+                if (result == JOptionPane.OK_OPTION) {
+                    if (status == 1) {
+                        new Thread() {
+                            @Override
+                            public void run() {
+                                while (true) {
+                                    if (getThreadCount() == 0) {
+                                        break;
+                                    }
+                                    try {
+                                        Thread.sleep(60000);
+                                    } catch (InterruptedException ex) {
+                                        Logger.getLogger(LaunchAction.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                                System.exit(0);
+                            }
+                        }.start();
+                        dispose();
+                    } else {
+                        System.exit(0);
+                    }
+                } else {
+                    if (status == 1) {
+                        System.exit(0);
+                    }
+                }
             }
         });
 
@@ -307,36 +359,36 @@ public class MainAction extends MainUI {
         /**
          * optimize
          */
-      /*  jButton7.addActionListener(new java.awt.event.ActionListener() {
+        /*  jButton7.addActionListener(new java.awt.event.ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                new Thread() {
-                    public void run() {
-                        wg.setvisible(true);
-                        if (((filePath.substring(filePath.lastIndexOf(".") + 1)).equals("mol2"))) {
-                            filePath = sf.generateConformer(filePath, "File");
-                            jTextField1.setText(new File(filePath).getName());
-                            jTextField1.setToolTipText(filePath);
-                            jPanel1.updateUI();
-                            jmolPanel.viewer.openFile(filePath);
-                        } else {
-                            String str = "Please converse the file format to mol2 first!";
-                            tiprender.render(TipLable, str, "Error");
-                        }
-                        wg.close();
-                    }
-                }.start();
-            }
-        });*/
-        String name;
-        if (!cnw.netstatus()) {
-            name = "Off Line";
-        } else {
-            name = gbn.getname(iscan);
-        }
-        jRadioButton2.setVisible(true);            //********************iscan
-        jButton9.setText(name);
+         @Override
+         public void actionPerformed(ActionEvent ae) {
+         new Thread() {
+         public void run() {
+         wg.setvisible(true);
+         if (((filePath.substring(filePath.lastIndexOf(".") + 1)).equals("mol2"))) {
+         filePath = sf.generateConformer(filePath, "File");
+         jTextField1.setText(new File(filePath).getName());
+         jTextField1.setToolTipText(filePath);
+         jPanel1.updateUI();
+         jmolPanel.viewer.openFile(filePath);
+         } else {
+         String str = "Please converse the file format to mol2 first!";
+         tiprender.render(TipLable, str, "Error");
+         }
+         wg.close();
+         }
+         }.start();
+         }
+         });
+         String name;
+         if (!cnw.netstatus()) {
+         name = "Off Line";
+         } else {
+         name = gbn.getname(iscan);
+         }*/
+        jRadioButton2.setVisible(iscan);            //********************iscan
+        //jButton9.setText(name);
         /**
          * active component
          */
@@ -346,40 +398,21 @@ public class MainAction extends MainUI {
             public void actionPerformed(ActionEvent e) {
                 String name = jButton9.getText();
                 switch (name) {
-                    case "Not Actived":
-                        new GetpieAction().setVisible(true);
-                        break;
-                    case "Arrearage":
-                        new GetpieAction().setVisible(true);
-                        break;
-                    case "Server Problem":
-                        String bname = gbn.getname(true);
-                        if (bname.equals("Server Problem")) {
-                            tiprender.render(TipLable, "Sorry! The server is under maintenance!", "Error");
-                        } else {
-                            jButton9.setText(bname);
+                    case "Login":
+                        boolean isOrder = false;
+                        login.setVisible(true);
+                        if (login.getIsLogin()) {
+                            isOrder = serGate.verify();
                         }
+                        jRadioButton2.setVisible(isOrder);
                         break;
-                    case "Off Line":
-                        if (!cnw.netstatus()) {
-                            tiprender.render(TipLable, "Connection failed! Please check your net work!", "Error");
-                        } else {
-                            String bname1 = gbn.getname(true);
-                            jButton9.setText(bname1);
-                        }
+                    default:
+                        statusBean = serGate.getStatusInfor(name);
+                        boolean isOrder1 = false;
+                        isOrder1 = serGate.verify();
+                        userName = jButton9.getText();
+                        new StatusUI(isOrder1, license, userName, statusBean).setVisible(true);
                         break;
-                    case "Welcome":
-                        int days;
-                        try {
-                            days = cus.getleftdays();
-                            int i = JOptionPane.showConfirmDialog(null, "Dear user! You can still enjoy the SHAFTS for " + days
-                                    + " days,\n            Do you want to extend the use date!", "Message", JOptionPane.YES_NO_OPTION);
-                            if (i == JOptionPane.OK_OPTION) {
-                                new GetpieAction().setVisible(true);
-                            }
-                        } catch (IOException | HeadlessException ex) {
-                            Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, ex);
-                        }
 
                 }
             }
@@ -388,7 +421,7 @@ public class MainAction extends MainUI {
          * job tree
          */
         jTree1.addMouseListener(new TreeHandle());
-       // jTree1.setCellRenderer(new TreeRender());
+        // jTree1.setCellRenderer(new TreeRender());
         /**
          * eastpanel
          */
@@ -406,6 +439,7 @@ public class MainAction extends MainUI {
                 }
             }
         });
+
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             //export the similarity result
             @Override
@@ -413,6 +447,7 @@ public class MainAction extends MainUI {
                 new ExportXlsUI(jTable, showMolPath).setVisible(true);
             }
         });
+
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             // start the shafts work
 
@@ -446,42 +481,37 @@ public class MainAction extends MainUI {
                         case 2: //network model
                             if (!(cnw.netstatus())) {
                                 tiprender.render(TipLable, "Connection failed! Please check your net work!", "Error");
-                            } else {
-                                //try {
-                                // int t = cus.checkauthorization();
-                                /**
-                                 * *************************unlocked************************
-                                 * for test
-                                 */
-                                switch (1) {
-                                    case 0:
+                            }else if(jButton9.getText().equals("Login"))
+                                JOptionPane.showMessageDialog(null, "Login first!", "MESSAGE",JOptionPane.INFORMATION_MESSAGE);
+                            else {
+                                String isExpired = serGate.isExpired(jButton9.getText());
+                                switch (isExpired) {
+                                    case "ISEXPIRED":
                                         tiprender.render(TipLable, "Authorization has expired! Please renew it. ", "Error");
                                         break;
-                                    case 1:
+                                    case "NOEXPIRED":
                                         HttpInvokerClient HIC = new HttpInvokerClient();
                                         String ID = HIC.getid(filePath, screenModel, jTextField2.getText(), programModel, screenDB,
                                                 Threshold);
                                         addnode(ID, nodePlace);
+                                        JOptionPane.showMessageDialog(null, "", "MESSAGE",JOptionPane.INFORMATION_MESSAGE);
                                         if (nodePlace == 2) {
                                             jobInfor = new JobInfor_XML();
                                             jobInfor.addXML(ID, "TargetNavigator", workPath);
+                                            JOptionPane.showMessageDialog(null, "Job " +  ID + " hsa been created in TargetNavigator, this may spend some time. \n   Check it later", "MESSAGE",JOptionPane.INFORMATION_MESSAGE);
                                         } else if (nodePlace == 3) {
                                             jobInfor = new JobInfor_XML();
                                             jobInfor.addXML(ID, "HitExplorer", tmpPath);
+                                            JOptionPane.showMessageDialog(null, "Job " +  ID + " hsa been created in HitExplorer, this may spend some time. \n   Check it later", "MESSAGE",JOptionPane.INFORMATION_MESSAGE);
                                         }
                                         break;
-                                    case 2:
+                                    case "ERROR":
                                         tiprender.render(TipLable, "Sorry! The server is under maintenance!", "Error");
                                         break;
                                     default:
                                         break;
                                 }
                             }
-                            // } 
-                                /*catch (IOException | HeadlessException ex) {
-                             Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, ex);
-                             JOptionPane.showMessageDialog(null, "Internal Error!", "Message", JOptionPane.INFORMATION_MESSAGE);
-                             }*/
                             break;
                         default:
                             // JOptionPane.showMessageDialog(null, "Unknown Error!", "Message",
@@ -507,10 +537,11 @@ public class MainAction extends MainUI {
                     public void run() {
                         wg.setvisible(true);
                         String pdbpath = pdbfilePath + text + ".pdb.gz";
-                        if(!((new File(pdbpath)).exists())){
-                        String command = "select all;write pdb " + pdbpath + ";load " + pdbpath + ";select not protein and not solvent;spacefill off;select not selected;cpk off";
-                        jmolPanel.viewer.evalString(command);}
-                        String loadpdb = "load \"=" + pdbpath +"\";select not protein and not solvent;spacefill off;select not selected;cpk off";
+                        if (!((new File(pdbpath)).exists())) {
+                            String command = "select all;write pdb " + pdbpath + ";load " + pdbpath + ";select not protein and not solvent;spacefill off;select not selected;cpk off";
+                            jmolPanel.viewer.evalString(command);
+                        }
+                        String loadpdb = "load \"=" + pdbpath + "\";select not protein and not solvent;spacefill off;select not selected;cpk off";
                         jmolPanel.viewer.scriptWait(loadpdb);
 
                         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(jmolPanel.getchains()));
@@ -522,7 +553,7 @@ public class MainAction extends MainUI {
                 }.start();
             }
         });
-        
+
         /**
          * save ligand file to local and open it in jmol
          */
@@ -539,27 +570,27 @@ public class MainAction extends MainUI {
                 initButton();
             }
         });
-        
+
         /**
          * collapse or expand the tree
          */
         jButton15.addActionListener(new java.awt.event.ActionListener() {
 
             int treeFlag = 0; //callopse the tree
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(treeFlag == 0){
-                     jobtree.expandAll(jTree1, new TreePath(treeRoot), false);
-                     treeFlag = 1;
-                }
-                else{
-                     jobtree.expandAll(jTree1, new TreePath(treeRoot), true);
-                     treeFlag = 0;
+                if (treeFlag == 0) {
+                    jobtree.expandAll(jTree1, new TreePath(treeRoot), false);
+                    treeFlag = 1;
+                } else {
+                    jobtree.expandAll(jTree1, new TreePath(treeRoot), true);
+                    treeFlag = 0;
                 }
                 jTree1.updateUI();
             }
         });
-        
+
         jButton16.addActionListener(new java.awt.event.ActionListener() {
 
             @Override
@@ -752,56 +783,56 @@ public class MainAction extends MainUI {
                 boolean bl = !(boolean) jTable.getModel().getValueAt(jTable.getSelectedRow(), 5);
                 jTable.getModel().setValueAt(bl, jTable.getSelectedRow(), 5);
                 String path2 = showMolPath + show3Dname + ".mol2";
-               // if (jTable.getSelectedColumn() == 5) {
-                    if (bl) {
-                        Iterator iter = hasShow.entrySet().iterator();
-                        while (iter.hasNext()) {
-                            Map.Entry entry = (Map.Entry) iter.next(); //得到这个序列的映射项，就是set中的类型，HashMap都是Map.Entry类型
-                            //String key = (String) entry.getKey(); //获得key
-                            int value = (int) entry.getValue(); //获得value，都要强制转换一下
-                            if (showNo < value) {
-                                showNo = value;
-                            }
-                        }
-                        // jTable.getModel().setValueAt(true,
-                        // jTable.getSelectedRow(), 5);
-                        if (jTable.getSelectedRow() == 0) {
-                            showNo++;
-                            hasShow.put("Input", showNo);
-                            queryfilePath = showMolPath + "Input.mol2";
-                            String controller1 = "load APPEND " + "\"" + queryfilePath + "\"" + " ;frame*" + " ;hide Hydrogens" + ";select " + showNo + ".1;";// color [0,51,51]"; // first row is the query mol                                   
-                            jmolPanel.viewer.evalString(controller1);
-
-                        } else {
-                            showNo++;
-                            hasShow.put(show3Dname, showNo);
-                            String controller1 = "load APPEND " + "\"" + path2 + "\"" + " ;frame*" + " ;hide Hydrogens";
-                            // String controller2 = "";
-                            jmolPanel.viewer.evalString(controller1);
-                            // jmolPanel2.viewer.evalString(controller2);
-                        }
-                    } else {
-                        if (jTable.getSelectedRow() == 0) {
-                            int a = (int) hasShow.get("Input");
-                            String b = a + ".1";
-                            String controller = "zap " + b + " ;hide Hydrogens";
-                            jmolPanel.viewer.evalString(controller);
-                            hasShow.remove("Input");
-
-                        } // jTable.getModel().setValueAt(false,
-                        // jTable.getSelectedRow(), 5);
-                        else {
-                            int a = (int) hasShow.get(show3Dname);
-                            String b = a + ".1";
-                            String controller = "zap " + b + " ;hide Hydrogens";
-                            jmolPanel.viewer.evalString(controller);
-                            hasShow.remove(show3Dname);
-                        }
-                        if (hasShow.isEmpty()) {
-                            showNo = 0;
-                            jmolPanel.viewer.evalString("zap all");
+                // if (jTable.getSelectedColumn() == 5) {
+                if (bl) {
+                    Iterator iter = hasShow.entrySet().iterator();
+                    while (iter.hasNext()) {
+                        Map.Entry entry = (Map.Entry) iter.next(); //得到这个序列的映射项，就是set中的类型，HashMap都是Map.Entry类型
+                        //String key = (String) entry.getKey(); //获得key
+                        int value = (int) entry.getValue(); //获得value，都要强制转换一下
+                        if (showNo < value) {
+                            showNo = value;
                         }
                     }
+                    // jTable.getModel().setValueAt(true,
+                    // jTable.getSelectedRow(), 5);
+                    if (jTable.getSelectedRow() == 0) {
+                        showNo++;
+                        hasShow.put("Input", showNo);
+                        queryfilePath = showMolPath + "Input.mol2";
+                        String controller1 = "load APPEND " + "\"" + queryfilePath + "\"" + " ;frame*" + " ;hide Hydrogens" + ";select " + showNo + ".1;";// color [0,51,51]"; // first row is the query mol                                   
+                        jmolPanel.viewer.evalString(controller1);
+
+                    } else {
+                        showNo++;
+                        hasShow.put(show3Dname, showNo);
+                        String controller1 = "load APPEND " + "\"" + path2 + "\"" + " ;frame*" + " ;hide Hydrogens";
+                        // String controller2 = "";
+                        jmolPanel.viewer.evalString(controller1);
+                        // jmolPanel2.viewer.evalString(controller2);
+                    }
+                } else {
+                    if (jTable.getSelectedRow() == 0) {
+                        int a = (int) hasShow.get("Input");
+                        String b = a + ".1";
+                        String controller = "zap " + b + " ;hide Hydrogens";
+                        jmolPanel.viewer.evalString(controller);
+                        hasShow.remove("Input");
+
+                    } // jTable.getModel().setValueAt(false,
+                    // jTable.getSelectedRow(), 5);
+                    else {
+                        int a = (int) hasShow.get(show3Dname);
+                        String b = a + ".1";
+                        String controller = "zap " + b + " ;hide Hydrogens";
+                        jmolPanel.viewer.evalString(controller);
+                        hasShow.remove(show3Dname);
+                    }
+                    if (hasShow.isEmpty()) {
+                        showNo = 0;
+                        jmolPanel.viewer.evalString("zap all");
+                    }
+                }
                 //}
             }
         }
@@ -1022,51 +1053,52 @@ public class MainAction extends MainUI {
     public int getThreadCount() {
         return ThreadCount;
     }
-    
+
     //设置全局字体
-public static void initGlobalFontSetting(Font fnt){
-    FontUIResource fontRes = new FontUIResource(fnt);
-    for(Enumeration keys = UIManager.getDefaults().keys(); keys.hasMoreElements();){
-        Object key = keys.nextElement();
-        Object value = UIManager.get(key);
-        if(value instanceof FontUIResource)
-            UIManager.put(key, fontRes);
+    public static void initGlobalFontSetting(Font fnt) {
+        FontUIResource fontRes = new FontUIResource(fnt);
+        for (Enumeration keys = UIManager.getDefaults().keys(); keys.hasMoreElements();) {
+            Object key = keys.nextElement();
+            Object value = UIManager.get(key);
+            if (value instanceof FontUIResource) {
+                UIManager.put(key, fontRes);
+            }
+        }
     }
-}
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */       
+         */
         try {
              //String lookAndFeel = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
             //UIManager.setLookAndFeel(lookAndFeel);
-            
+
             //BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.translucencyAppleLike;
             BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.translucencySmallShadow;
             //BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.generalNoTranslucencyShadow;
             org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
             Border bd = new org.jb2011.lnf.beautyeye.ch8_toolbar.BEToolBarUI.ToolBarBorder(UIManager.getColor(Color.GRAY)//Floatable 时触点的颜色 
-                                   ,UIManager.getColor(Color.BLUE)//Floatable 时触点的阴影颜色 
-                    ,new Insets(2, 2, 2, 2)); //border 的默认insets
-            UIManager.put("ToolBar.border",new BorderUIResource(bd)); 
+                    , UIManager.getColor(Color.BLUE)//Floatable 时触点的阴影颜色 
+                    , new Insets(2, 2, 2, 2)); //border 的默认insets
+            UIManager.put("ToolBar.border", new BorderUIResource(bd));
 
             BeautyEyeLNFHelper.translucencyAtFrameInactive = false;
-           //UIManager.put("ToolBar.isPaintPlainBackground",Boolean.TRUE);
+            //UIManager.put("ToolBar.isPaintPlainBackground",Boolean.TRUE);
             UIManager.put("RootPane.setupButtonVisible", false);
-            UIManager.put("TabbedPane.tabAreaInsets",new javax.swing.plaf.InsetsUIResource(2, 5, 2, 5));
+            UIManager.put("TabbedPane.tabAreaInsets", new javax.swing.plaf.InsetsUIResource(2, 5, 2, 5));
             //new BEButtonUI().setNormalColor(BEButtonUI.NormalColor.blue);
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName
             //UIManager.setLookAndFeel(new SubstanceRavenGraphiteGlassLookAndFeel());
             //SubstanceLookAndFeel.setCurrentGradientPainter(new StandardGradientPainter());
-           // SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
+            // SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
         } catch (Exception ex) {
             Logger.getLogger(MainAction.class.getName()).log(Level.SEVERE, null, ex);
         }
-           /*try {
+        /*try {
          for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
          if ("Nimbus".equals(info.getName())) {
          javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -1088,8 +1120,8 @@ public static void initGlobalFontSetting(Font fnt){
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 final MainAction f = new MainAction();
-                Font font = new Font("微软雅黑",Font.BOLD,12);
-               // initGlobalFontSetting(font);
+                Font font = new Font("微软雅黑", Font.BOLD, 12);
+                // initGlobalFontSetting(font);
                 f.setVisible(true);
                 f.addWindowListener(new WindowAdapter() {
                     @Override
@@ -1117,6 +1149,8 @@ public static void initGlobalFontSetting(Font fnt){
     private int IsRename;//rename flag 
     private int showNo;//record the opened molfile num 
     private int ThreadCount = 0;
+    private String userName;
+    private String license;
     private String tmpPath;
     private String workPath;
     private String DatabasePath;
@@ -1137,7 +1171,6 @@ public static void initGlobalFontSetting(Font fnt){
     private boolean iscan;
     private boolean resultcomplete = true;
     private Hashtable<String, Integer> hasShow;
-    private GetButtonName gbn;
     private TipsRender tiprender;
     private JobInfor_XML jobInfor;
     private CheckNetWork cnw;
@@ -1151,7 +1184,9 @@ public static void initGlobalFontSetting(Font fnt){
     public InitTable inittable;
     private LoadPDB loadpdb;
     private InitTargetJob inittargetjob;
-    private CheckUserStatus cus;
+    private LoginUI login;
+    private ServerGate serGate;
+    private StatusBean statusBean;
     private Vector data;
     private JTable jTable;
     private JTable childTable;

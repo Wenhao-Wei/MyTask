@@ -20,12 +20,12 @@ import javax.swing.JOptionPane;
  *
  * @author Little-Kitty
  */
-public class GetPie extends javax.swing.JDialog {
+public class GetPieOld extends javax.swing.JDialog {
 
     /**
      * Creates new form GetPie
      */
-    public GetPie() {
+    public GetPieOld() {
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screensize = kit.getScreenSize();
         int width = screensize.width;
@@ -34,7 +34,7 @@ public class GetPie extends javax.swing.JDialog {
         int y = (height - 300) / 2;
         setLocation(x - 250, y - 200);
         setModal(true);
-        setDefaultCloseOperation(GetPie.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(GetPieOld.DISPOSE_ON_CLOSE);
         initComponents();
     }
 
@@ -551,20 +551,20 @@ public class GetPie extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GetPie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GetPieOld.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GetPie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GetPieOld.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GetPie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GetPieOld.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GetPie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GetPieOld.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                GetPie dialog = new GetPie();
+                GetPieOld dialog = new GetPieOld();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

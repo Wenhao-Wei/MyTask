@@ -18,7 +18,7 @@ import javax.crypto.*;
  * username
  * @author Little-Kitty
  */
-public class SetorGet {
+public class DecName {
 
     private static final String DES_ALGORITHM = "DES";
     private static final String KEY = "2014ChinaECUST075522628888FComputerScience075561869839";
@@ -209,7 +209,7 @@ public class SetorGet {
      * @param str
      * @throws Exception
      */
-    public void writefile(String str) throws Exception {
+    public void accountRecord(String str) throws Exception {
         String result = encryption(str);
         byte b[] = new byte[1024];
         String filePath = path + "\\configuration\\.namespaces.5";
@@ -222,10 +222,10 @@ public class SetorGet {
         out.write(b);
     }
 
-    public String getstr() {
+    public String getAccount() {
         String filePath = path + "\\configuration\\.namespaces.5";
         String s = null;
-        String number = null;
+        String account = null;
         File file = new File(filePath);
         if (file.exists()) {
             InputStreamReader in;
@@ -237,19 +237,19 @@ public class SetorGet {
                     s = lineTxt;
                 }
                 bufferedReader.close();
-                number = decryption(s);
+                account = decryption(s);
             } catch (IOException e) {
             } catch (Exception ex) {
-                Logger.getLogger(SetorGet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DecName.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return number;
+        return account;
     }
 
     public static void main(String[] a) throws Exception {
         String s = "sajkhda_asdjkakw";
         //new SetorGet().writefile(s);
-        String s1 = new SetorGet().getstr();
+        String s1 = new DecName().getAccount();
         System.out.println(s1);
     }
 }

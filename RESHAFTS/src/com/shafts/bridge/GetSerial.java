@@ -46,7 +46,7 @@ public class GetSerial {
             e.fillInStackTrace();
         }
         if (result.trim().length() < 1 || result == null) {
-            result = "无CPU_ID被读取";
+            result = "no CPU_ID is read";
         }
         return result.trim();
     }

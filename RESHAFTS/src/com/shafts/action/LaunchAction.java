@@ -25,7 +25,8 @@ import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
  * @date 2014-10-15 13:07:31
  */
 public class LaunchAction {
-
+    
+   
     public static void main(String args[]) {
             /* Set the Nimbus look and feel */
             //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -66,8 +67,7 @@ public class LaunchAction {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                final MainAction f = new MainAction();
-                
+                final MainAction f = new MainAction();                
                 f.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
@@ -80,17 +80,6 @@ public class LaunchAction {
                         int result = JOptionPane.showConfirmDialog(f, content , "Tips",
                                 JOptionPane.OK_CANCEL_OPTION);
                         if (result == JOptionPane.OK_OPTION) {
-                            // new Thread(){
-                            // public void run(){
-                            //CheckUserStatus CUS = new CheckUserStatus();
-                           // try {
-                               // CUS.offline();
-                          //  } catch (IOException ex) {
-                             //   Logger.getLogger(MainUI.class.getName()).log(Level.SEVERE, null, ex);
-                           // }
-                            // }
-                            // }.start();
-                            //System.exit(0);
                             if(status == 1){
                             new Thread(){
                                 @Override
@@ -123,4 +112,5 @@ public class LaunchAction {
             }
         });
     }
+    public final MainAction f = new MainAction();
 }

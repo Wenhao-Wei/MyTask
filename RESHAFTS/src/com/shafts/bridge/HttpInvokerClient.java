@@ -1,6 +1,8 @@
 package com.shafts.bridge;
 
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.ecust.remote.chemmapper.ChemmapperService;
 import org.ecust.remote.chemmapper.model.ChemmapperServiceModel;
@@ -41,9 +43,10 @@ public class HttpInvokerClient implements Serializable {
        // File file = new File();
 
         byte[] input = null;
-        if (file.exists()) {
+        if (file.exists()) {           
             try {
-                InputStream ins = new FileInputStream(file);
+                InputStream ins = null;
+                ins = new FileInputStream(file);
                 BufferedInputStream bufin = new BufferedInputStream(ins);
                 ByteArrayOutputStream out = new ByteArrayOutputStream(1024);
                 byte[] temp = new byte[1024];
@@ -55,16 +58,13 @@ public class HttpInvokerClient implements Serializable {
                 input = out.toByteArray();
                 out.close();
                 ins.close();
-
-            } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(HttpInvokerClient.class.getName()).log(Level.SEVERE, null, ex);
+            }  catch (IOException ex) {
+                    Logger.getLogger(HttpInvokerClient.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-        }
-
+        
         csm.setMode(Model);
         csm.setFileType(type);
         csm.setInput(input);

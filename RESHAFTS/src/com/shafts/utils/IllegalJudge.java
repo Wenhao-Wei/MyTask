@@ -51,7 +51,7 @@ public class IllegalJudge {
      * @param email 
      * @return 是否合法 
      */ 
-public boolean emailFormat(String email) 
+public boolean isEmail(String email) 
     { 
         final String pattern2 = "^([a-z0-9A-Z]+[-|//.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?//.)+[a-zA-Z]{2,}$";
         final String pattern1 = "^([a-zA-Z0-9]+[_|_|.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|_|.]?)*[a-zA-Z0-9]+.[a-zA-Z]{2,4}$";

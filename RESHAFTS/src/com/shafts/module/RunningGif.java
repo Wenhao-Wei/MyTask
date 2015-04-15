@@ -53,7 +53,7 @@ public class RunningGif extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
 
         jLabel1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 51));

@@ -5,11 +5,11 @@
  */
 package com.shafts.action;
 
-import com.shafts.bridge.CheckUserStatus;
-import com.shafts.bridge.SetorGet;
-import com.shafts.ui.GetPie;
+import com.shafts.bridge.CheckUserStatusOld;
+import com.shafts.bridge.DecName;
+import com.shafts.ui.GetPieOld;
 import com.shafts.utils.IllegalJudge;
-import com.shafts.utils.PayforPie;
+import com.shafts.utils.PayforPieOld;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -38,10 +38,10 @@ import javax.swing.text.rtf.RTFEditorKit;
  * @author Little-Kitty
  * @date 2014-10-12 10:18:43
  */
-public final class GetpieAction extends GetPie {
+public final class GetpieActionOld extends GetPieOld {
 
-    public GetpieAction() { 
-        kitkat = new PayforPie();
+    public GetpieActionOld() { 
+        kitkat = new PayforPieOld();
         initAction();
     }
 
@@ -70,7 +70,7 @@ public final class GetpieAction extends GetPie {
                         if (jRadioButton1.isSelected()) {// renew operation
                             jButton3.setEnabled(true);
                             jLabel1.setText("Renew");
-                            jLabel9.setText("Hello, " + new SetorGet().getstr());
+                            jLabel9.setText("Hello, " + new DecName().getAccount());
                             jButton2.setText("Renew");
                             centerPanel.removeAll();
                             centerPanel.add(centerChild2);
@@ -128,7 +128,7 @@ public final class GetpieAction extends GetPie {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                CheckUserStatus CUS = new CheckUserStatus();
+                CheckUserStatusOld CUS = new CheckUserStatusOld();
                 checkflag = 1;
                 username = jTextField3.getText();
                 IllegalJudge il = new IllegalJudge();
@@ -140,21 +140,19 @@ public final class GetpieAction extends GetPie {
                 } else {
                     try {
                         isRegister = CUS.getcheck(username);
-                        //System.out.println(">>>>>>>>>>>>>>>>>>>>>" + isRegister);
-                        switch (isRegister) {
-                            case "yes":
-                                JOptionPane.showMessageDialog(null, "User name efficient!", "Tips", JOptionPane.INFORMATION_MESSAGE);
-                                iscan = 1;
-                                break;
-                            case "no":
-                                JOptionPane.showMessageDialog(null, "User name has been enrolled!", "Tips", JOptionPane.INFORMATION_MESSAGE);
-                                break;
-                            default:
-                                break;
-                        }
                     } catch (IOException ex) {
-                        Logger.getLogger(GetpieAction.class.getName()).log(Level.SEVERE, null, ex);
-                        JOptionPane.showMessageDialog(null, "Internal error!", "Tips", JOptionPane.ERROR_MESSAGE);
+                        Logger.getLogger(GetpieActionOld.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    switch (isRegister) {
+                        case "yes":
+                            JOptionPane.showMessageDialog(null, "User name efficient!", "Tips", JOptionPane.INFORMATION_MESSAGE);
+                            iscan = 1;
+                            break;
+                        case "no":
+                            JOptionPane.showMessageDialog(null, "User name has been enrolled!", "Tips", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
@@ -162,7 +160,7 @@ public final class GetpieAction extends GetPie {
     }
     
     public static void main(String args[]){
-        new GetpieAction().setVisible(true);
+        new GetpieActionOld().setVisible(true);
     }
     private int checkflag = 0; //
     private int iscan = 0;
@@ -170,5 +168,5 @@ public final class GetpieAction extends GetPie {
     private String usertel;
     private String useremail;
     private String isRegister;
-    private PayforPie kitkat;
+    private PayforPieOld kitkat;
 }

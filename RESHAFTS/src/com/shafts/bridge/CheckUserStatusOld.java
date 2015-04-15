@@ -8,7 +8,7 @@ import java.net.Socket;
 
 import javax.swing.JOptionPane;
 
-public class CheckUserStatus {
+public class CheckUserStatusOld {
 
     private Socket socket = null;
     private final String ip = "localhost";// server IP
@@ -19,7 +19,7 @@ public class CheckUserStatus {
     private boolean isconnect;
     private DataOutputStream out = null;
     private DataInputStream getMessageStream = null;
-    private final String userid = new SetorGet().getstr();
+    private final String userid = new DecName().getAccount();
 
     /**
      * connect the server
@@ -100,7 +100,7 @@ public class CheckUserStatus {
      */
     public String buypro(int days, int money, String username, String phonenumber, String email) throws IOException {
         String message = null;
-        String serial = new ClientInfo().getdst();
+        String serial = new ClientInfo().getDst();
         connection();
         if (isconnect) {
             out = new DataOutputStream(socket.getOutputStream());
@@ -126,12 +126,12 @@ public class CheckUserStatus {
      */
     public boolean verify() {
         boolean reach = false;
-        String part1 = new ClientInfo().getdst();
-        String part2 = new SetorGet().getstr();
+        String part1 = new ClientInfo().getDst();
+        String part2 = new DecName().getAccount();
         StringBuilder sb = new StringBuilder(part1);
         sb.insert(8, part2);
         String fin = sb.toString();
-        String key = new Opendoor().getBar();
+        String key = new OpenDoor().getBar();
         if (fin.equals(key)) {
             reach = true;
         }
@@ -234,7 +234,7 @@ public class CheckUserStatus {
         //String mac = getmac.getAddress();
         //System.out.println(mac);
         //boolean f = new CheckUserStatus().verify();
-       int f = new CheckUserStatus().checkauthorization();
+       int f = new CheckUserStatusOld().checkauthorization();
         System.out.println(f);
     }
 }

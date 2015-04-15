@@ -3,15 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/MyOffice/Github/MyTask/RESHAFTS/src/com/shafts/ui/ExportImage.java</file>
-            <file>file:/D:/MyOffice/Github/MyTask/RESHAFTS/src/com/shafts/render/TipsRender.java</file>
-            <file>file:/D:/MyOffice/Github/MyTask/RESHAFTS/src/com/shafts/ui/ExportXlsUI.java</file>
-            <file>file:/D:/MyOffice/Github/MyTask/RESHAFTS/src/com/shafts/action/MainAction.java</file>
-            <file>file:/D:/MyOffice/Github/MyTask/RESHAFTS/src/com/shafts/utils/FormatConv.java</file>
-            <file>file:/D:/MyOffice/Github/MyTask/RESHAFTS/src/com/shafts/action/LaunchAction.java</file>
-            <file>file:/D:/MyOffice/Github/MyTask/RESHAFTS/src/com/shafts/utils/JobInfor_XML.java</file>
-            <file>file:/D:/MyOffice/Github/MyTask/RESHAFTS/src/com/shafts/module/RunningGif.java</file>
-            <file>file:/D:/MyOffice/Github/MyTask/RESHAFTS/src/com/shafts/ui/MainUI.java</file>
+            <file>file:/D:/MyOffice/Github/MyTask/RESHAFTS/src/com/shafts/bridge/ServerGate.java</file>
+            <file>file:/D:/MyOffice/Github/MyTask/RESHAFTS/src/com/shafts/ui/EnterKeyUI.java</file>
         </group>
     </open-files>
 </project-private>
