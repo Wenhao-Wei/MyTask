@@ -38,6 +38,11 @@ public class GetConnection {
                 Logger.getLogger(GetConnection.class.getName()).log(Level.SEVERE, null, ex1);
             }
             Logger.getLogger(GetConnection.class.getName()).log(Level.SEVERE, null, ex);
+            boolean network = new CheckNetWork().netstatus();
+            String tip;
+            if(network)
+                tip = "Connection Exception! Check your network.";
+            else tip = "Server error! Try it later.";
             JOptionPane.showMessageDialog(null, "Connection Exception!", "ERROR", JOptionPane.ERROR_MESSAGE);
             return null;
         }        
