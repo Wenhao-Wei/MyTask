@@ -24,15 +24,9 @@ public class ExportImage extends javax.swing.JDialog {
      */
     public ExportImage() {
         //super(parent, modal);
-        Toolkit kit = Toolkit.getDefaultToolkit();
-        Dimension screensize = kit.getScreenSize();
-        int width = screensize.width;
-        int height = screensize.height;
-        int x = (width - WIDTH) / 2;
-        int y = (height - HEIGHT) / 2;
-        setLocation(x - 50, y - 100);
         setModal(true);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

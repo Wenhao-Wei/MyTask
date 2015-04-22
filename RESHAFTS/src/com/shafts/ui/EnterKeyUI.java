@@ -6,9 +6,14 @@
 package com.shafts.ui;
 
 import com.shafts.bridge.ServerGate;
+import com.shafts.render.TipPanel;
 import com.shafts.render.TipsRender;
-import com.shafts.utils.InforBean;
+import com.socket.bean.InforBean;
 import com.shafts.utils.PatchDoor;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import static java.awt.image.ImageObserver.HEIGHT;
+import static java.awt.image.ImageObserver.WIDTH;
 import java.io.File;
 import java.util.Vector;
 import javax.swing.JFileChooser;
@@ -25,15 +30,16 @@ public class EnterKeyUI extends javax.swing.JDialog {
     /**
      * Creates new form EnterKeyUI
      *
-     * @param isLock
+     * @param isOrder
      * @param userName
      */
-    public EnterKeyUI(boolean isLock, String userName) {
+    public EnterKeyUI(boolean isOrder, String userName) {
         setModal(true);
-        this.isLock = isLock;
+        this.isLock = !isOrder;
         this.userName = userName;
-        initAccount();
+        initAccount();        
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -47,7 +53,7 @@ public class EnterKeyUI extends javax.swing.JDialog {
          this.phoneVec = inforBean.getPhoneVec();
          this.mailVec = inforBean.getMailVec();
          }
-       /* accountVec = new Vector();
+        accountVec = new Vector();
         phoneVec = new Vector();
         mailVec = new Vector();
         for (int i = 0; i < 5; i++) {
@@ -65,9 +71,10 @@ public class EnterKeyUI extends javax.swing.JDialog {
         }
         for (int i = 0; i < 5; i++) {
             Vector a = new Vector();
+            a.add("魏先生");
             a.add("784887302@qq.com");
             mailVec.add(a);
-        }*/
+        }
         //get account ifor
         String accInfor = "";
         if (accountVec != null) {
@@ -85,15 +92,18 @@ public class EnterKeyUI extends javax.swing.JDialog {
         if (phoneVec != null) {
             for (int i = 0; i < phoneVec.size(); i++) {
                 Vector phone = (Vector) phoneVec.get(i);
-                phoInfor += "&nbsp;&nbsp;&nbsp;&nbsp;" + phone.get(0) + " :  " + phone.get(1) + "<br/>\n";
+                phoInfor += "&nbsp;&nbsp;&nbsp;&nbsp;" + phone.get(0) + " :  " + phone.get(1);
+                if ((i + 1) % 2 == 0) {
+                    phoInfor += "<br/>\n";
+                }
             }
         }
         //get email
         String mailInfor = "";
         if (mailVec != null) {
             for (int i = 0; i < mailVec.size(); i++) {
-
-                mailInfor += "&nbsp;&nbsp;&nbsp;&nbsp;" + mailVec.get(i) + "&nbsp;&nbsp;";
+                Vector mail = (Vector)mailVec.get(i);
+                mailInfor += "&nbsp;&nbsp;&nbsp;&nbsp;" + mail.get(0) + " : " + mail.get(1);
                 if ((i + 1) % 2 == 0) {
                     mailInfor += "<br/>\n";
                 }
@@ -139,9 +149,9 @@ public class EnterKeyUI extends javax.swing.JDialog {
                 + "</table>\n"
                 + "<p>\n"
                 + "<font face=\"微软雅黑\" size=\"4\">\n"
-                + "&nbsp;&nbsp;&nbsp;&nbsp;If you have any questions at any time, please contacts us:<br/>\n"
-                + "Contacts:<br/>\n" + phoInfor
-                + "E-mail:<br/>\n" + mailInfor
+                + "<strong>&nbsp;&nbsp;&nbsp;&nbsp;If you have any questions at any time, please contacts us:</strong><br/>\n"
+                + "<strong>Contacts:</strong><br/>\n" + phoInfor
+                + "<br/><strong>E-mail:</strong><br/>\n" + mailInfor
                 + "<br/>"
                 + "\n"
                 + "\n"
@@ -177,15 +187,15 @@ public class EnterKeyUI extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        tipLabel = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jPanel2 = new javax.swing.JPanel();
+        tipPanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
         jButton3 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jPanel2 = new javax.swing.JPanel();
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Install key"));
 
@@ -236,7 +246,7 @@ public class EnterKeyUI extends javax.swing.JDialog {
             }
         });
 
-        tipLabel.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
+        tipPanel.setLayout(new java.awt.GridLayout());
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -244,55 +254,43 @@ public class EnterKeyUI extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tipPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tipLabel)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton4))
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addComponent(jButton4))
+                        .addGap(0, 18, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tipLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addComponent(tipPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18))
         );
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("ACTIVE");
-        setResizable(false);
-
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Order Notice"));
-
-        jTextPane1.setEditable(false);
-        jTextPane1.setContentType("text/html"); // NOI18N
-        jTextPane1.setText(infor);
-        jTextPane1.setCaretPosition(0);
-        jScrollPane1.setViewportView(jTextPane1);
-
-        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Install key"));
 
@@ -324,13 +322,29 @@ public class EnterKeyUI extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3))
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         if(isLock)
         jPanel2.add(jPanel3);
         else
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("ACTIVE");
+        setResizable(false);
+
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Order Notice"));
+
+        jTextPane1.setEditable(false);
+        jTextPane1.setContentType("text/html"); // NOI18N
+        jTextPane1.setText(infor);
+        jTextPane1.setCaretPosition(0);
+        jScrollPane1.setViewportView(jTextPane1);
+
+        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
+        if(isLock)
+        jPanel2.add(jPanel3);
+        else
         jPanel2.add(jPanel4);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -346,9 +360,9 @@ public class EnterKeyUI extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -395,7 +409,8 @@ public class EnterKeyUI extends javax.swing.JDialog {
         if (!keyPath.equals("")) {
             new PatchDoor().insall(keyPath);
         } else {
-            tipRender.render(tipLabel, "Choose a key file!", "Error");
+            tipPanel.removeAll();
+            tipPanel.add(new TipPanel("Choose a key file!", "Error"));
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -456,7 +471,8 @@ public class EnterKeyUI extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EnterKeyUI dialog = new EnterKeyUI(new javax.swing.JFrame(), true);
+               // EnterKeyUI dialog = new EnterKeyUI(new javax.swing.JFrame(), true);
+                EnterKeyUI dialog = new EnterKeyUI(false, "xiaocainiao");
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -492,6 +508,6 @@ public class EnterKeyUI extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JLabel tipLabel;
+    private javax.swing.JPanel tipPanel;
     // End of variables declaration//GEN-END:variables
 }

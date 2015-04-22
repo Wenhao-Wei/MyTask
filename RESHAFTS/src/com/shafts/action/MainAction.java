@@ -18,6 +18,7 @@ import com.shafts.module.RunningGif;
 import com.shafts.module.Similarity;
 import com.shafts.module.WaitingGif;
 import com.shafts.render.TestTargetTable;
+import com.shafts.render.TipPanel;
 import com.shafts.render.TipsRender;
 import com.shafts.ui.EnterKeyUI;
 import com.shafts.ui.ExportXlsUI;
@@ -33,7 +34,7 @@ import com.shafts.utils.InitVector;
 import com.shafts.utils.JobInfor_XML;
 import com.shafts.utils.ListFinder;
 import com.shafts.utils.PropertyConfig;
-import com.shafts.utils.StatusBean;
+import com.socket.bean.StatusBean;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Font;
@@ -82,13 +83,14 @@ import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
  * @date 2014-10-10 13:02:24
  */
 public class MainAction extends MainUI {
-
+    
     public MainAction() {
         lg = new LaunchGif();
         initSystem();
         setLocation(10, 10);
         initTree();
         initAction();
+        setLocationRelativeTo(null);
         setVisible(true);
         lg.close();
     }
@@ -105,8 +107,7 @@ public class MainAction extends MainUI {
         }.start();
 
         //cus = new CheckUserStatus();
-        serGate = new ServerGate();
-        login = new LoginUI();
+        serGate = new ServerGate();        
         lg.showProgress("Init the progress...");
         Color color = new Color(204, 204, 204);
         getContentPane().setBackground(color);
@@ -149,7 +150,7 @@ public class MainAction extends MainUI {
             file3.mkdir();
         }
         defaultPath = System.getProperty("user.dir");
-
+        
         String tempPath = defaultPath + "\\files\\";
         File file6 = new File(tempPath);
         if (!file6.exists()) {
@@ -181,29 +182,19 @@ public class MainAction extends MainUI {
         File file5 = new File(keyPath);
         if (!file10.exists()) {
             iscan = false;
-            new Thread() {
-                @Override
-                public void run() {
-                    jButton9.setText("Login");
-
-                    login.setButton(jButton9);
-                    login.setVisible(true);
-                    //boolean isLogin = login.getIsLogin();
-                    // if(isLogin){
-                    //    jButton9.setText(login.getAccountName());
-                    //  }                  
-                }
-            }.start();
+            loginAction();
         } else if (!file5.exists()) {
             iscan = false;
-            license = "unistalled";
-            new Thread() {
-                @Override
-                public void run() {
-                    //no key file
-                    new EnterKeyUI(true, jButton9.getText()).setVisible(true);
-                }
-            }.start();
+            userName = new DecName().getAccount();
+            jButton9.setText(userName);
+            /* //license = "unistalled";
+             new Thread() {
+             @Override
+             public void run() {
+             //no key file
+             new EnterKeyUI(true, jButton9.getText()).setVisible(true);
+             }
+             }.start();*/
         } else {
             try {
                 userName = new DecName().getAccount();
@@ -218,7 +209,7 @@ public class MainAction extends MainUI {
         }
         lg.showProgress("Enter system...");
     }
-
+    
     private void initButton() {
         jButton2.setEnabled(true);
         jButton3.setEnabled(true);
@@ -228,6 +219,31 @@ public class MainAction extends MainUI {
         jButton7.setEnabled(true);
         jButton8.setEnabled(true);
         jMenu3.setEnabled(true);
+    }
+    
+    private void loginAction() {
+        new Thread() {
+            @Override
+            public void run() {
+                login = new LoginUI();
+                jButton9.setText("Login");
+                login.setButton(jButton9);
+                login.setVisible(true);
+                boolean isLogin = login.getIsLogin();
+                if (isLogin) {
+                    jButton9.setText(login.getAccountName());
+                    iscan = serGate.verify();
+                }
+                if (iscan) {
+                    netJobPanel.removeAll();
+                    netJobPanel.add(netJobParaPanel);
+                } else {
+                    netJobPanel.removeAll();
+                    netJobPanel.add(netJobLockPanel);
+                }
+                
+            }
+        }.start();
     }
 
     /**
@@ -262,7 +278,7 @@ public class MainAction extends MainUI {
                 jmolPanel.setpath(filePath);
                 initButton();
                 southPanel.removeAll();
-                southPanel.add(jPanel8);
+                southPanel.add(jLabel8);
                 southPanel.updateUI();
                 jEditorPane1.setText("<html><body><br><br><center><strong> No Target Infor to Show</strong></center></body></html>");
                 jTextField1.setText(filename);
@@ -313,19 +329,51 @@ public class MainAction extends MainUI {
                 }
             }
         });
-
+        
         jEditorPane1.addHyperlinkListener(new HyperlinkListener() {
             @Override
             public void hyperlinkUpdate(HyperlinkEvent e) {
                 if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
                     Desktop desktop = Desktop.getDesktop();
-
+                    
                     try {
                         desktop.browse(new URI(e.getURL().toString()));
                     } catch (IOException | URISyntaxException ex) {
                         Logger.getLogger(MainAction.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+            }
+        });
+
+        /**
+         * no active
+         */
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boolean isLogin = false;
+                if (jButton9.getText().equals("Login")) {
+                    login = new LoginUI();
+                    jButton9.setText("Login");
+                    login.setButton(jButton9);
+                    login.setVisible(true);
+                    isLogin = login.getIsLogin();
+                    if (isLogin) {
+                        jButton9.setText(login.getAccountName());
+                        iscan = serGate.verify();
+                    }
+                    if (iscan) {
+                        netJobPanel.removeAll();
+                        netJobPanel.add(netJobParaPanel);
+                    } else {
+                        netJobPanel.removeAll();
+                        netJobPanel.add(netJobLockPanel);
+                    }
+                }
+                if (isLogin) {
+                    new EnterKeyUI(iscan, jButton9.getText()).setVisible(true);
+                }
+                
             }
         });
         /**
@@ -348,7 +396,7 @@ public class MainAction extends MainUI {
                             filePath = outpath;
                             jTextField1.setText(new File(filePath).getName());
                             jTextField1.setToolTipText(filePath);
-                            jPanel1.updateUI();
+                            localJobPanel.updateUI();
                             jmolPanel.viewer.openFile(filePath);
                         }
                         wg.close();
@@ -387,33 +435,27 @@ public class MainAction extends MainUI {
          } else {
          name = gbn.getname(iscan);
          }*/
-        jRadioButton2.setVisible(iscan);            //********************iscan
+        // jRadioButton2.setVisible(iscan);            //********************iscan
         //jButton9.setText(name);
         /**
          * active component
          */
         jButton9.addActionListener(new java.awt.event.ActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 String name = jButton9.getText();
                 switch (name) {
                     case "Login":
-                        boolean isOrder = false;
-                        login.setVisible(true);
-                        if (login.getIsLogin()) {
-                            isOrder = serGate.verify();
-                        }
-                        jRadioButton2.setVisible(isOrder);
-                        break;
+                        loginAction();
                     default:
                         statusBean = serGate.getStatusInfor(name);
-                        boolean isOrder1 = false;
-                        isOrder1 = serGate.verify();
+                        boolean isOrder;
+                        isOrder = serGate.verify();
                         userName = jButton9.getText();
-                        new StatusUI(isOrder1, license, userName, statusBean).setVisible(true);
+                        new StatusUI(isOrder, license, userName, statusBean).setVisible(true);
                         break;
-
+                    
                 }
             }
         });
@@ -439,15 +481,17 @@ public class MainAction extends MainUI {
                 }
             }
         });
-
+        
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             //export the similarity result
             @Override
             public void actionPerformed(ActionEvent ae) {
-                new ExportXlsUI(jTable, showMolPath).setVisible(true);
+                ExportXlsUI exportXlsUI = new ExportXlsUI(jTable, showMolPath);
+                exportXlsUI.setTipPanel(tipPanel1);
+                exportXlsUI.setVisible(true);
             }
         });
-
+        
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             // start the shafts work
 
@@ -455,22 +499,27 @@ public class MainAction extends MainUI {
             public void actionPerformed(ActionEvent ae) {
                 String input = jTextField1.getText();
                 if (input.isEmpty()) {
-                    String str = "Please select the input molecule!";
-                    tiprender.render(TipLable, str, "Error");
+                    tipPanel2.removeAll();
+                    String str = "Please input molecule!";
+                    tipPanel2.add(new TipPanel(str, "Error"));
                 } else if ((new File(filePath)).length() == 0) {
-                    tiprender.render(TipLable, "Invalid File!", "Error");
+                    tipPanel2.removeAll();
+                    tipPanel2.add(new TipPanel("Invailid File!", "Error"));
                 } else {
                     switch (shaftsModel) {
                         case 1://local model
                             if (DatabasePath == null) {
-                                String str = "Please select the upload database!";
-                                tiprender.render(TipLable, str, "Error");
+                                String str = "Database can't be null!";
+                                tipPanel2.removeAll();
+                                tipPanel2.add(new TipPanel(str, "Error"));
                             } else if (filePath.contains(" ") || DatabasePath.contains(" ")) {
-                                String str = "All input file path cannot contains spaces character!";
-                                tiprender.render(TipLable, str, "Error");
+                                String str = "File path format error!";
+                                tipPanel2.removeAll();
+                                tipPanel2.add(new TipPanel(str, "Error"));
                             } else if (!((DatabasePath.substring(DatabasePath.lastIndexOf(".") + 1)).equals("mol2"))) {
                                 String str = "Database format must be mol2!";
-                                tiprender.render(TipLable, str, "Error");
+                                tipPanel2.removeAll();
+                                tipPanel2.add(new TipPanel(str, "Error"));
                             } else {
                                 ThreadCount++;
                                 startRun run = new startRun();
@@ -480,38 +529,50 @@ public class MainAction extends MainUI {
                             break;
                         case 2: //network model
                             if (!(cnw.netstatus())) {
-                                tiprender.render(TipLable, "Connection failed! Please check your net work!", "Error");
-                            }else if(jButton9.getText().equals("Login"))
-                                JOptionPane.showMessageDialog(null, "Login first!", "MESSAGE",JOptionPane.INFORMATION_MESSAGE);
-                            else {
+                                String str = "Connection failed! Please check your net work!";
+                                tipPanel1.removeAll();
+                                tipPanel1.add(new TipPanel(str, "Error"));
+                            } else if (screenDB.equals("Choose...")) {
+                                //JOptionPane.showMessageDialog(null, "Login first!", "MESSAGE", JOptionPane.INFORMATION_MESSAGE);
+                                tipPanel2.removeAll();
+                                tipPanel2.add(new TipPanel("Choose a database!", "Error"));
+                            } else {
                                 String isExpired = serGate.isExpired(jButton9.getText());
                                 switch (isExpired) {
                                     case "ISEXPIRED":
-                                        tiprender.render(TipLable, "Authorization has expired! Please renew it. ", "Error");
+                                        tipPanel1.removeAll();
+                                        String str = "Authorization has expired! Please renew it. ";
+                                        tipPanel1.add(new TipPanel(str, "Error"));
                                         break;
                                     case "NOEXPIRED":
                                         HttpInvokerClient HIC = new HttpInvokerClient();
                                         String ID = HIC.getid(filePath, screenModel, jTextField2.getText(), programModel, screenDB,
                                                 Threshold);
                                         addnode(ID, nodePlace);
-                                        JOptionPane.showMessageDialog(null, "", "MESSAGE",JOptionPane.INFORMATION_MESSAGE);
+                                        JOptionPane.showMessageDialog(null, "", "MESSAGE", JOptionPane.INFORMATION_MESSAGE);
                                         if (nodePlace == 2) {
                                             jobInfor = new JobInfor_XML();
                                             jobInfor.addXML(ID, "TargetNavigator", workPath);
-                                            JOptionPane.showMessageDialog(null, "Job " +  ID + " hsa been created in TargetNavigator, this may spend some time. \n   Check it later", "MESSAGE",JOptionPane.INFORMATION_MESSAGE);
+                                            JOptionPane.showMessageDialog(null, "Job " + ID + " hsa been created in TargetNavigator, this may spend some time. \n   Check it later", "MESSAGE", JOptionPane.INFORMATION_MESSAGE);
                                         } else if (nodePlace == 3) {
                                             jobInfor = new JobInfor_XML();
                                             jobInfor.addXML(ID, "HitExplorer", tmpPath);
-                                            JOptionPane.showMessageDialog(null, "Job " +  ID + " hsa been created in HitExplorer, this may spend some time. \n   Check it later", "MESSAGE",JOptionPane.INFORMATION_MESSAGE);
+                                            JOptionPane.showMessageDialog(null, "Job " + ID + " hsa been created in HitExplorer, this may spend some time. \n   Check it later", "MESSAGE", JOptionPane.INFORMATION_MESSAGE);
                                         }
                                         break;
                                     case "ERROR":
-                                        tiprender.render(TipLable, "Sorry! The server is under maintenance!", "Error");
+                                        tipPanel1.removeAll();
+                                        String str1 = "Sorry! The server is under maintenance!";
+                                        tipPanel1.add(new TipPanel(str1, "Error"));
                                         break;
                                     default:
                                         break;
                                 }
                             }
+                            break;
+                        case 0:
+                            tipPanel1.removeAll();
+                            tipPanel1.add(new TipPanel("Choose the database!", "Error"));
                             break;
                         default:
                             // JOptionPane.showMessageDialog(null, "Unknown Error!", "Message",
@@ -543,11 +604,12 @@ public class MainAction extends MainUI {
                         }
                         String loadpdb = "load \"=" + pdbpath + "\";select not protein and not solvent;spacefill off;select not selected;cpk off";
                         jmolPanel.viewer.scriptWait(loadpdb);
-
+                        
                         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(jmolPanel.getchains()));
                         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Select ligand..."}));
                         wg.close();
-                        tiprender.render(TipLable, "Success! " + text + "has saved in the: " + pdbpath, "Tip");
+                        tipPanel1.removeAll();
+                        tipPanel1.add(new TipPanel("Success! " + text + "saved in: " + pdbpath, "Tip"));
                         // }
                     }
                 }.start();
@@ -558,7 +620,7 @@ public class MainAction extends MainUI {
          * save ligand file to local and open it in jmol
          */
         jButton14.addActionListener(new java.awt.event.ActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 filePath = createfilePath + jTextField4.getText() + chainid + ligandid + ".mol";
@@ -575,7 +637,7 @@ public class MainAction extends MainUI {
          * collapse or expand the tree
          */
         jButton15.addActionListener(new java.awt.event.ActionListener() {
-
+            
             int treeFlag = 0; //callopse the tree
 
             @Override
@@ -590,22 +652,22 @@ public class MainAction extends MainUI {
                 jTree1.updateUI();
             }
         });
-
+        
         jButton16.addActionListener(new java.awt.event.ActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 jmolPanel.viewer.evalString("zap all");
                 southPanel.removeAll();
-                southPanel.add(jPanel8);
+                southPanel.add(jLabel8);
                 southPanel.updateUI();
                 jEditorPane1.setText("<html><body><br><br><center><strong> No Target Infor to Show</strong></center></body></html>");
             }
         });
     }
-
+    
     class startRun extends Thread {
-
+        
         @Override
         public void run() {
             //rg.setvisible(true);
@@ -618,14 +680,16 @@ public class MainAction extends MainUI {
             String workid = sf.getworkid(NewPath);
             String str = workid + " has been created! " + ThreadCount + " jobs are running.";
             addnode(workid, shaftsModel);
-            tiprender.render(TipLable, str, "Tip");
+            tipPanel1.removeAll();
+            tipPanel1.add(new TipPanel(str, "Error"));
             showMolPath = localworkPath + workid + "\\";
             jobInfor.addXML(workid, "Local", tmpPath);
             sf.shaftinit(NewPath, filePath, DatabasePath, jTextField2.getText(), Threshold, localModel);
             jobInfor.setJobStatus(workid, "Local", tmpPath);// set complete falg
             ThreadCount--;
-            String str1 = workid + " running complete! You can check it now. ";
-            tiprender.render(TipLable, str1, "Tip");
+            tipPanel1.removeAll();
+            str = workid + " running complete! You can check it now. ";
+            tipPanel1.add(new TipPanel(str, "Error"));
             rg.close();
             /* jmolPanel.viewer.evalString("zap all");
              jTextField1.removeAll();
@@ -662,7 +726,7 @@ public class MainAction extends MainUI {
      * show the similarity result
      */
     class showTable extends Thread {
-
+        
         @Override
         public void run() {
             wg.setvisible(true);
@@ -674,6 +738,7 @@ public class MainAction extends MainUI {
             //   tiprender.render(TipLable, "File not exist", "Error");
             //} else {
             String name = new ListFinder().GetList(showMolPath);
+            String str;
             if (name == null && (treeNode.getParent().toString().equals("Target Navigator") || treeNode.getParent().toString().equals("Hit Explorer"))) {
                 resultcomplete = false;
                 SFTPConnection sftp = new SFTPConnection();
@@ -685,15 +750,17 @@ public class MainAction extends MainUI {
                 resultcomplete = false;
                 String localcomplete = jobInfor.getJobStatus(nodeName, "Local", tmpPath);
                 if (localcomplete.equals("NO")) {
-                    String str1 = nodeName + " Still running! Please waiting... ";
-                    tiprender.render(TipLable, str1, "Tip");
+                    str = nodeName + " Still running! Please waiting... ";
+                    tipPanel1.removeAll();
+                    tipPanel1.add(new TipPanel(str, "Error"));
                 } else if (localcomplete.equals("YES")) {
-                    String str1 = " Invalid job! ";
-                    tiprender.render(TipLable, str1, "Error");
+                    str = " Invalid job! ";
+                    tipPanel1.removeAll();
+                    tipPanel1.add(new TipPanel(str, "Error"));
                 }
             }
             if (resultcomplete) {
-
+                
                 String path = showMolPath + name;
                 data = IV.getdata(path);
                 if (data != null) {
@@ -711,7 +778,7 @@ public class MainAction extends MainUI {
                         jTable = inittable.getTable(data, IV.getcolumn());
                         jTable.addMouseListener(new ShowMol());
                     }
-
+                    
                     jEditorPane1.setText("<html><body><br><br><center><strong> No Target Infor to Show</strong></center></body></html>");
                     jmolPanel.viewer.evalString("zap all");
                     jScrollPane4.setViewportView(jTable);
@@ -727,18 +794,18 @@ public class MainAction extends MainUI {
                     String controller1 = "load APPEND " + "\"" + InputFilepath + "\"" + " ;frame*" + " ;hide Hydrogens" + ";select 1.1;";// color [0,51,51]";
                     jmolPanel.viewer.evalString(controller1);
                 }
-
+                
                 initButton();
             }
             wg.close();
 
             // }
         }
-
+        
     }
-
+    
     class showInfor extends MouseAdapter {
-
+        
         @Override
         public void mouseClicked(MouseEvent e) {
             if (e.getButton() == MouseEvent.BUTTON1) {
@@ -762,19 +829,18 @@ public class MainAction extends MainUI {
      *
      */
     class ShowMol extends MouseAdapter {
-
+        
         @Override
         public void mouseClicked(MouseEvent e) {
+            String rank;
             if (e.getButton() == MouseEvent.BUTTON1) {// left click
                 String stringName[] = new String[20];
-                int colummCount = jTable.getModel().getColumnCount();// get
-                // table
-                // column
-                // count
+                int colummCount = jTable.getModel().getColumnCount();// get table column count
                 for (int i = 0; i < colummCount - 1; i++) {
                     stringName[i] = jTable.getModel().getValueAt(jTable.getSelectedRow(), i).toString();
                 }
                 show3Dname = stringName[1];
+                rank = jTable.getModel().getValueAt(jTable.getSelectedRow(), 0).toString();
                 String path1 = showMolPath + show3Dname + ".mol2";
                 File mol2file = new File(path1);
                 if (!mol2file.exists()) {
@@ -787,29 +853,25 @@ public class MainAction extends MainUI {
                 if (bl) {
                     Iterator iter = hasShow.entrySet().iterator();
                     while (iter.hasNext()) {
-                        Map.Entry entry = (Map.Entry) iter.next(); //得到这个序列的映射项，就是set中的类型，HashMap都是Map.Entry类型
+                        Map.Entry entry = (Map.Entry) iter.next();
                         //String key = (String) entry.getKey(); //获得key
-                        int value = (int) entry.getValue(); //获得value，都要强制转换一下
+                        int value = (int) entry.getValue();
                         if (showNo < value) {
                             showNo = value;
                         }
                     }
-                    // jTable.getModel().setValueAt(true,
-                    // jTable.getSelectedRow(), 5);
                     if (jTable.getSelectedRow() == 0) {
                         showNo++;
                         hasShow.put("Input", showNo);
                         queryfilePath = showMolPath + "Input.mol2";
                         String controller1 = "load APPEND " + "\"" + queryfilePath + "\"" + " ;frame*" + " ;hide Hydrogens" + ";select " + showNo + ".1;";// color [0,51,51]"; // first row is the query mol                                   
                         jmolPanel.viewer.evalString(controller1);
-
+                        
                     } else {
                         showNo++;
-                        hasShow.put(show3Dname, showNo);
+                        hasShow.put(rank, showNo);
                         String controller1 = "load APPEND " + "\"" + path2 + "\"" + " ;frame*" + " ;hide Hydrogens";
-                        // String controller2 = "";
                         jmolPanel.viewer.evalString(controller1);
-                        // jmolPanel2.viewer.evalString(controller2);
                     }
                 } else {
                     if (jTable.getSelectedRow() == 0) {
@@ -818,11 +880,11 @@ public class MainAction extends MainUI {
                         String controller = "zap " + b + " ;hide Hydrogens";
                         jmolPanel.viewer.evalString(controller);
                         hasShow.remove("Input");
-
+                        
                     } // jTable.getModel().setValueAt(false,
                     // jTable.getSelectedRow(), 5);
                     else {
-                        int a = (int) hasShow.get(show3Dname);
+                        int a = (int) hasShow.get(rank);
                         String b = a + ".1";
                         String controller = "zap " + b + " ;hide Hydrogens";
                         jmolPanel.viewer.evalString(controller);
@@ -845,9 +907,9 @@ public class MainAction extends MainUI {
      *
      */
     class TreeHandle extends MouseAdapter {
-
+        
         boolean F = false;
-
+        
         @Override
         public void mousePressed(final MouseEvent e) {
             if (e.getButton() == MouseEvent.BUTTON1) {
@@ -870,7 +932,7 @@ public class MainAction extends MainUI {
                         } else {
                             IsRename = 0;
                             jTree1.startEditingAtPath(jTree1.getSelectionPath());
-
+                            
                         }
                     } else {
                         jTree1.cancelEditing();
@@ -959,7 +1021,9 @@ public class MainAction extends MainUI {
                         nodeName = null;
                         dellocalnode((DefaultMutableTreeNode) treeNode);
                     } catch (Exception e1) {
-                        tiprender.render(TipLable, "Delete has been interrupt! ", "Error");
+                        //tiprender.render(TipLable, "Delete has been interrupt! ", "Error");
+                        tipPanel1.removeAll();
+                        tipPanel1.add(new TipPanel("Delete has been interrupt! ", "Error"));
                     }
                 } else if (i == JOptionPane.NO_OPTION) {
                     jobInfor.deleteXML(nodeName, treeNode.getParent().toString(), tmpPath);
@@ -993,7 +1057,7 @@ public class MainAction extends MainUI {
                 break;
         }
         jTree1.updateUI();
-
+        
     }
 
     /**
@@ -1004,7 +1068,7 @@ public class MainAction extends MainUI {
     public void dellocalnode(DefaultMutableTreeNode node) {
         DefaultTreeModel model = (DefaultTreeModel) jTree1.getModel();
         model.removeNodeFromParent(node);
-
+        
     }
 
     /**
@@ -1049,7 +1113,7 @@ public class MainAction extends MainUI {
         jobtree.expandAll(jTree1, new TreePath(treeRoot), true);
         jTree1.updateUI();
     }
-
+    
     public int getThreadCount() {
         return ThreadCount;
     }
@@ -1065,7 +1129,7 @@ public class MainAction extends MainUI {
             }
         }
     }
-
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1084,7 +1148,7 @@ public class MainAction extends MainUI {
                     , UIManager.getColor(Color.BLUE)//Floatable 时触点的阴影颜色 
                     , new Insets(2, 2, 2, 2)); //border 的默认insets
             UIManager.put("ToolBar.border", new BorderUIResource(bd));
-
+            
             BeautyEyeLNFHelper.translucencyAtFrameInactive = false;
             //UIManager.put("ToolBar.isPaintPlainBackground",Boolean.TRUE);
             UIManager.put("RootPane.setupButtonVisible", false);
@@ -1136,21 +1200,21 @@ public class MainAction extends MainUI {
                             // }.start();
                             System.exit(0);
                         }
-
+                        
                     }
-
+                    
                 });
             }
         });
     }
-
+    
     private JcpUI jcpui;
     // private int status;
     private int IsRename;//rename flag 
     private int showNo;//record the opened molfile num 
     private int ThreadCount = 0;
     private String userName;
-    private String license;
+    private String license = "uninstalled";
     private String tmpPath;
     private String workPath;
     private String DatabasePath;

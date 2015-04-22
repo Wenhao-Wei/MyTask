@@ -75,7 +75,7 @@ public class WaitingGif extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(102, 153, 255));
 
         jLabel1.setBackground(null);
         jLabel1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N

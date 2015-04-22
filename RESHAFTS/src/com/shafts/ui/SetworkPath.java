@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.shafts.ui;
 
 import com.shafts.utils.PropertyConfig;
@@ -22,17 +21,11 @@ public class SetworkPath extends javax.swing.JFrame {
      * Creates new form SetworkPath
      */
     public SetworkPath() {
-        Toolkit kit = Toolkit.getDefaultToolkit();
-     	Dimension screensize = kit.getScreenSize();
-     	int width = screensize.width;
-     	int height = screensize.height;
-     	int x = (width - WIDTH)/2;
-     	int y = (height - HEIGHT)/2;
-     	setLocation(x-250, y-200);
-     	setName("Set your path:");
-     	setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-     	setResizable(false);
+        setName("Set your path:");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -182,47 +175,48 @@ public class SetworkPath extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            String path;
-				PropertyConfig pc = new PropertyConfig();
-				ArrayList<String> a = pc.readProperties();
-				if(a == null)
-					JOptionPane.showMessageDialog( null,"Not setted!","Tips",JOptionPane.INFORMATION_MESSAGE);
-				else{
-				path = a.get(1);
-				JOptionPane.showMessageDialog( null,"Your current work path:\n     " + path,"WorkPath",JOptionPane.PLAIN_MESSAGE);
-				}
+        String path;
+        PropertyConfig pc = new PropertyConfig();
+        ArrayList<String> a = pc.readProperties();
+        if (a == null) {
+            JOptionPane.showMessageDialog(null, "Not setted!", "Tips", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            path = a.get(1);
+            JOptionPane.showMessageDialog(null, "Your current work path:\n     " + path, "WorkPath", JOptionPane.PLAIN_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String path;
-				PropertyConfig pc = new PropertyConfig();
-				ArrayList<String> a = pc.readProperties();
-				if(a == null)
-					JOptionPane.showMessageDialog( null,"Not setted!","Tips",JOptionPane.INFORMATION_MESSAGE);
-				else{
-				path = a.get(1);
-				JOptionPane.showMessageDialog( null,"Your current work path:\n     " + path,"WorkPath",JOptionPane.PLAIN_MESSAGE);
-				}
+        PropertyConfig pc = new PropertyConfig();
+        ArrayList<String> a = pc.readProperties();
+        if (a == null) {
+            JOptionPane.showMessageDialog(null, "Not setted!", "Tips", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            path = a.get(1);
+            JOptionPane.showMessageDialog(null, "Your current work path:\n     " + path, "WorkPath", JOptionPane.PLAIN_MESSAGE);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       dispose();
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String flag = "NO";
-				String path = jTextField1.getText();
-				if(path == null)
-					JOptionPane.showMessageDialog( null,"Please choose the new path which you want to use!","Tips",JOptionPane.INFORMATION_MESSAGE);
-				else {
-					if (jCheckBox1.isSelected())
-						flag = "YES";
-					else
-						flag = "NO";
-					PropertyConfig PC = new PropertyConfig();
-					PC.createProperties(flag, path);
-					dispose();
-				}
+        String path = jTextField1.getText();
+        if (path == null) {
+            JOptionPane.showMessageDialog(null, "Please choose the new path which you want to use!", "Tips", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            if (jCheckBox1.isSelected()) {
+                flag = "YES";
+            } else {
+                flag = "NO";
+            }
+            PropertyConfig PC = new PropertyConfig();
+            PC.createProperties(flag, path);
+            dispose();
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

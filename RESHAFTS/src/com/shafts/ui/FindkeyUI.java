@@ -6,10 +6,15 @@
 package com.shafts.ui;
 
 import com.shafts.bridge.ServerGate;
+import com.shafts.render.TipPanel;
 import com.shafts.render.TipsRender;
 import com.shafts.utils.IllegalJudge;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Insets;
+import java.awt.Toolkit;
+import static java.awt.image.ImageObserver.HEIGHT;
+import static java.awt.image.ImageObserver.WIDTH;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -29,8 +34,8 @@ public class FindkeyUI extends javax.swing.JDialog {
      * @param userName
      */
     public FindkeyUI(String userName) {        
-        setModal(true);
         initComponents();
+        setLocationRelativeTo(null);
         this.userName = userName;
     }
 
@@ -50,7 +55,7 @@ public class FindkeyUI extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
-        tipLabel = new javax.swing.JLabel();
+        tipPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Find Password");
@@ -80,28 +85,29 @@ public class FindkeyUI extends javax.swing.JDialog {
             }
         });
 
-        tipLabel.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
+        tipPanel.setLayout(new java.awt.GridLayout());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 14, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addComponent(tipLabel))
-                .addContainerGap())
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tipPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)))))
+                .addGap(110, 110, 110))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,20 +117,20 @@ public class FindkeyUI extends javax.swing.JDialog {
                 .addGap(5, 5, 5)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(tipLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tipPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,8 +146,10 @@ public class FindkeyUI extends javax.swing.JDialog {
         serGate = new ServerGate();
         tipsRender = new TipsRender();
         String mailAddress = jTextField1.getText();
-        if(mailAddress.equals(""))
-            tipsRender.render(tipLabel, "Input the mail address", "Error");
+        if(mailAddress.equals("")){
+            tipPanel.removeAll();
+            tipPanel.add(new TipPanel("Input the mail address", "Error"));
+        }
         else{
             boolean isFit = illegalJudge.isEmail(mailAddress);
             if(isFit){
@@ -150,13 +158,21 @@ public class FindkeyUI extends javax.swing.JDialog {
                     case "YES": JOptionPane.showConfirmDialog(null, "Password has send to your mailbox.\n Please check it!", "Message", JOptionPane.YES_OPTION);
                                          dispose();
                         break;
-                    case "NO":  tipsRender.render(tipLabel, "Server error! Please try it later.", "Error");
+                    case "NO":
+                        tipPanel.removeAll();
+                        tipPanel.add(new TipPanel("Server error! Please try it later.", "Error"));
                         break;
-                    case "NOUSER": tipsRender.render(tipLabel, "Mailbox invalid!", "Error");
+                    case "NOUSER": 
+                        tipPanel.removeAll();
+                        tipPanel.add(new TipPanel("Mailbox invalid!", "Error"));
+                        break;
                     case "": break;
                 }
             }
-            tipsRender.render(tipLabel, "Mailbox format error!", "Error");
+            else{
+            tipPanel.removeAll();
+            tipPanel.add(new TipPanel("Mailbox format error!", "Error"));
+            }
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -232,6 +248,6 @@ public class FindkeyUI extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JLabel tipLabel;
+    private javax.swing.JPanel tipPanel;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,8 +6,13 @@
 package com.shafts.ui;
 
 import com.shafts.bridge.ServerGate;
+import com.shafts.render.TipPanel;
 import com.shafts.render.TipsRender;
 import com.shafts.utils.IllegalJudge;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import static java.awt.image.ImageObserver.HEIGHT;
+import static java.awt.image.ImageObserver.WIDTH;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,14 +23,23 @@ public class ReGetKeyUI extends javax.swing.JDialog {
 
     /**
      * Creates new form ReGetKeyUI
+     * @param userName
      */
     public ReGetKeyUI(String userName) {
         setModal(true);
         this.userName = userName;
         initComponents();
+        setLocationRelativeTo(null);
     }
     public ReGetKeyUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screensize = kit.getScreenSize();
+        int width = screensize.width;
+        int height = screensize.height;
+        int x = (width - WIDTH) / 2;
+        int y = (height - HEIGHT) / 2;
+        setLocation(x - 50, y - 100);
         initComponents();
     }
 
@@ -41,9 +55,9 @@ public class ReGetKeyUI extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        tipLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        tipPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("ReGetKey");
@@ -53,8 +67,6 @@ public class ReGetKeyUI extends javax.swing.JDialog {
         jLabel1.setText("Please enter registered email");
 
         jTextField1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-
-        tipLabel.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
 
         jButton1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton1.setText("ReGet");
@@ -72,6 +84,8 @@ public class ReGetKeyUI extends javax.swing.JDialog {
             }
         });
 
+        tipPanel.setLayout(new java.awt.GridLayout());
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -82,14 +96,15 @@ public class ReGetKeyUI extends javax.swing.JDialog {
                     .addComponent(jTextField1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(tipLabel))
-                        .addGap(0, 160, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)))
+                        .addComponent(jButton2))
+                    .addComponent(tipPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -98,14 +113,14 @@ public class ReGetKeyUI extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
-                .addComponent(tipLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tipPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -129,10 +144,14 @@ public class ReGetKeyUI extends javax.swing.JDialog {
         TipsRender tipRender = new TipsRender();
         ServerGate serGate = new ServerGate();
         String mail = jTextField1.getText();
-        if (mail.equals(""))
-            tipRender.render(tipLabel, "Enter the mail address!", "Error");
-        else if (!illegalJudge.isEmail(mail))
-            tipRender.render(tipLabel, "Mail format error!", "Error");
+        if (mail.equals("")){
+            tipPanel.removeAll();
+            tipPanel.add(new TipPanel( "Enter the mail address!", "Error"));
+        }
+        else if (!illegalJudge.isEmail(mail)){
+            tipPanel.removeAll();
+            tipPanel.add(new TipPanel( "Mail format error!", "Error"));
+        }
         else {
             String isSend = serGate.getKeyFile(mail, userName);
             switch (isSend) {
@@ -141,10 +160,12 @@ public class ReGetKeyUI extends javax.swing.JDialog {
                     dispose();
                     break;
                 case "NO":
-                    tipRender.render(tipLabel, "Server error! Please try it later.", "Error");
+                    tipPanel.removeAll();
+                    tipPanel.add(new TipPanel( "Server error! Please try it later.", "Error"));
                     break;
                 case "NOUSER":
-                    tipRender.render(tipLabel, "Mailbox invalid!", "Error");
+                    tipPanel.removeAll();
+                    tipPanel.add(new TipPanel( "Mailbox invalid!", "Error"));
                 case "":
                     break;
             }
@@ -205,6 +226,6 @@ public class ReGetKeyUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel tipLabel;
+    private javax.swing.JPanel tipPanel;
     // End of variables declaration//GEN-END:variables
 }

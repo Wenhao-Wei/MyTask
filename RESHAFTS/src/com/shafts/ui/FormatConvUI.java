@@ -36,15 +36,9 @@ public class FormatConvUI extends javax.swing.JFrame {
      * Creates new form FormatConvUI
      */
     public FormatConvUI() {
-        Toolkit kit = Toolkit.getDefaultToolkit();
-        Dimension screensize = kit.getScreenSize();
-        int width = screensize.width;
-        int height = screensize.height;
-        int x = (width - WIDTH) / 2;
-        int y = (height - HEIGHT) / 2;
-        setLocation(x - 250, y - 200);
         setName("Format Conversion:");
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     class ImagePanel extends JPanel {

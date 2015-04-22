@@ -5,9 +5,9 @@
  */
 package com.shafts.bridge;
 
-import com.shafts.utils.InforBean;
-import com.shafts.utils.RegisterBean;
-import com.shafts.utils.StatusBean;
+import com.socket.bean.InforBean;
+import com.socket.bean.RegisterBean;
+import com.socket.bean.StatusBean;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -99,13 +99,15 @@ public class ServerGate {
         socket = getConnection.connection();
         String verResult = null;
         if (socket != null) {
-            JSONObject jsonOb = new JSONObject();
-            jsonOb.put("username", name);
-            jsonOb.put("password", password);
+            //JSONObject jsonOb = new JSONObject();
+            //jsonOb.put("username", name);
+            //jsonOb.put("password", password);
             try {
                 os = new ObjectOutputStream(socket.getOutputStream());
                 os.writeUTF("LOGINVERIFY");
-                os.writeObject(jsonOb);
+                //os.writeObject(jsonOb);
+                os.writeUTF(name);
+                os.writeUTF(password);
                 os.flush();
 
                 is = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
@@ -129,13 +131,15 @@ public class ServerGate {
         socket = getConnection.connection();
         String isSend = null;
         if (socket != null) {
-            JSONObject jsonOb = new JSONObject();
-            jsonOb.put("username", userName);
-            jsonOb.put("mailbox", mailAddress);
+            //JSONObject jsonOb = new JSONObject();
+           // jsonOb.put("username", userName);
+           // jsonOb.put("mailbox", mailAddress);
             try {
                 os = new ObjectOutputStream(socket.getOutputStream());
                 os.writeUTF("GETPASSWORD");
-                os.writeObject(jsonOb);
+                //os.writeObject(jsonOb);
+                os.writeUTF(userName);
+                os.writeUTF(mailAddress);
                 os.flush();
 
                 is = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
@@ -183,13 +187,15 @@ public class ServerGate {
         socket = getConnection.connection();
         String isSend = null;
         if (socket != null) {
-            JSONObject jsonOb = new JSONObject();
-            jsonOb.put("username", userName);
-            jsonOb.put("mailbox", mailAddress);
+           // JSONObject jsonOb = new JSONObject();
+           // jsonOb.put("username", userName);
+            //jsonOb.put("mailbox", mailAddress);
             try {
                 os = new ObjectOutputStream(socket.getOutputStream());
                 os.writeUTF("GETKEYFILE");
-                os.writeObject(jsonOb);
+                //os.writeObject(jsonOb);
+                os.writeUTF(userName);
+                os.writeUTF(mailAddress);
                 os.flush();
 
                 is = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));

@@ -16,7 +16,8 @@ public class ClientInfo {
      */
     @SuppressWarnings("static-access")
     private void generate() {
-        src1 = (new GetWindowsMACAddress().getAddress()).replace("-", "");
+        gwm = new GetWindowsMACAddress();
+        src1 = gwm.getAddress().replace("-", "");
         src2 = new GetSerial().getCPUSerial();
         String part1 = src2.substring(0, 2) + src2.substring(src2.length() - 2, src2.length());
         String part2 = src2.substring(2, 4) + src2.substring(src2.length() - 4, src2.length() - 2);
@@ -35,4 +36,5 @@ public class ClientInfo {
         String a = new ClientInfo().getDst();
         System.out.println(a);
     }
+    private GetWindowsMACAddress gwm;
 }

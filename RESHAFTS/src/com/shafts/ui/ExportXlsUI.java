@@ -5,6 +5,7 @@
  */
 package com.shafts.ui;
 
+import com.shafts.render.TipPanel;
 import com.shafts.render.TipsRender;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -42,15 +43,8 @@ public class ExportXlsUI extends javax.swing.JDialog {
     public ExportXlsUI(JTable table, String filepath) {
         this.table = table;
         this.filepath = filepath;
-        Toolkit kit = Toolkit.getDefaultToolkit();
-        Dimension screensize = kit.getScreenSize();
-        int width = screensize.width;
-        int height = screensize.height;
-        int x = (width - WIDTH) / 2;
-        int y = (height - HEIGHT) / 2;
-        tip = new TipsRender();
-        setLocation(x - 50, y - 100);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     class ImagePanel extends JPanel {
@@ -74,6 +68,7 @@ public class ExportXlsUI extends javax.swing.JDialog {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        TipLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -83,8 +78,7 @@ public class ExportXlsUI extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        TipLabel = new javax.swing.JLabel();
+        tipPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jRadioButton3 = new javax.swing.JRadioButton();
@@ -92,6 +86,9 @@ public class ExportXlsUI extends javax.swing.JDialog {
         buttonGroup1.add(jRadioButton1);
         buttonGroup1.add(jRadioButton2);
         buttonGroup1.add(jRadioButton3);
+
+        TipLabel.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
+        TipLabel.setForeground(new java.awt.Color(0, 255, 255));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -123,7 +120,6 @@ public class ExportXlsUI extends javax.swing.JDialog {
         jTextField1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField1.setText("0");
         jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jTextField1.setCaretColor(new java.awt.Color(255, 255, 255));
         jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         // 限制只能输入数字
         jTextField1.addKeyListener(new KeyAdapter() {
@@ -148,7 +144,6 @@ public class ExportXlsUI extends javax.swing.JDialog {
         jTextField2.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jTextField2.setText("0");
         jTextField2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jTextField2.setCaretColor(new java.awt.Color(255, 255, 255));
         // 限制只能输入数字
         jTextField2.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
@@ -164,11 +159,7 @@ public class ExportXlsUI extends javax.swing.JDialog {
         jLabel4.setText("(Point Here!)");
         jLabel4.setToolTipText("The number should be greater than the starting point!");
 
-        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
-
-        TipLabel.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        TipLabel.setForeground(new java.awt.Color(0, 255, 255));
-        jPanel2.add(TipLabel);
+        tipPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton1.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jButton1.setText("Cancel");
@@ -198,14 +189,15 @@ public class ExportXlsUI extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -226,47 +218,45 @@ public class ExportXlsUI extends javax.swing.JDialog {
                                 .addComponent(jRadioButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 17, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(tipPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(1, 1, 1)
+                .addComponent(tipPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
         );
 
         pack();
@@ -295,28 +285,31 @@ public class ExportXlsUI extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         if (jRadioButton1.isSelected()) {
-            exportResult(table, 0, 1000,false);           
+            exportResult(table, 0, 1000, false);
         } else if (jRadioButton2.isSelected()) {
             int i = Integer.parseInt(jTextField1.getText());
             int j = Integer.parseInt(jTextField2.getText());
             if (i < 0 || i > j) {
-                if (i < 0) 
-                    tip.render(TipLabel, "The start number can't smaller than 0!", "Error");
-else 
-                    tip.render(TipLabel, "Parameter selection error!", "Error");
+                if (i < 0) //tip.render(TipLabel, "The start number can't smaller than 0!", "Error");
+                {
+                    tipPanel.add(new TipPanel("Start point number error", "Error"));
+                } else {
+                    tipPanel.add(new TipPanel("Parameter setting error!", "Error"));
+                }
+                //tip.render(TipLabel, "Parameter selection error!", "Error");
             } else {
                 exportResult(table, i, j, false);
             }
+        } else if (jRadioButton3.isSelected()) {
+            exportResult(table, 0, 1000, true);
+        } else {
+            tipPanel.add(new TipPanel("Choose the export model!", "Error"));
         }
-        else if(jRadioButton3.isSelected()){
-            exportResult(table, 0, 1000,true);
-        }
-        else 
-            tip.render(TipLabel, "Choose the export model!", "Error");
+        //tip.render(TipLabel, "Choose the export model!", "Error");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-       jLabel1.setEnabled(false);
+        jLabel1.setEnabled(false);
         jLabel3.setEnabled(false);
         jTextField1.setEditable(false);
         jTextField2.setEditable(false);
@@ -326,88 +319,78 @@ else
     protected void exportResult(JTable table, int i, int j, boolean exportflag) {
         String outFilePath;
         int RowCount = table.getRowCount();
-            if (j >= RowCount) {
-                j = RowCount;
-            }
+        if (j >= RowCount) {
+            j = RowCount;
+        }
         //String temp = (String) table.getValueAt(0, 1);
         if (table.getRowCount() == 1 || !table.isValid()) //temp.equals("")
-             tip.render(TipLabel, "No any data could export!", "Error");
+        {
+            tipPanel.add(new TipPanel("No any data could export!", "Error"));
+        } //tip.render(TipLabel, "No any data could export!", "Error");
         else {
             boolean selectFlag = false;
-            for(int num = 0; num < j; num ++){
-                selectFlag = (boolean)table.getValueAt(num, 5);
-                if(selectFlag)
+            for (int num = 0; num < j; num++) {
+                selectFlag = (boolean) table.getValueAt(num, 5);
+                if (selectFlag) {
                     break;
+                }
             }
-            if(exportflag && !selectFlag)
-                tip.render(TipLabel, "No any data selected!", "Error");
-            else{
-            JFileChooser fc = new JFileChooser(
-                    System.getProperty("user.dir"));
-            fc.setMultiSelectionEnabled(false);
-            fc.setName("Choose directory...");
-            fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            int result = fc.showSaveDialog(null);
-            if (result == JFileChooser.APPROVE_OPTION) {
-                 //tip.render(TipLabel, "Exporting...", "Tip");
-                 jPanel2.removeAll();
-                JPanel panel = new ImagePanel();
-                jPanel2.add(panel);
-                jPanel2.updateUI();
-                File file = fc.getSelectedFile();
-                if(!file.exists())
-                    file.mkdir();
-                outFilePath = file.getAbsolutePath() + "//"; // + "//"+ (int)(89999999*Math.random()+10000000) + "" + "//";
-                //File file1 = new File(outFilePath);
-                //file1.mkdir();
-                exportXls(table, outFilePath, i, j, exportflag);
-                exportFile(table, outFilePath, i, j, exportflag);
-                jPanel2.removeAll();
-                jPanel2.add(TipLabel);
-                new Thread(){
-                    public void run(){
-                        int k = 5;
-                        while(k > 0){
-                            TipLabel.setText("Export complete! Close window: " + k + "s.");
-                     try {
-                         Thread.sleep(1000);
-                     } catch (InterruptedException ex) {
-                         Logger.getLogger(ExportXlsUI.class.getName()).log(Level.SEVERE, null, ex);
-                     }
-                     k--;
-                        }
-                 dispose();
-            }
-                }.start();
-                        }
+            if (exportflag && !selectFlag) {
+                tipPanel.add(new TipPanel("No any data selected!", "Error"));
+            } //tip.render(TipLabel, "No any data selected!", "Error");
+            else {
+                JFileChooser fc = new JFileChooser(
+                        System.getProperty("user.dir"));
+                fc.setMultiSelectionEnabled(false);
+                fc.setName("Choose directory...");
+                fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                int result = fc.showSaveDialog(null);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    //tip.render(TipLabel, "Exporting...", "Tip");
+                    dispose();
+                    tipPanel1.add(new TipPanel("Exporting...", "Error"));
+                    File file = fc.getSelectedFile();
+                    if (!file.exists()) {
+                        file.mkdir();
+                    }
+                    outFilePath = file.getAbsolutePath() + "//"; // + "//"+ (int)(89999999*Math.random()+10000000) + "" + "//";
+                    //File file1 = new File(outFilePath);
+                    //file1.mkdir();
+                    exportXls(table, outFilePath, i, j, exportflag);
+                    exportFile(table, outFilePath, i, j, exportflag);
+                    tipPanel1.add(new TipPanel("Export complete! ", "Error"));
 
-        }
+                }
+
+            }
         }
     }
 
-    protected void exportFile(JTable table, String outFilePath, int i, int j, boolean flag){
-        while(i < j){
-           // if(i != 0){
-                boolean selected = (boolean)table.getValueAt(i, 5);
-                if((flag && selected) || !flag){
+    protected void exportFile(JTable table, String outFilePath, int i, int j, boolean flag) {
+        while (i < j) {
+            // if(i != 0){
+            boolean selected = (boolean) table.getValueAt(i, 5);
+            if ((flag && selected) || !flag) {
                 String MolName = table.getModel().getValueAt(i, 1).toString();
                 File mol = new File(filepath + MolName + ".mol2");
-                if(!mol.exists())
+                if (!mol.exists()) {
                     MolName = table.getModel().getValueAt(i, 0).toString();
+                }
                 String newPath = filepath + MolName + ".mol2";
                 copyfile(newPath, outFilePath + MolName + ".mol2");
-           // }
+                // }
             }
-            i ++;
+            i++;
         }
     }
-    protected void copyfile(String oldPath, String newPath){
-       try {
-           int bytesum = 0;
+
+    protected void copyfile(String oldPath, String newPath) {
+        try {
+            int bytesum = 0;
             int byteread = 0;
             File oldfile = new File(oldPath);
             if (oldfile.exists()) {
-                InputStream inStream = null;            
+                InputStream inStream = null;
                 //文件存在时
                 inStream = new FileInputStream(oldPath); //读入原文件
                 FileOutputStream fs = new FileOutputStream(newPath);
@@ -418,12 +401,15 @@ else
                 }
                 inStream.close();
             }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(ExportXlsUI.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(ExportXlsUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ExportXlsUI.class.getName()).log(Level.SEVERE, null, ex);
+            tipPanel1.add(new TipPanel("Export failed! FileNotFoundException ", "Error"));
+        } catch (IOException ex) {
+            Logger.getLogger(ExportXlsUI.class.getName()).log(Level.SEVERE, null, ex);
+            tipPanel1.add(new TipPanel("Export failed! IOException ", "Error"));
+        }
     }
+
     /**
      * Realize export the result from the table
      *
@@ -449,7 +435,7 @@ else
             HSSFCell cell3 = row.createCell(2);
             HSSFCell cell4 = row.createCell(3);
             HSSFCell cell5 = row.createCell(4);
-                            //HSSFCell cell6 = row.createCell(5);
+            //HSSFCell cell6 = row.createCell(5);
             // 定义单元格为字符串类型
             cell1.setCellType(HSSFCell.CELL_TYPE_STRING);
             cell2.setCellType(HSSFCell.CELL_TYPE_STRING);
@@ -464,35 +450,34 @@ else
             cell5.setCellValue("FeatureScore");
             //cell6.setCellValue("Query");
             int Row = 1;
-           // int RowCount = table.getRowCount();
+            // int RowCount = table.getRowCount();
             //if (j >= RowCount) {
-              //  j = RowCount;
-           // }
+            //  j = RowCount;
+            // }
             int k; // k为列
             while (i < j) { // i为表的行数 第一行为表头
-                if(exportModel && (boolean)table.getValueAt(i, 5)){
-                row = sheet.createRow(Row);
-                for (k = 0; k < 5; k++) {
-                    HSSFCell cell = row.createCell(k);
-                    String s = (String) table.getValueAt(i, k);
-                    // 设置单元格格式
-                    cell.setCellStyle(cellStyle);
-                    cell.setCellType(HSSFCell.CELL_TYPE_STRING);
-                    cell.setCellValue(s);
-                }
-                Row++;
-                }
-                else if(!exportModel){
+                if (exportModel && (boolean) table.getValueAt(i, 5)) {
                     row = sheet.createRow(Row);
-                for (k = 0; k < 5; k++) {
-                    HSSFCell cell = row.createCell(k);
-                    String s = (String) table.getValueAt(i, k);
-                    // 设置单元格格式
-                    cell.setCellStyle(cellStyle);
-                    cell.setCellType(HSSFCell.CELL_TYPE_STRING);
-                    cell.setCellValue(s);
-                }
-                Row++;
+                    for (k = 0; k < 5; k++) {
+                        HSSFCell cell = row.createCell(k);
+                        String s = (String) table.getValueAt(i, k);
+                        // 设置单元格格式
+                        cell.setCellStyle(cellStyle);
+                        cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+                        cell.setCellValue(s);
+                    }
+                    Row++;
+                } else if (!exportModel) {
+                    row = sheet.createRow(Row);
+                    for (k = 0; k < 5; k++) {
+                        HSSFCell cell = row.createCell(k);
+                        String s = (String) table.getValueAt(i, k);
+                        // 设置单元格格式
+                        cell.setCellStyle(cellStyle);
+                        cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+                        cell.setCellValue(s);
+                    }
+                    Row++;
                 }
                 i++;
             }
@@ -506,10 +491,16 @@ else
             ExportFlag = true;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ExportXlsUI.class.getName()).log(Level.SEVERE, null, ex);
+            tipPanel1.add(new TipPanel("Export failed! FileNotFoundException ", "Error"));
         } catch (IOException ex) {
             Logger.getLogger(ExportXlsUI.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+            tipPanel1.add(new TipPanel("Export failed! IOException", "Error"));
+        }
         return ExportFlag;
+    }
+
+    public void setTipPanel(JPanel tipPanel1) {
+        this.tipPanel1 = tipPanel1;
     }
 
     /**
@@ -560,6 +551,7 @@ else
     private String filepath;
     private final int HEIGHT = 210;
     private final int WIDTH = 350;
+    private JPanel tipPanel1;
     private TipsRender tip;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TipLabel;
@@ -571,11 +563,11 @@ else
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JPanel tipPanel;
     // End of variables declaration//GEN-END:variables
 }

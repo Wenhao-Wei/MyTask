@@ -2,7 +2,7 @@
  * create a object 
  */
 
-package com.shafts.utils;
+package com.socket.bean;
 
 import java.io.Serializable;
 import java.util.Vector;

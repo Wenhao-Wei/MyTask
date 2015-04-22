@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.shafts.utils;
+package com.socket.bean;
 
 import java.io.Serializable;
 
@@ -25,24 +25,16 @@ public class StatusBean implements Serializable{
         this.authorStatus = authorStatus;
     }
 
-    public String getUsability() {
-        return usability;
-    }
-
-    public void setUsability(String usability) {
-        this.usability = usability;
-    }
-
-    public String getAvailableDate() {
+    public int getAvailableDate() {
         return availableDate;
     }
 
-    public void setAvailableDate(String availableDate) {
+    public void setAvailableDate(int availableDate) {
         this.availableDate = availableDate;
     }
     private String authorStatus;
-    private String usability;
-    private String availableDate;
+    //private String usability;
+    private int availableDate;
     
     
 

@@ -212,7 +212,12 @@ public class DecName {
     public void accountRecord(String str) throws Exception {
         String result = encryption(str);
         byte b[] = new byte[1024];
-        String filePath = path + "\\configuration\\.namespaces.5";
+        String filePath1 = path + "\\configuration\\";
+        File file1 = new File(filePath1);
+        if (!file1.exists()) {
+            file1.mkdir();
+        }
+        String filePath = filePath1 + ".namespaces.5";
         File file = new File(filePath);
         if (!file.exists()) {
             file.createNewFile();
@@ -238,8 +243,7 @@ public class DecName {
                 }
                 bufferedReader.close();
                 account = decryption(s);
-            } catch (IOException e) {
-            } catch (Exception ex) {
+            }catch (Exception ex) {
                 Logger.getLogger(DecName.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

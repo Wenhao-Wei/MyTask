@@ -5,7 +5,11 @@
  */
 package com.shafts.ui;
 
-import com.shafts.utils.StatusBean;
+import com.socket.bean.StatusBean;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import static java.awt.image.ImageObserver.HEIGHT;
+import static java.awt.image.ImageObserver.WIDTH;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -22,12 +26,24 @@ public class StatusUI extends javax.swing.JDialog {
         this.isOrder = isOrder;
         this.license = license;
         this.userName = userName;
-        if(statusBean != null){
-        this.authorStatus = statusBean.getAuthorStatus();
-        this.usability = statusBean.getUsability();
-        this.availableDate = statusBean.getAvailableDate();
+        if (!isOrder) {
+            authorStatus = "unauthorized";
+            usability = "forbidden";
+            availableDate = 0;
+        } else if (statusBean != null) {
+            this.authorStatus = statusBean.getAuthorStatus();
+            //this.usability = statusBean.getUsability();
+            int day = statusBean.getAvailableDate();
+            if (day < 0) {
+                this.availableDate = 0;
+                this.usability = "forbidden";
+            } else {
+                this.availableDate = day;
+                this.usability = "permission";
+            }
         }
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -35,6 +51,13 @@ public class StatusUI extends javax.swing.JDialog {
      */
     public StatusUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screensize = kit.getScreenSize();
+        int width = screensize.width;
+        int height = screensize.height;
+        int x = (width - WIDTH) / 2;
+        int y = (height - HEIGHT) / 2;
+        setLocation(x - 50, y - 100);
         initComponents();
     }
 
@@ -51,6 +74,12 @@ public class StatusUI extends javax.swing.JDialog {
         jTextPane1 = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jButton4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -65,20 +94,14 @@ public class StatusUI extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        dateLabel = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jButton4 = new javax.swing.JButton();
 
         jTextPane1.setEditable(false);
         jTextPane1.setBackground(new java.awt.Color(240, 240, 240));
         jTextPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tips"));
         String tip = null;
-        if(isOrder)
+        if(!isOrder)
         tip = "  You have not activated the product, and part of the function of the product is forbidden. Do you want to activate it?";
-        else
+        else if(availableDate == 0)
         tip = "  Your license of the product has expired, and part of the function of the product is forbidden. Do you want to renew it?";
         jTextPane1.setText(tip);
 
@@ -114,23 +137,78 @@ public class StatusUI extends javax.swing.JDialog {
                 .addComponent(jTextPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 18, Short.MAX_VALUE))
+        );
+
+        jLabel8.setFont(new java.awt.Font("微软雅黑", 3, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Just Enjoy It!");
+
+        dateLabel.setFont(new java.awt.Font("微软雅黑", 1, 12)); // NOI18N
+        dateLabel.setForeground(new java.awt.Color(0, 0, 102));
+        timeNow();
+
+        jButton3.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(0, 0, 102));
+        jButton3.setText("OK");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 153));
+
+        jButton4.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
+        jButton4.setText("Renew");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addContainerGap())
+            .addComponent(jSeparator1)
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
-
-        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
         jScrollPane1.setBorder(null);
-
-        jPanel6.setBackground(new java.awt.Color(153, 255, 153));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jLabel2.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 153));
@@ -163,25 +241,25 @@ public class StatusUI extends javax.swing.JDialog {
         jLabel10.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText(userName);
-        if(authorStatus !=null && usability != null && availableDate != null){
+        if(authorStatus !=null && usability != null){
             if(authorStatus.equals("unauthorized"))
             jLabel5.setForeground(new java.awt.Color(0, 51, 204));
             jLabel5.setText(authorStatus);
-            if(usability.equals("invalid"))
+            if(usability.equals("forbidden"))
             jLabel6.setForeground(new java.awt.Color(0, 51, 204));
             jLabel6.setText(usability);
             if(license.equals("uninstalled"))
             jLabel7.setForeground(new java.awt.Color(0, 51, 204));
             jLabel7.setText(license);
-            if(availableDate.equals("0"))
+            if(availableDate == 0)
             jLabel10.setForeground(new java.awt.Color(0, 51, 204));
-            jLabel10.setText(availableDate);
+            jLabel10.setText(availableDate + "");
         }
         else{
             jLabel5.setText(authorStatus);
             jLabel6.setText(usability);
             jLabel7.setText(license);
-            jLabel10.setText(availableDate);
+            jLabel10.setText(availableDate + "");
         }
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -197,11 +275,12 @@ public class StatusUI extends javax.swing.JDialog {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addGap(0, 319, Short.MAX_VALUE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +290,7 @@ public class StatusUI extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
@@ -233,70 +312,10 @@ public class StatusUI extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
 
         jPanel4.setLayout(new java.awt.GridLayout(1, 0));
-
-        jPanel5.setBackground(new java.awt.Color(204, 255, 204));
-
-        jLabel8.setFont(new java.awt.Font("微软雅黑", 3, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Just Enjoy It!");
-
-        dateLabel.setFont(new java.awt.Font("微软雅黑", 1, 12)); // NOI18N
-        dateLabel.setForeground(new java.awt.Color(0, 0, 102));
-        timeNow();
-
-        jButton3.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 102));
-        jButton3.setText("OK");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jSeparator1.setForeground(new java.awt.Color(0, 0, 153));
-
-        jButton4.setFont(new java.awt.Font("微软雅黑", 0, 12)); // NOI18N
-        jButton4.setText("RENEW");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addContainerGap())
-            .addComponent(jSeparator1)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 30, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton3)
-                        .addComponent(jButton4))
-                    .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
+        if(isOrder)
         jPanel4.add(jPanel5);
+        else
+        jPanel4.add(jPanel3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -307,7 +326,7 @@ public class StatusUI extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,6 +362,7 @@ public class StatusUI extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        dispose();
         new EnterKeyUI(isOrder, userName).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -353,6 +373,7 @@ public class StatusUI extends javax.swing.JDialog {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        dispose();
         new EnterKeyUI(isOrder, userName).setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -421,7 +442,7 @@ public class StatusUI extends javax.swing.JDialog {
     private String license;
     private String authorStatus;
     private String usability;
-    private String availableDate;
+    private int availableDate;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dateLabel;

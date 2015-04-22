@@ -9,10 +9,14 @@ import com.shafts.bridge.ClientInfo;
 import com.shafts.bridge.ServerGate;
 import com.shafts.render.TipsRender;
 import com.shafts.utils.IllegalJudge;
-import com.shafts.utils.InforBean;
-import com.shafts.utils.RegisterBean;
+import com.socket.bean.InforBean;
+import com.socket.bean.RegisterBean;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Insets;
+import java.awt.Toolkit;
+import static java.awt.image.ImageObserver.HEIGHT;
+import static java.awt.image.ImageObserver.WIDTH;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,6 +37,7 @@ public class RegisterUI extends javax.swing.JDialog {
     public RegisterUI() {
         setModal(true);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -94,6 +99,7 @@ public class RegisterUI extends javax.swing.JDialog {
         jLabel13 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Register");
@@ -310,6 +316,9 @@ public class RegisterUI extends javax.swing.JDialog {
             }
         });
 
+        jLabel25.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel25.setText("*");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -367,7 +376,10 @@ public class RegisterUI extends javax.swing.JDialog {
                                             .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
                                         .addGap(18, 18, 18)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel25))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -469,9 +481,11 @@ public class RegisterUI extends javax.swing.JDialog {
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel14)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -593,7 +607,7 @@ public class RegisterUI extends javax.swing.JDialog {
                         tipsRender.render(nameTipLabel, "Account has been existed!", "Error");
                         break;
                     case "ERROR":
-                        JOptionPane.showMessageDialog(null, "Server error! Try it Later.", "Message", JOptionPane.ERROR);
+                        JOptionPane.showMessageDialog(null, "Server error! Try it Later.", "Message", JOptionPane.ERROR_MESSAGE);
                         break;
                     case "NOEXISTED":
                         //boundle it
@@ -620,7 +634,7 @@ public class RegisterUI extends javax.swing.JDialog {
                                 }
                                 break;
                             case "FAILED":
-                                JOptionPane.showMessageDialog(null, "Server error! Try it Later.", "Message", JOptionPane.ERROR);
+                                JOptionPane.showMessageDialog(null, "Server error!！！！ Try it Later.", "Message", JOptionPane.ERROR_MESSAGE);
                                 break;
                         }
                         break;
@@ -652,12 +666,12 @@ public class RegisterUI extends javax.swing.JDialog {
 
     private void jLabel23MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MousePressed
         // TODO add your handling code here:
-        jPasswordField1.setEchoChar('\0');
+        jPasswordField2.setEchoChar('\0');
     }//GEN-LAST:event_jLabel23MousePressed
 
     private void jLabel23MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseReleased
         // TODO add your handling code here:
-        jPasswordField1.setEchoChar('\u25cf');
+        jPasswordField2.setEchoChar('\u25cf');
     }//GEN-LAST:event_jLabel23MouseReleased
 
     //check user name if existed
@@ -679,10 +693,12 @@ public class RegisterUI extends javax.swing.JDialog {
             switch (isExisted) {
                 case "HASEXISTED":
                     jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/refuse.png")));
+                     jLabel24.updateUI();
                     tipsRender.render(nameTipLabel, "Account has been existed!", "Error");
                     break;
                 case "NOEXISTED":
                     jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/pass.png")));
+                     jLabel24.updateUI();
                     tipsRender.render(nameTipLabel, "Account valid!", "Tip");
             }
         }
@@ -827,6 +843,7 @@ public class RegisterUI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -187,6 +187,7 @@ public class TestTargetTable {
             targetTable.addMouseListener(new targetTableLink());
             targetTable.getTableHeader().setDefaultRenderer(new HeaderCellRenderForTarget(targetTable));
              targetTable.addMouseMotionListener(new MouseAdapter() {
+            @Override
             public void mouseMoved(MouseEvent e) {
                 int row =  targetTable.rowAtPoint(e.getPoint());
                 int col =  targetTable.columnAtPoint(e.getPoint());
